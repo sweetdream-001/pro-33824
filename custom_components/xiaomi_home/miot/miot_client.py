@@ -13,6 +13,7 @@ from enum import Enum, auto
 from homeassistant.core import HomeAssistant
 from homeassistant.components import zeroconf
 
+# pylint: disable=relative-beyond-top-level
 from .common import MIoTMatcher
 from .const import (
     DEFAULT_CTRL_MODE, DEFAULT_INTEGRATION_LANGUAGE, DEFAULT_NICK_NAME, DOMAIN,

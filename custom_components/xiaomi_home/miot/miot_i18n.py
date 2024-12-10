@@ -50,6 +50,7 @@ import logging
 import os
 from typing import Optional
 
+# pylint: disable=relative-beyond-top-level
 from .common import load_json_file
 
 _LOGGER = logging.getLogger(__name__)

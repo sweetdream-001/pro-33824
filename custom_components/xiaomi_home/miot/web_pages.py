@@ -46,6 +46,7 @@ off Xiaomi or its affiliates' products.
 MIoT redirect web pages.
 """
 
+# pylint: disable=line-too-long
 
 def oauth_redirect_page(lang: str, status: str) -> str:
     """Return oauth redirect page."""

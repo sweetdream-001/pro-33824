@@ -68,6 +68,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup(hass: HomeAssistant, hass_config: dict) -> bool:
+    # pylint: disable=unused-argument
     hass.data.setdefault(DOMAIN, {})
     # {[entry_id:str]: MIoTClient}, miot client instance
     hass.data[DOMAIN].setdefault('miot_clients', {})

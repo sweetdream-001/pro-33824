@@ -56,6 +56,7 @@ from typing import Optional
 from urllib.parse import urlencode
 import requests
 
+# pylint: disable=relative-beyond-top-level
 from .common import calc_group_id
 from .const import (
     DEFAULT_OAUTH2_API_HOST,

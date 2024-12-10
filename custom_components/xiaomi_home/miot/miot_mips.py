@@ -66,6 +66,7 @@ from paho.mqtt.client import (
     Client,
     MQTTv5)
 
+# pylint: disable=relative-beyond-top-level
 from .common import MIoTMatcher
 from .const import MIHOME_MQTT_KEEPALIVE
 from .miot_error import MIoTErrorCode, MIoTMipsError

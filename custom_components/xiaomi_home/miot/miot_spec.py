@@ -54,6 +54,7 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 import logging
 
+# pylint: disable=relative-beyond-top-level
 from .const import DEFAULT_INTEGRATION_LANGUAGE, SPEC_STD_LIB_EFFECTIVE_TIME
 from .miot_error import MIoTSpecError
 from .miot_storage import (

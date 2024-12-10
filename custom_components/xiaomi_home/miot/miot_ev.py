@@ -53,6 +53,7 @@ from typing import Callable, TypeVar
 import logging
 import threading
 
+# pylint: disable=relative-beyond-top-level
 from .miot_error import MIoTEvError
 
 _LOGGER = logging.getLogger(__name__)

@@ -66,6 +66,7 @@ from cryptography import x509
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import ed25519
 
+# pylint: disable=relative-beyond-top-level
 from .common import load_json_file
 from .const import (
     DEFAULT_INTEGRATION_LANGUAGE,

@@ -78,6 +78,7 @@ from homeassistant.helpers.entity import DeviceInfo
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.util import slugify
 
+# pylint: disable=relative-beyond-top-level
 from .specs.specv2entity import (
     SPEC_ACTION_TRANS_MAP,
     SPEC_DEVICE_TRANS_MAP,

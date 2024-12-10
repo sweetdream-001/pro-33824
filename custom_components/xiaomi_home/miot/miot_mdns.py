@@ -63,6 +63,7 @@ from zeroconf.asyncio import (
     AsyncZeroconf,
     AsyncServiceBrowser)
 
+# pylint: disable=relative-beyond-top-level
 from .miot_error import MipsServiceError
 
 _LOGGER = logging.getLogger(__name__)

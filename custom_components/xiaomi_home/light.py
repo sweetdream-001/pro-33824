@@ -56,7 +56,6 @@ from homeassistant.components.light import (
     ATTR_BRIGHTNESS,
     ATTR_COLOR_TEMP_KELVIN,
     ATTR_RGB_COLOR,
-    ATTR_HS_COLOR,
     ATTR_EFFECT,
     LightEntity,
     LightEntityFeature,
@@ -64,8 +63,7 @@ from homeassistant.components.light import (
 )
 from homeassistant.util.color import (
     value_to_brightness,
-    brightness_to_value,
-    color_hs_to_RGB
+    brightness_to_value
 )
 
 from .miot.miot_spec import MIoTSpecProperty
@@ -96,6 +94,7 @@ async def async_setup_entry(
 
 class Light(MIoTServiceEntity, LightEntity):
     """Light entities for Xiaomi Home."""
+    # pylint: disable=unused-argument
     _prop_on: Optional[MIoTSpecProperty]
     _prop_brightness: Optional[MIoTSpecProperty]
     _prop_color_temp: Optional[MIoTSpecProperty]

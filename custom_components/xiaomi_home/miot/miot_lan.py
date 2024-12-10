@@ -66,6 +66,7 @@ from cryptography.hazmat.primitives import padding
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
 
+# pylint: disable=relative-beyond-top-level
 from .miot_error import MIoTErrorCode
 from .miot_ev import MIoTEventLoop, TimeoutHandle
 from .miot_network import InterfaceStatus, MIoTNetwork, NetworkInfo
