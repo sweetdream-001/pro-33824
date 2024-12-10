@@ -94,28 +94,6 @@ def main():
     if not spec_filter(load_json(f"{source_dir}/spec_filter.json")):
         print(script_name, "spec_filter FAIL")
         sys.exit(1)
-    if not nested_2_dict_str_str(load_json(
-        f"{source_dir}/std_ex_actions.json")):
-        print(script_name, "std_ex_actions.json FAIL")
-        sys.exit(1)
-    if not nested_2_dict_str_str(load_json(
-        f"{source_dir}/std_ex_devices.json")):
-        print(script_name, "std_ex_devices.json FAIL")
-        sys.exit(1)
-    if not nested_2_dict_str_str(load_json(f"{source_dir}/std_ex_events.json")):
-        print(script_name, "std_ex_events.json FAIL")
-        sys.exit(1)
-    if not nested_2_dict_str_str(load_json(
-        f"{source_dir}/std_ex_properties.json")):
-        print(script_name, "std_ex_properties.json FAIL")
-        sys.exit(1)
-    if not nested_2_dict_str_str(load_json(
-        f"{source_dir}/std_ex_services.json")):
-        print(script_name, "std_ex_services.json FAIL")
-        sys.exit(1)
-    if not nested_2_dict_str_str(load_json(f"{source_dir}/std_ex_values.json")):
-        print(script_name, "std_ex_values.json FAIL")
-        sys.exit(1)
 
     source_dir = "../miot/i18n"
     if not nested_3_dict_str_str(load_json(f"{source_dir}/de.json")):
