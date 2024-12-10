@@ -1,0 +1,95 @@
+{
+    "config": {
+        "other": {
+            "devices": "dispositivos",
+            "found_central_gateway": ", se encontró la puerta de enlace central local"
+        },
+        "control_mode": {
+            "auto": "automático",
+            "cloud": "nube"
+        },
+        "room_name_rule": {
+            "none": "no sincronizar",
+            "home_room": "nombre de la casa y nombre de la habitación (Xiaomi Home Dormitorio)",
+            "room": "nombre de la habitación (Dormitorio)",
+            "home": "nombre de la casa (Xiaomi Home)"
+        },
+        "option_status": {
+            "enable": "habilitar",
+            "disable": "deshabilitar"
+        },
+        "lan_ctrl_config": {
+            "notice_net_dup": "\r\n**[Aviso]** Se detectaron varias tarjetas de red que pueden estar conectadas a la misma red. Por favor, preste atención a la selección.",
+            "net_unavailable": "Interfaz no disponible"
+        }
+    },
+    "miot": {
+        "client": {
+            "invalid_oauth_info": "La información de autenticación es inválida, la conexión en la nube no estará disponible, por favor, vaya a la página de integración de Xiaomi Home, haga clic en 'Opciones' para volver a autenticar",
+            "invalid_device_cache": "La información de caché del dispositivo es anormal, por favor, vaya a la página de integración de Xiaomi Home, haga clic en 'Opciones -> Actualizar lista de dispositivos' para actualizar la información del dispositivo local",
+            "invalid_cert_info": "Certificado de usuario inválido, la conexión del centro local no estará disponible, por favor, vaya a la página de integración de Xiaomi Home, haga clic en 'Opciones' para volver a autenticar",
+            "device_cloud_error": "Error al obtener la información del dispositivo desde la nube, por favor, compruebe la conexión de red local",
+            "xiaomi_home_error_title": "Error de integración de Xiaomi Home",
+            "xiaomi_home_error": "Se detectó un error en **{nick_name}({uid}, {cloud_server})**, por favor, vaya a la página de opciones para reconfigurar.\n\n**Mensaje de error**: \n{message}",
+            "device_list_changed_title": "Cambio en la lista de dispositivos de Xiaomi Home",
+            "device_list_changed": "Se detectó un cambio en la información del dispositivo **{nick_name}({uid}, {cloud_server})**, por favor, vaya a la página de integración, haga clic en 'Opciones -> Actualizar lista de dispositivos' para actualizar la información del dispositivo local.\n\nEstado actual de la red: {network_status}\n{message}\n",
+            "device_list_add": "\n**{count} nuevos dispositivos:** \n{message}",
+            "device_list_del": "\n**{count} dispositivos no disponibles:** \n{message}",
+            "device_list_offline": "\n**{count} dispositivos sin conexión:** \n{message}",
+            "network_status_online": "En línea",
+            "network_status_offline": "Desconectado",
+            "device_exec_error": "Error de ejecución"
+        }
+    },
+    "error": {
+        "common": {
+            "-10000": "Error desconocido",
+            "-10001": "Servicio no disponible",
+            "-10002": "Parámetro inválido",
+            "-10003": "Recursos insuficientes",
+            "-10004": "Error interno",
+            "-10005": "Permisos insuficientes",
+            "-10006": "Tiempo de ejecución agotado",
+            "-10007": "Dispositivo fuera de línea o no existe",
+            "-10020": "No autorizado (OAuth2)",
+            "-10030": "Token inválido (HTTP)",
+            "-10040": "Formato de mensaje inválido",
+            "-10050": "Certificado inválido",
+            "-704000000": "Error desconocido",
+            "-704010000": "No autorizado (el dispositivo puede haber sido eliminado)",
+            "-704014006": "Descripción del dispositivo no encontrada",
+            "-704030013": "Propiedad no legible",
+            "-704030023": "Propiedad no escribible",
+            "-704030033": "Propiedad no suscribible",
+            "-704040002": "Servicio no existe",
+            "-704040003": "Propiedad no existe",
+            "-704040004": "Evento no existe",
+            "-704040005": "Acción no existe",
+            "-704040999": "Función no en línea",
+            "-704042001": "Dispositivo no existe",
+            "-704042011": "Dispositivo fuera de línea",
+            "-704053036": "Tiempo de operación del dispositivo agotado",
+            "-704053100": "El dispositivo no puede realizar esta operación en el estado actual",
+            "-704083036": "Tiempo de operación del dispositivo agotado",
+            "-704090001": "Dispositivo no existe",
+            "-704220008": "ID inválido",
+            "-704220025": "Número de parámetros de acción no coincide",
+            "-704220035": "Error de parámetro de acción",
+            "-704220043": "Error de valor de propiedad",
+            "-704222034": "Error de valor de retorno de acción",
+            "-705004000": "Error desconocido",
+            "-705004501": "Error desconocido",
+            "-705201013": "Propiedad no legible",
+            "-705201015": "Error de ejecución de acción",
+            "-705201023": "Propiedad no escribible",
+            "-705201033": "Propiedad no suscribible",
+            "-706012000": "Error desconocido",
+            "-706012013": "Propiedad no legible",
+            "-706012015": "Error de ejecución de acción",
+            "-706012023": "Propiedad no escribible",
+            "-706012033": "Propiedad no suscribible",
+            "-706012043": "Error de valor de propiedad",
+            "-706014006": "Descripción del dispositivo no encontrada"
+        }
+    }
+}

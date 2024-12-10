@@ -1,0 +1,79 @@
+name: Validate
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  validate-hassfest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: Hassfest validation
+        uses: home-assistant/actions/hassfest@master
+
+  validate-hacs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: HACS validation
+        uses: hacs/action@main
+        with:
+          category: integration
+          ignore: brands
+
+  validate-format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: Check format
+        run: |
+          ./custom_components/xiaomi_home/test/test_all.sh
+
+  validate-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pylint
+
+      - name: Analyse the code with pylint
+        run: |
+          pylint $(git ls-files '*.py')
+
+  validate-setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: Install the integration
+        run: |
+          export config_path=./test_config
+          mkdir $config_path
+          ./install.sh $config_path
+          echo "default_config:" >> $config_path/configuration.yaml
+          echo "logger:" >> $config_path/configuration.yaml
+          echo "  default: info" >> $config_path/configuration.yaml
+          echo "  logs:" >> $config_path/configuration.yaml
+          echo "    custom_components.xiaomi_home: debug" >> $config_path/configuration.yaml
+
+      - name: Setup Home Assistant
+        id: homeassistant
+        uses: ludeeus/setup-homeassistant@main
+        with:
+          config-dir: ./test_config

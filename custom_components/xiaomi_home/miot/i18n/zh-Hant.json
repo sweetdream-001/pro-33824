@@ -1,0 +1,97 @@
+{
+    "config": {
+        "other": {
+            "devices": "個設備",
+            "found_central_gateway": "，發現本地中樞網關"
+        },
+        "control_mode": {
+            "auto": "自動",
+            "cloud": "雲端"
+        },
+        "room_name_rule": {
+            "none": "不同步",
+            "home_room": "家庭名 和 房間名 （米家 臥室）",
+            "room": "房間名 （臥室）",
+            "home": "家庭名 （米家）"
+        },
+        "option_status": {
+            "enable": "啟用",
+            "disable": "禁用"
+        },
+        "lan_ctrl_config": {
+            "notice_net_dup": "\r\n**[提示]** 檢測到多個網卡可能連接同一個網絡，請注意選擇。",
+            "net_unavailable": "接口不可用"
+        }
+    },
+    "miot": {
+        "client": {
+            "invalid_oauth_info": "認證信息失效，雲端鏈路將不可用，請進入 Xiaomi Home 集成頁面，點擊“選項”重新認證",
+            "invalid_device_cache": "緩存設備信息異常，請進入 Xiaomi Home 集成頁面，點擊`選項->更新設備列表`，更新本地設備信息",
+            "invalid_cert_info": "無效的用戶證書，本地中樞鏈路將不可用，請進入 Xiaomi Home 集成頁面，點擊“選項”重新認證",
+            "device_cloud_error": "從雲端獲取設備信息異常，請檢查本地網絡連接",
+            "xiaomi_home_error_title": "Xiaomi Home 集成錯誤",
+            "xiaomi_home_error": "檢測到 **{nick_name}({uid}, {cloud_server})** 出現錯誤，請進入選項頁面重新配置。\n\n**錯誤信息**: \n{message}",
+            "device_list_changed_title": "Xiaomi Home設備列表變化",
+            "device_list_changed": "檢測到 **{nick_name}({uid}, {cloud_server})** 設備信息發生變化，請進入集成選項頁面，點擊`選項->更新設備列表`，更新本地設備信息。\n\n當前網絡狀態：{network_status}\n{message}\n",
+            "device_list_add": "\n**{count} 個新增設備:** \n{message}",
+            "device_list_del": "\n**{count} 個設備不可用:** \n{message}",
+            "device_list_offline": "\n**{count} 個設備離線:** \n{message}",
+            "network_status_online": "在線",
+            "network_status_offline": "離線",
+            "device_exec_error": "執行錯誤"
+        }
+    },
+    "error": {
+        "common": {
+            "-1": "未知錯誤",
+            "-10000": "未知錯誤",
+            "-10001": "服務不可用",
+            "-10002": "無效參數",
+            "-10003": "資源不足",
+            "-10004": "內部錯誤",
+            "-10005": "權限不足",
+            "-10006": "執行超時",
+            "-10007": "設備離線或者不存在",
+            "-10020": "無效的消息格式"
+        },
+        "gw": {},
+        "lan": {},
+        "cloud": {
+            "-704000000": "未知錯誤",
+            "-704010000": "未授權（設備可能被刪除）",
+            "-704014006": "沒找到設備描述",
+            "-704030013": "Property不可讀",
+            "-704030023": "Property不可寫",
+            "-704030033": "Property不可訂閱",
+            "-704040002": "Service不存在",
+            "-704040003": "Property不存在",
+            "-704040004": "Event不存在",
+            "-704040005": "Action不存在",
+            "-704040999": "功能未上線",
+            "-704042001": "Device不存在",
+            "-704042011": "設備離線",
+            "-704053036": "設備操作超時",
+            "-704053100": "設備在當前狀態下無法執行此操作",
+            "-704083036": "設備操作超時",
+            "-704090001": "Device不存在",
+            "-704220008": "無效的ID",
+            "-704220025": "Action參數個數不匹配",
+            "-704220035": "Action參數錯誤",
+            "-704220043": "Property值錯誤",
+            "-704222034": "Action返回值錯誤",
+            "-705004000": "未知錯誤",
+            "-705004501": "未知錯誤",
+            "-705201013": "Property不可讀",
+            "-705201015": "Action執行錯誤",
+            "-705201023": "Property不可寫",
+            "-705201033": "Property不可訂閱",
+            "-706012000": "未知錯誤",
+            "-706012013": "Property不可讀",
+            "-706012015": "Action執行錯誤",
+            "-706012023": "Property不可寫",
+            "-706012033": "Property不可訂閱",
+            "-706012043": "Property值錯誤",
+            "-706014006": "沒找到設備描述"
+        }
+    }
+}

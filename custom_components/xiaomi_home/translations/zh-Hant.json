@@ -1,0 +1,144 @@
+{
+    "config": {
+        "flow_title": "米家集成",
+        "step": {
+            "eula": {
+                "title": "風險告知",
+                "description": "1. 您的**小米用戶信息和設備信息**將會存儲在您的 Home Assistant 系統中，**小米無法保證 Home Assistant 存儲機制的安全性**。您需要負責防止您的信息被竊取。\r\n2. 此集成由開源社區維護，可能會出現穩定性問題或其他問題，使用此集成遇到相關問題時，您應當**向開源社區尋求幫助，而不是聯繫小米客服**。\r\n3. 您需要有一定的技術能力來維護您的本地運行環境，此集成對新手用戶來說並不友好。\r\n4. 在使用此集成前，請**仔細閱讀README**。\r\n5. 為了用戶能夠穩定地使用集成，避免接口被濫用，**此集成僅允許在 Home Assistant 中使用，詳情請參考LICENSE**。\r\n",
+                "data": {
+                    "eula": "我已悉知以上風險並自願承擔因使用集成所帶來的相關風險。"
+                }
+            },
+            "auth_config": {
+                "title": "基礎配置",
+                "description": "### 登錄地區\r\n選擇小米帳號所在的地區。您可以在 `米家APP > 我的（位於底部菜單） > 更多設置 > 關於米家` 中查看。\r\n### 語言\r\n選擇設備及實體名稱所用的語言。缺少翻譯的部分語句將使用英文顯示。\r\n### OAuth2 認證跳轉地址\r\nOAuth2 認證跳轉地址為 **[http://homeassistant.local:8123](http://homeassistant.local:8123)**，Home Assistant 需要與當前操作終端（例如，個人電腦）在同一局域網內，且操作終端能通過該地址訪問 Home Assistant 首頁，否則登錄認證可能會失敗。\r\n### 注意事項\r\n- 對於數百個及以上米家設備的用戶，首次添加集成會耗費一些時間，請耐心等待。\r\n- 如果 Home Assistant 運行在docker環境下，請確保docker網絡模式為host，否則會導致本地控制功能異常。\r\n- 集成本地控制功能存在一些依賴項，請仔細閱讀README。\r\n",
+                "data": {
+                    "cloud_server": "登錄地區",
+                    "integration_language": "語言",
+                    "oauth_redirect_url": "認證跳轉地址"
+                }
+            },
+            "oauth_error": {
+                "title": "登錄出現錯誤",
+                "description": "點擊“下一步”重試"
+            },
+            "devices_filter": {
+                "title": "選擇家庭與設備",
+                "description": "## 使用介紹\r\n### 控制模式\r\n- 自動：本地區域網內存在可用的小米中樞網關時， Home Assistant 會優先通過中樞網關發送設備控制指令，以實現本地化控制功能。本地區域網不存在中樞時，會嘗試通過小米OT協議發送控制指令，以實現本地化控制功能。只有當上述本地化控制條件不滿足時，設備控制指令才會通過雲端發送。\r\n- 雲端：控制指令僅通過雲端發送。\r\n### 導入設備的家庭\r\n集成將添加已選中家庭中的設備。\r\n### 房間名同步模式\r\n將設備從米家APP同步到 Home Assistant 時，設備在 Home Assistant 中所處區域的名稱的命名方式將遵循以下規則。注意，設備同步過程不會改變米家APP中家庭和房間的設置。\r\n- 不同步：設備不會被添加至任何區域。\r\n- 其它選項：設備所添加到的區域以米家APP中的家庭或房間名稱命名。\r\n### Action 調試模式\r\n對於設備 MIoT-Spec-V2 定義的方法，在生成通知實體之外，還會生成一個文本輸入框實體，您可以在調試時用它向設備發送控制指令。\r\n### 隱藏非標準生成實體\r\n隱藏名稱以“*”開頭的非標準 MIoT-Spec-V2 實例生成的實體。\r\n\r\n&emsp;\r\n### {nick_name} 您好！請選擇集成控制模式以及您想要添加的設備所處的家庭。\r\n",
+                "data": {
+                    "ctrl_mode": "控制模式",
+                    "home_infos": "導入設備的家庭",
+                    "area_name_rule": "房間名同步模式",
+                    "action_debug": "Action 調試模式",
+                    "hide_non_standard_entities": "隱藏非標準生成實體"
+                }
+            }
+        },
+        "progress": {
+            "oauth": "### {link_left}請點擊此處進行登錄{link_right}\r\n(登錄成功後，將會自動跳轉至下一頁面)"
+        },
+        "error": {
+            "eula_not_agree": "請閱讀風險告知文本。",
+            "get_token_error": "獲取登錄授權信息（OAuth token）失敗。",
+            "get_homeinfo_error": "獲取家庭信息失敗。",
+            "mdns_discovery_error": "本地設備發現服務異常。",
+            "get_cert_error": "獲取中樞證書失敗。",
+            "no_family_selected": "未選擇家庭。",
+            "no_devices": "選擇的家庭中沒有設備。請選擇有設備的家庭，而後繼續。",
+            "no_central_device": "【中樞網關模式】需要 Home Assistant 所在的局域網中存在可用的小米中樞網關。請檢查選擇的家庭是否符合該要求。"
+        },
+        "abort": {
+            "network_connect_error": "配置失敗。網絡連接異常，請檢查設備網絡配置。",
+            "already_configured": "該用戶已配置完成。請進入集成頁面，點擊“配置”按鈕修改配置。",
+            "invalid_auth_info": "認證信息已過期。請進入集成頁面，點擊“配置”按鈕重新認證。",
+            "config_flow_error": "集成配置錯誤：{error}"
+        }
+    },
+    "options": {
+        "step": {
+            "auth_config": {
+                "title": "認證配置",
+                "description": "檢測到本地認證信息過期，請重新開始認證\r\n### 當前登錄地區: {cloud_server}\r\n### OAuth2 認證跳轉地址\r\nOAuth2 認證跳轉地址為 **[http://homeassistant.local:8123](http://homeassistant.local:8123)**，Home Assistant 需要與當前操作終端（例如，個人電腦）在同一局域網內，且操作終端能通過該地址訪問 Home Assistant 首頁，否則登錄認證可能會失敗。\r\n",
+                "data": {
+                    "oauth_redirect_url": "認證跳轉地址"
+                }
+            },
+            "oauth_error": {
+                "title": "登錄出現錯誤",
+                "description": "點擊“下一步”重試"
+            },
+            "config_options": {
+                "title": "配置選項",
+                "description": "### {nick_name} 您好！\r\n\r\n小米帳號ID：{uid}\r\n當前登錄區域：{cloud_server}\r\n\r\n請勾選需要重新配置的選項，然後點擊“下一步”。\r\n",
+                "data": {
+                    "integration_language": "集成語言",
+                    "update_user_info": "更新用戶信息",
+                    "update_devices": "更新設備列表",
+                    "action_debug": "Action 調試模式",
+                    "hide_non_standard_entities": "隱藏非標準生成實體",
+                    "update_trans_rules": "更新實體轉換規則",
+                    "update_lan_ctrl_config": "更新局域網控制配置"
+                }
+            },
+            "update_user_info": {
+                "title": "更新用戶暱稱",
+                "description": "{nick_name} 您好！請在下方修改您的用戶暱稱。\r\n",
+                "data": {
+                    "nick_name": "用戶暱稱"
+                }
+            },
+            "devices_filter": {
+                "title": "重新選擇家庭與設備",
+                "description": "\r\n## 使用介紹\r\n### 控制模式\r\n- 自動：本地局域網內存在可用的小米中樞網關時， Home Assistant 會優先通過中樞網關發送設備控制指令，以實現本地化控制功能。只有當本地化控制條件不滿足時，設備控制指令才會通過雲端發送。\r\n- 雲端：控制指令強制通過雲端發送。\r\n### 導入設備的家庭\r\n集成將添加已選中家庭中的設備。\r\n&emsp;\r\n### {nick_name} 您好！請選擇集成控制模式以及您想要添加的設備所處的家庭。\r\n",
+                "data": {
+                    "ctrl_mode": "控制模式",
+                    "home_infos": "導入設備的家庭"
+                }
+            },
+            "update_trans_rules": {
+                "title": "更新實體轉換規則",
+                "description": "## 使用介紹\r\n- 更新當前集成實例中設備的實體信息，包含SPEC多語言配置、SPEC布爾值翻譯、SPEC模型過濾。\r\n- **警告：該配置為全局配置**，會直接更新本地緩存，如果其它集成實例中有相同型號設備，相關實例重載後也會更新。\r\n- 該操作會耗費一定時間，請耐心等待，勾選“確認更新”，點擊“下一步”開始更新 **{urn_count}** 條規則，否則跳過更新。\r\n",
+                "data": {
+                    "confirm": "確認更新"
+                }
+            },
+            "update_lan_ctrl_config": {
+                "title": "更新局域網控制配置",
+                "description": "## 使用介紹\r\n更新**局域網控制米家設備**時的配置信息，當雲端和中樞網關無法控制設備時，集成會嘗試通過局域網控制設備；如果未選擇網卡，局域網控制將不會啟用。\r\n- 目前只支持控制局域網內 **SPEC v2** WiFi 設備，部分舊設備可能不支持控制或者不支持屬性同步。\r\n- 請選擇和設備同一網絡的網卡（支持多選），如果選擇的網卡存在兩個及以上連接在同一網絡中，建議選擇網絡連接最優的，否則可能會**影響設備正常使用**。\r\n- **如果局域網中存在支持本地控制的終端設備（網關、手機等），啟用局域網訂閱可能會導致本地自動化或者設備異常，請謹慎使用**。\r\n- **警告：該配置為全局配置，修改會影響其他集成實例，請謹慎修改**。\r\n{notice_net_dup}\r\n",
+                "data": {
+                    "net_interfaces": "請選擇使用的網卡",
+                    "enable_subscribe": "啟用局域網訂閱"
+                }
+            },
+            "config_confirm": {
+                "title": "確認配置",
+                "description": "**{nick_name}** 您好！請確認最新的配置信息，然後點擊“提交”。\r\n集成將會使用更新後的配置重新載入。\r\n\r\n集成語言：\t{lang_new}\r\n用戶暱稱：\t{nick_name_new}\r\nAction 調試模式：\t{action_debug}\r\n隱藏非標準生成實體：\t{hide_non_standard_entities}\r\n設備變化：\t新增 **{devices_add}** 個設備，移除 **{devices_remove}** 個設備\r\n轉換規則變化：\t共條 **{trans_rules_count}** 規則，更新 **{trans_rules_count_success}** 條規則\r\n",
+                "data": {
+                    "confirm": "確認修改"
+                }
+            }
+        },
+        "progress": {
+            "oauth": "### {link_left}請點擊此處重新登錄{link_right}"
+        },
+        "error": {
+            "not_auth": "用戶未認證。請點擊認證鏈接以認證用戶身份。",
+            "get_token_error": "獲取登錄授權信息（OAuth token）失敗。",
+            "get_homeinfo_error": "獲取家庭信息失敗。",
+            "get_cert_error": "獲取中樞證書失敗。",
+            "no_family_selected": "未選擇家庭。",
+            "no_devices": "選擇的家庭中沒有設備，請選擇有設備的家庭，而後繼續。",
+            "no_central_device": "【中樞網關模式】需要 Home Assistant 所在的局域網中存在可用的小米中樞網關。請檢查選擇的家庭是否符合該要求。",
+            "mdns_discovery_error": "本地設備發現服務異常。",
+            "update_config_error": "配置信息更新失敗。",
+            "not_confirm": "未確認修改項。請勾選確認後再提交。"
+        },
+        "abort": {
+            "network_connect_error": "配置失敗。網絡連接異常，請檢查設備網絡配置。",
+            "options_flow_error": "集成重新配置錯誤：{error}",
+            "re_add": "請重新添加集成，錯誤信息：{error}",
+            "storage_error": "集成存儲模塊異常。請重試或者重新添加集成：{error}",
+            "inconsistent_account": "帳號信息不一致。請使用正確的帳號登錄。"
+        }
+    }
+}

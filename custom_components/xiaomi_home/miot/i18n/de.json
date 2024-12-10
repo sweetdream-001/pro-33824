@@ -1,0 +1,95 @@
+{
+    "config": {
+        "other": {
+            "devices": "Geräte",
+            "found_central_gateway": ", lokales zentrales Gateway gefunden"
+        },
+        "control_mode": {
+            "auto": "automatisch",
+            "cloud": "Cloud"
+        },
+        "room_name_rule": {
+            "none": "nicht synchronisieren",
+            "home_room": "Hausname und Raumname (Xiaomi Home Schlafzimmer)",
+            "room": "Raumname (Schlafzimmer)",
+            "home": "Hausname (Xiaomi Home)"
+        },
+        "option_status": {
+            "enable": "aktivieren",
+            "disable": "deaktivieren"
+        },
+        "lan_ctrl_config": {
+            "notice_net_dup": "\r\n**[Hinweis]** Es wurden mehrere Netzwerkkarten erkannt, die möglicherweise mit demselben Netzwerk verbunden sind. Bitte achten Sie auf die Auswahl.",
+            "net_unavailable": "Schnittstelle nicht verfügbar"
+        }
+    },
+    "miot": {
+        "client": {
+            "invalid_oauth_info": "Ungültige Authentifizierungsinformationen, Cloud-Verbindung nicht verfügbar, bitte betreten Sie die Xiaomi Home-Integrationsseite und klicken Sie auf 'Optionen', um die Authentifizierung erneut durchzuführen",
+            "invalid_device_cache": "Ungültige Gerätecache-Informationen, bitte betreten Sie die Xiaomi Home-Integrationsseite und klicken Sie auf 'Optionen->Geräteliste aktualisieren', um den lokalen Gerätecache zu aktualisieren",
+            "invalid_cert_info": "Ungültiges Benutzerzertifikat, lokale zentrale Verbindung nicht verfügbar, bitte betreten Sie die Xiaomi Home-Integrationsseite und klicken Sie auf 'Optionen', um die Authentifizierung erneut durchzuführen",
+            "device_cloud_error": "Fehler beim Abrufen von Geräteinformationen aus der Cloud, bitte überprüfen Sie die lokale Netzwerkverbindung",
+            "xiaomi_home_error_title": "Xiaomi Home-Integrationsfehler",
+            "xiaomi_home_error": "Fehler **{nick_name}({uid}, {cloud_server})** festgestellt, bitte betreten Sie die Optionen-Seite, um die Konfiguration erneut durchzuführen.\n\n**Fehlermeldung**: \n{message}",
+            "device_list_changed_title": "Xiaomi Home-Geräteliste geändert",
+            "device_list_changed": "Änderung der Geräteinformationen **{nick_name}({uid}, {cloud_server})** festgestellt, bitte betreten Sie die Integrations-Optionen-Seite, klicken Sie auf 'Optionen->Geräteliste aktualisieren', um den lokalen Gerätecache zu aktualisieren.\n\nAktueller Netzwerkstatus: {network_status}\n{message}\n",
+            "device_list_add": "\n**{count} neue Geräte:** \n{message}",
+            "device_list_del": "\n**{count} Geräte nicht verfügbar:** \n{message}",
+            "device_list_offline": "\n**{count} Geräte offline:** \n{message}",
+            "network_status_online": "Online",
+            "network_status_offline": "Offline",
+            "device_exec_error": "Fehler bei der Ausführung"
+        }
+    },
+    "error": {
+        "common": {
+            "-10000": "Unbekannter Fehler",
+            "-10001": "Dienst nicht verfügbar",
+            "-10002": "Ungültiger Parameter",
+            "-10003": "Unzureichende Ressourcen",
+            "-10004": "Interner Fehler",
+            "-10005": "Unzureichende Berechtigungen",
+            "-10006": "Ausführungszeitüberschreitung",
+            "-10007": "Gerät offline oder nicht vorhanden",
+            "-10020": "Nicht autorisiert (OAuth2)",
+            "-10030": "Ungültiges Token (HTTP)",
+            "-10040": "Ungültiges Nachrichtenformat",
+            "-10050": "Ungültiges Zertifikat",
+            "-704000000": "Unbekannter Fehler",
+            "-704010000": "Nicht autorisiert (Gerät wurde möglicherweise gelöscht)",
+            "-704014006": "Gerätebeschreibung nicht gefunden",
+            "-704030013": "Eigenschaft nicht lesbar",
+            "-704030023": "Eigenschaft nicht beschreibbar",
+            "-704030033": "Eigenschaft nicht abonnierbar",
+            "-704040002": "Dienst existiert nicht",
+            "-704040003": "Eigenschaft existiert nicht",
+            "-704040004": "Ereignis existiert nicht",
+            "-704040005": "Aktion existiert nicht",
+            "-704040999": "Funktion nicht online",
+            "-704042001": "Gerät existiert nicht",
+            "-704042011": "Gerät offline",
+            "-704053036": "Gerätebetrieb zeitüberschreitung",
+            "-704053100": "Gerät kann diese Operation im aktuellen Zustand nicht ausführen",
+            "-704083036": "Gerätebetrieb zeitüberschreitung",
+            "-704090001": "Gerät existiert nicht",
+            "-704220008": "Ungültige ID",
+            "-704220025": "Aktionsparameteranzahl stimmt nicht überein",
+            "-704220035": "Aktionsparameterfehler",
+            "-704220043": "Eigenschaftswertfehler",
+            "-704222034": "Aktionsrückgabewertfehler",
+            "-705004000": "Unbekannter Fehler",
+            "-705004501": "Unbekannter Fehler",
+            "-705201013": "Eigenschaft nicht lesbar",
+            "-705201015": "Aktionsausführungsfehler",
+            "-705201023": "Eigenschaft nicht beschreibbar",
+            "-705201033": "Eigenschaft nicht abonnierbar",
+            "-706012000": "Unbekannter Fehler",
+            "-706012013": "Eigenschaft nicht lesbar",
+            "-706012015": "Aktionsausführungsfehler",
+            "-706012023": "Eigenschaft nicht beschreibbar",
+            "-706012033": "Eigenschaft nicht abonnierbar",
+            "-706012043": "Eigenschaftswertfehler",
+            "-706014006": "Gerätebeschreibung nicht gefunden"
+        }
+    }
+}

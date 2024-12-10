@@ -1,0 +1,95 @@
+{
+    "config": {
+        "other": {
+            "devices": "Devices",
+            "found_central_gateway": ", Found Local Central Hub Gateway"
+        },
+        "control_mode": {
+            "auto": "Auto",
+            "cloud": "Cloud"
+        },
+        "room_name_rule": {
+            "none": "Do not synchronize",
+            "home_room": "Home Name and Room Name (Xiaomi Home Bedroom)",
+            "room": "Room Name (Bedroom)",
+            "home": "Home Name (Xiaomi Home)"
+        },
+        "option_status": {
+            "enable": "Enable",
+            "disable": "Disable"
+        },
+        "lan_ctrl_config": {
+            "notice_net_dup": "\r\n**[Notice]** Multiple network cards detected that may be connected to the same network. Please pay attention to the selection.",
+            "net_unavailable": "Interface unavailable"
+        }
+    },
+    "miot": {
+        "client": {
+            "invalid_oauth_info": "Authentication information is invalid, cloud link will be unavailable, please enter the Xiaomi Home integration page, click 'Options' to re-authenticate",
+            "invalid_device_cache": "Cache device information is abnormal, please enter the Xiaomi Home integration page, click 'Options->Update device list', update the local cache",
+            "invalid_cert_info": "Invalid user certificate, local central link will be unavailable, please enter the Xiaomi Home integration page, click 'Options' to re-authenticate",
+            "device_cloud_error": "An exception occurred when obtaining device information from the cloud, please check the local network connection",
+            "xiaomi_home_error_title": "Xiaomi Home Integration Error",
+            "xiaomi_home_error": "Detected **{nick_name}({uid}, {cloud_server})** error, please enter the options page to reconfigure.\n\n**Error message**: \n{message}",
+            "device_list_changed_title": "Xiaomi Home device list changes",
+            "device_list_changed": "Detected **{nick_name}({uid}, {cloud_server})** device information has changed, please enter the integration options page, click `Options->Update device list`, update local device information.\n\nCurrent network status: {network_status}\n{message}\n",
+            "device_list_add": "\n**{count} new devices:** \n{message}",
+            "device_list_del": "\n**{count} devices unavailable:** \n{message}",
+            "device_list_offline": "\n**{count} devices offline:** \n{message}",
+            "network_status_online": "Online",
+            "network_status_offline": "Offline",
+            "device_exec_error": "Execution error"
+        }
+    },
+    "error": {
+        "common": {
+            "-10000": "Unknown error",
+            "-10001": "Service unavailable",
+            "-10002": "Invalid parameter",
+            "-10003": "Insufficient resources",
+            "-10004": "Internal error",
+            "-10005": "Insufficient permissions",
+            "-10006": "Execution timeout",
+            "-10007": "Device offline or does not exist",
+            "-10020": "Unauthorized (OAuth2)",
+            "-10030": "Invalid token (HTTP)",
+            "-10040": "Invalid message format",
+            "-10050": "Invalid certificate",
+            "-704000000": "Unknown error",
+            "-704010000": "Unauthorized (device may have been deleted)",
+            "-704014006": "Device description not found",
+            "-704030013": "Property not readable",
+            "-704030023": "Property not writable",
+            "-704030033": "Property not subscribable",
+            "-704040002": "Service does not exist",
+            "-704040003": "Property does not exist",
+            "-704040004": "Event does not exist",
+            "-704040005": "Action does not exist",
+            "-704040999": "Feature not online",
+            "-704042001": "Device does not exist",
+            "-704042011": "Device offline",
+            "-704053036": "Device operation timeout",
+            "-704053100": "Device cannot perform this operation in the current state",
+            "-704083036": "Device operation timeout",
+            "-704090001": "Device does not exist",
+            "-704220008": "Invalid ID",
+            "-704220025": "Action parameter count mismatch",
+            "-704220035": "Action parameter error",
+            "-704220043": "Property value error",
+            "-704222034": "Action return value error",
+            "-705004000": "Unknown error",
+            "-705004501": "Unknown error",
+            "-705201013": "Property not readable",
+            "-705201015": "Action execution error",
+            "-705201023": "Property not writable",
+            "-705201033": "Property not subscribable",
+            "-706012000": "Unknown error",
+            "-706012013": "Property not readable",
+            "-706012015": "Action execution error",
+            "-706012023": "Property not writable",
+            "-706012033": "Property not subscribable",
+            "-706012043": "Property value error",
+            "-706014006": "Device description not found"
+        }
+    }
+}

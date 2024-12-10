@@ -1,0 +1,95 @@
+{
+    "config": {
+        "other": {
+            "devices": "appareils",
+            "found_central_gateway": ", passerelle centrale locale trouvée"
+        },
+        "control_mode": {
+            "auto": "automatique",
+            "cloud": "cloud"
+        },
+        "room_name_rule": {
+            "none": "ne pas synchroniser",
+            "home_room": "nom de la maison et nom de la pièce (Xiaomi Home Chambre)",
+            "room": "nom de la pièce (Chambre)",
+            "home": "nom de la maison (Xiaomi Home)"
+        },
+        "option_status": {
+            "enable": "activer",
+            "disable": "désactiver"
+        },
+        "lan_ctrl_config": {
+            "notice_net_dup": "\r\n**[Remarque]** Plusieurs cartes réseau détectées qui peuvent être connectées au même réseau. Veuillez faire attention à la sélection.",
+            "net_unavailable": "Interface non disponible"
+        }
+    },
+    "miot": {
+        "client": {
+            "invalid_oauth_info": "Informations d'authentification non valides, le lien cloud ne sera pas disponible, veuillez accéder à la page d'intégration Xiaomi Home, cliquez sur \"Options\" pour vous réauthentifier",
+            "invalid_device_cache": "Informations de cache de périphérique non valides, veuillez accéder à la page d'intégration Xiaomi Home, cliquez sur `Options-> Mettre à jour la liste des appareils`, pour mettre à jour les informations locales des appareils",
+            "invalid_cert_info": "Certificat utilisateur non valide, le lien central local ne sera pas disponible, veuillez accéder à la page d'intégration Xiaomi Home, cliquez sur \"Options\" pour vous réauthentifier",
+            "device_cloud_error": "Erreur lors de la récupération des informations de l'appareil à partir du cloud, veuillez vérifier la connexion réseau locale",
+            "xiaomi_home_error_title": "Erreur d'intégration Xiaomi Home",
+            "xiaomi_home_error": "Erreur détectée sur **{nick_name}({uid}, {cloud_server})**, veuillez accéder à la page d'options pour reconfigurer.\n\n**Message d'erreur**: \n{message}",
+            "device_list_changed_title": "Changements dans la liste des appareils Xiaomi Home",
+            "device_list_changed": "Changements détectés sur **{nick_name}({uid}, {cloud_server})**, veuillez accéder à la page d'intégration, cliquez sur `Options-> Mettre à jour la liste des appareils`, pour mettre à jour les informations locales des appareils.\n\nÉtat actuel du réseau : {network_status}\n{message}\n",
+            "device_list_add": "\n**{count} nouveaux appareils :** \n{message}",
+            "device_list_del": "\n**{count} appareils non disponibles :** \n{message}",
+            "device_list_offline": "\n**{count} appareils hors ligne :** \n{message}",
+            "network_status_online": "En ligne",
+            "network_status_offline": "Hors ligne",
+            "device_exec_error": "Erreur d'exécution"
+        }
+    },
+    "error": {
+        "common": {
+            "-10000": "Erreur inconnue",
+            "-10001": "Service indisponible",
+            "-10002": "Paramètre invalide",
+            "-10003": "Ressources insuffisantes",
+            "-10004": "Erreur interne",
+            "-10005": "Permissions insuffisantes",
+            "-10006": "Délai d'exécution dépassé",
+            "-10007": "Appareil hors ligne ou n'existe pas",
+            "-10020": "Non autorisé (OAuth2)",
+            "-10030": "Jeton invalide (HTTP)",
+            "-10040": "Format de message invalide",
+            "-10050": "Certificat invalide",
+            "-704000000": "Erreur inconnue",
+            "-704010000": "Non autorisé (l'appareil peut avoir été supprimé)",
+            "-704014006": "Description de l'appareil introuvable",
+            "-704030013": "Propriété non lisible",
+            "-704030023": "Propriété non inscriptible",
+            "-704030033": "Propriété non abonnable",
+            "-704040002": "Service n'existe pas",
+            "-704040003": "Propriété n'existe pas",
+            "-704040004": "Événement n'existe pas",
+            "-704040005": "Action n'existe pas",
+            "-704040999": "Fonction non en ligne",
+            "-704042001": "Appareil n'existe pas",
+            "-704042011": "Appareil hors ligne",
+            "-704053036": "Délai d'opération de l'appareil dépassé",
+            "-704053100": "L'appareil ne peut pas effectuer cette opération dans l'état actuel",
+            "-704083036": "Délai d'opération de l'appareil dépassé",
+            "-704090001": "Appareil n'existe pas",
+            "-704220008": "ID invalide",
+            "-704220025": "Nombre de paramètres d'action ne correspond pas",
+            "-704220035": "Erreur de paramètre d'action",
+            "-704220043": "Erreur de valeur de propriété",
+            "-704222034": "Erreur de valeur de retour d'action",
+            "-705004000": "Erreur inconnue",
+            "-705004501": "Erreur inconnue",
+            "-705201013": "Propriété non lisible",
+            "-705201015": "Erreur d'exécution d'action",
+            "-705201023": "Propriété non inscriptible",
+            "-705201033": "Propriété non abonnable",
+            "-706012000": "Erreur inconnue",
+            "-706012013": "Propriété non lisible",
+            "-706012015": "Erreur d'exécution d'action",
+            "-706012023": "Propriété non inscriptible",
+            "-706012033": "Propriété non abonnable",
+            "-706012043": "Erreur de valeur de propriété",
+            "-706014006": "Description de l'appareil introuvable"
+        }
+    }
+}
