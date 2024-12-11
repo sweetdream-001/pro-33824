@@ -84,7 +84,7 @@ Xiaomi Home Integration and the affiliated cloud interface is provided by Xiaomi
 
 - Does Xiaomi Home Integration support multiple Xiaomi accounts?
 
-  Yes, it supports multiple Xiaomi accounts. Futhermore, Xiaomi Home Integration allows that devices belonging to different accounts can be added to a same area.
+  Yes, it supports multiple Xiaomi accounts. Furthermore, Xiaomi Home Integration allows that devices belonging to different accounts can be added to a same area.
 
 - Does Xiaomi Home Integration support local control?
 
@@ -299,7 +299,7 @@ The format of `spec_filter.json` is as follows.
 }
 ```
 
-The key of `spec_filter.json` dictionary is the urn excluding the "version " field of the MIoT-Spec-V2 device instance. The firmware of different versions of the same product may be associated with the MIoT-Spec-V2 device instances of different versions. It is required that the MIoT-Spec-V2 instance of a higher version must contain all MIoT-Spec-V2 instances of the lower versions when a vendor defines the MIoT-Spec-V2 of its product on MIoT platform. Thus, the key of `spec_filter.json` does not need to specify the version number of MIoT-Spec-V2 device instance.
+The key of `spec_filter.json` dictionary is the urn excluding the "version" field of the MIoT-Spec-V2 device instance. The firmware of different versions of the same product may be associated with the MIoT-Spec-V2 device instances of different versions. It is required that the MIoT-Spec-V2 instance of a higher version must contain all MIoT-Spec-V2 instances of the lower versions when a vendor defines the MIoT-Spec-V2 of its product on MIoT platform. Thus, the key of `spec_filter.json` does not need to specify the version number of MIoT-Spec-V2 device instance.
 
 The value of "services", "properties", "events" or "actions" fields under "device instance" is the instance id (iid) of the service, property, event or action that will be ignored in the conversion process. Wildcard matching is supported.
 
@@ -389,6 +389,6 @@ Example:
 - miot/miot_lan: Device LAN control, including device discovery, device control, etc.
 - miot/miot_mdns: Central hub gateway service LAN discovery.
 - miot/miot_network: Obtain network status and network information.
-- miot/miot_storage: Used for integrated file storage.
+- miot/miot_storage: File storage for the integration.
 - miot/test: Test scripts.
 - config_flow: Config flow.
