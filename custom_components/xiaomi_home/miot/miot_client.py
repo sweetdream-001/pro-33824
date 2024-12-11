@@ -294,25 +294,45 @@ class MIoTClient:
         _LOGGER.info('init_async, %s, %s', self._uid, self._cloud_server)
 
     async def deinit_async(self) -> None:
-        # Cloud mips
-        self._mips_cloud.disconnect()
-        # Cancel refresh cloud devices
-        if self._refresh_cloud_devices_timer:
-            self._refresh_cloud_devices_timer.cancel()
-            self._refresh_cloud_devices_timer = None
+        self._network.unsub_network_status(
+            key=f'{self._uid}-{self._cloud_server}')
         # Cancel refresh props
         if self._refresh_props_timer:
             self._refresh_props_timer.cancel()
             self._refresh_props_timer = None
         self._refresh_props_list.clear()
         self._refresh_props_retry_count = 0
-        # Central hub gateway mips
-        for mips in self._mips_local.values():
-            mips.disconnect()
-        if self._mips_local_state_changed_timers:
-            for timer_item in self._mips_local_state_changed_timers.values():
-                timer_item.cancel()
-            self._mips_local_state_changed_timers.clear()
+        # Cloud mips
+        self._mips_cloud.unsub_mips_state(
+            key=f'{self._uid}-{self._cloud_server}')
+        self._mips_cloud.disconnect()
+        # Cancel refresh cloud devices
+        if self._refresh_cloud_devices_timer:
+            self._refresh_cloud_devices_timer.cancel()
+            self._refresh_cloud_devices_timer = None
+        if self._ctrl_mode == CtrlMode.AUTO:
+            # Central hub gateway mips
+            if self._cloud_server in SUPPORT_CENTRAL_GATEWAY_CTRL:
+                self._mips_service.unsub_service_change(
+                    key=f'{self._uid}-{self._cloud_server}')
+                for mips in self._mips_local.values():
+                    mips.on_dev_list_changed = None
+                    mips.unsub_mips_state(key=mips.group_id)
+                    mips.disconnect()
+                if self._mips_local_state_changed_timers:
+                    for timer_item in (
+                            self._mips_local_state_changed_timers.values()):
+                        timer_item.cancel()
+                    self._mips_local_state_changed_timers.clear()
+            self._miot_lan.unsub_lan_state(
+                key=f'{self._uid}-{self._cloud_server}')
+            if self._miot_lan.init_done:
+                self._miot_lan.unsub_device_state(
+                    key=f'{self._uid}-{self._cloud_server}')
+                self._miot_lan.delete_devices(
+                    devices=list(self._device_list_cache.keys()))
+            await self._miot_lan.vote_for_lan_ctrl_async(
+                key=f'{self._uid}-{self._cloud_server}', vote=False)
         # Cancel refresh auth info
         if self._refresh_token_timer:
             self._refresh_token_timer.cancel()
@@ -320,6 +340,10 @@ class MIoTClient:
         if self._refresh_cert_timer:
             self._refresh_cert_timer.cancel()
             self._refresh_cert_timer = None
+        # Cancel device changed notify timer
+        if self._show_devices_changed_notify_timer:
+            self._show_devices_changed_notify_timer.cancel()
+            self._show_devices_changed_notify_timer = None
         # Remove notify
         self._persistence_notify(
             self.__gen_notify_key('dev_list_changed'), None, None)
@@ -1727,6 +1751,8 @@ class MIoTClient:
     def __request_show_devices_changed_notify(
         self, delay_sec: float = 6
     ) -> None:
+        if not self._mips_cloud and not self._mips_local and not self._miot_lan:
+            return
         if self._show_devices_changed_notify_timer:
             self._show_devices_changed_notify_timer.cancel()
         self._show_devices_changed_notify_timer = self._main_loop.call_later(
