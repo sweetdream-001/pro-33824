@@ -61,6 +61,7 @@ class CtrlMode(Enum):
 class MIoTClient:
     """MIoT client instance."""
     # pylint: disable=unused-argument
+    # pylint: disable=broad-exception-caught
     _main_loop: asyncio.AbstractEventLoop
 
     _uid: str
@@ -418,7 +419,8 @@ class MIoTClient:
             ):
                 raise MIoTClientError('invalid auth info')
             # Determine whether to update token
-            if (auth_info['expires_ts']-60) <= int(time.time()):
+            refresh_time = int(auth_info['expires_ts'] - time.time())
+            if refresh_time <= 60:
                 valid_auth_info = await self._oauth.refresh_access_token_async(
                     refresh_token=auth_info['refresh_token'])
                 auth_info = valid_auth_info
@@ -436,10 +438,9 @@ class MIoTClient:
                 _LOGGER.info(
                     'refresh oauth info, get new access_token, %s',
                     auth_info)
-
-            refresh_time = int(auth_info['expires_ts'] - time.time())
-            if refresh_time <= 0:
-                raise MIoTClientError('invalid expires time')
+                refresh_time = int(auth_info['expires_ts'] - time.time())
+                if refresh_time <= 0:
+                    raise MIoTClientError('invalid expires time')
             self.__show_client_error_notify(None, 'oauth_info')
             self.__request_refresh_auth_info(refresh_time)
 
@@ -447,7 +448,7 @@ class MIoTClient:
                 'refresh oauth info (%s, %s) after %ds',
                 self._uid, self._cloud_server, refresh_time)
             return True
-        except Exception as err:  # pylint: disable=broad-exception-caught
+        except Exception as err:
             self.__show_client_error_notify(
                 message=self._i18n.translate('miot.client.invalid_oauth_info'),
                 notify_key='oauth_info')
@@ -462,12 +463,12 @@ class MIoTClient:
                 return True
             if not await self._cert.verify_ca_cert_async():
                 raise MIoTClientError('ca cert is not ready')
-            if (
-                await self._cert.user_cert_remaining_time_async() <
-                    MIHOME_CERT_EXPIRE_MARGIN
-            ):
+            refresh_time = (
+                await self._cert.user_cert_remaining_time_async() -
+                MIHOME_CERT_EXPIRE_MARGIN)
+            if refresh_time <= 60:
                 user_key = await self._cert.load_user_key_async()
-                if user_key is None:
+                if not user_key:
                     user_key = self._cert.gen_user_key()
                     if not await self._cert.update_user_key_async(key=user_key):
                         raise MIoTClientError('update_user_key_async failed')
@@ -477,13 +478,12 @@ class MIoTClient:
                 if not await self._cert.update_user_cert_async(cert=crt_str):
                     raise MIoTClientError('update user cert error')
                 _LOGGER.info('update_user_cert_async, %s', crt_str)
-
-            # Create cert update task
-            refresh_time = (
-                await self._cert.user_cert_remaining_time_async() -
-                MIHOME_CERT_EXPIRE_MARGIN)
-            if refresh_time <= 0:
-                raise MIoTClientError('invalid refresh time')
+                # Create cert update task
+                refresh_time = (
+                    await self._cert.user_cert_remaining_time_async() -
+                    MIHOME_CERT_EXPIRE_MARGIN)
+                if refresh_time <= 0:
+                    raise MIoTClientError('invalid refresh time')
             self.__show_client_error_notify(None, 'user_cert')
             self.__request_refresh_user_cert(refresh_time)
 
