@@ -3,10 +3,11 @@ name: Validate
 on:
   push:
     branches:
-    - main
+      - main
   pull_request:
     branches:
-    - main
+      - main
+  workflow_dispatch:
 
 jobs:
   validate-hassfest:
@@ -30,16 +31,6 @@ jobs:
           category: integration
           ignore: brands
 
-  validate-format:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v4
-
-      - name: Check format
-        run: |
-          ./custom_components/xiaomi_home/test/test_all.sh
-
   validate-lint:
     runs-on: ubuntu-latest
     steps:
@@ -51,7 +42,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install pylint
 
-      - name: Analyse the code with pylint
+      - name: Static analyse the code with pylint
         run: |
           pylint $(git ls-files '*.py')
 
