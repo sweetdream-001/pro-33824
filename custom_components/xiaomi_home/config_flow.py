@@ -411,7 +411,7 @@ class XiaomiMihomeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 home_info['central_did'] = mips_list[group_id].get('did', None)
             home_list[home_id] = (
                 f'{home_info["home_name"]} '
-                f'[{len(dev_list)} {tip_devices}{tip_central}]')
+                f'[ {len(dev_list)} {tip_devices}{tip_central} ]')
 
         self._home_list = dict(sorted(home_list.items()))
 
@@ -1004,7 +1004,7 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
                         'did', None)
                 home_list[home_id] = (
                     f'{home_info["home_name"]} '
-                    f'[ {len(did_list)} {tip_devices}{tip_central}]')
+                    f'[ {len(did_list)} {tip_devices}{tip_central} ]')
             # Remove deleted item
             self._home_selected_list = [
                 home_id for home_id in self._home_selected_list
