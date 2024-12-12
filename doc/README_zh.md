@@ -373,6 +373,8 @@ siid、piid、eiid、aiid、value 均为十进制三位整数。
 }
 ```
 
+> 在 Home Assistant 中修改了 `custom_components/xiaomi_home/translations/` 路径下的 `specv2entity.py`、`spec_filter.json`、`multi_lang.json` 文件的内容，需要在集成配置中更新实体转换规则才能生效。方法：[设置 > 设备与服务 > 已配置 > Xiaomi Home](https://my.home-assistant.io/redirect/integration/?domain=xiaomi_home) > 配置 > 更新实体转换规则
+
 ## 文档
 
 - [许可证](../LICENSE.md)
@@ -391,6 +393,6 @@ siid、piid、eiid、aiid、value 均为十进制三位整数。
 - miot/miot_lan: 设备局域网控制，包括设备发现、设备控制等。
 - miot/miot_mdns: 中枢网关服务局域网发现。
 - miot/miot_network：获取网络状态和网络信息。
-- miot/miot_storage: 用于集成文件存储。
+- miot/miot_storage: 集成文件存储。
 - miot/test：测试脚本。
 - config_flow：配置流程。
