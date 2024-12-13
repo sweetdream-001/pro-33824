@@ -48,7 +48,7 @@ body:
       description: |
         > [Settings > About](https://my.home-assistant.io/redirect/info)
         > [设置 > 关于 Home Assistant](https://my.home-assistant.io/redirect/info)
-      placeholder: "2024.8.1"
+      placeholder: "2024.11.0"
     validations:
       required: true
 
@@ -58,7 +58,7 @@ body:
       description: |
         > [Settings > About](https://my.home-assistant.io/redirect/info)
         > [设置 > 关于 Home Assistant](https://my.home-assistant.io/redirect/info)
-      placeholder: "12.4"
+      placeholder: "13.0"
     validations:
       required: true
 
@@ -68,7 +68,7 @@ body:
       description: |
         > [Settings > Devices & services > Configured > `Xiaomi Home`](https://my.home-assistant.io/redirect/integration/?domain=xiaomi_home)
         > [设置 > 设备与服务 > 已配置 > `Xiaomi Home`](https://my.home-assistant.io/redirect/integration/?domain=xiaomi_home)
-      placeholder: "v0.0.1"
+      placeholder: "v0.1.0"
     validations:
       required: true
 
