@@ -240,6 +240,9 @@ class MIoTEventLoop:
         if fd is None:
             raise MIoTEvError('invalid params')
 
+        if not self._poll_fd:
+            raise MIoTEvError('event loop not started')
+
         fd_key: str = str(id(fd))
         fd_handler = self._fd_handlers.get(fd_key, None)
 

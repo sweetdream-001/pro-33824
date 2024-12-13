@@ -23,4 +23,8 @@ jobs:
 
       - name: Check rule format with pytest
         run: |
-          pytest -v -s ./test/check_rule_format.py
+          pytest -v -s -m github ./test/check_rule_format.py
+
+      - name: Unit test with pytest
+        run: |
+          pytest -v -s -m github ./test/

@@ -3,6 +3,7 @@
 import json
 from os import listdir, path
 from typing import Optional
+import pytest
 
 SOURCE_DIR: str = path.dirname(path.abspath(__file__))
 
@@ -85,6 +86,7 @@ def bool_trans(d: dict) -> bool:
     return True
 
 
+@pytest.mark.github
 def test_bool_trans():
     data: dict = load_json_file(
         path.join(
@@ -94,6 +96,7 @@ def test_bool_trans():
     assert bool_trans(data)
 
 
+@pytest.mark.github
 def test_spec_filter():
     data: dict = load_json_file(
         path.join(
@@ -103,6 +106,7 @@ def test_spec_filter():
     assert spec_filter(data)
 
 
+@pytest.mark.github
 def test_multi_lang():
     data: dict = load_json_file(
         path.join(
@@ -112,6 +116,7 @@ def test_multi_lang():
     assert nested_3_dict_str_str(data)
 
 
+@pytest.mark.github
 def test_miot_i18n():
     i18n_path: str = path.join(
         SOURCE_DIR, '../custom_components/xiaomi_home/miot/i18n')
