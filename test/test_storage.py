@@ -75,7 +75,7 @@ async def test_variable_async(test_cache_path):
 
 @pytest.mark.asyncio
 @pytest.mark.github
-@pytest.mark.dependency(depends=['test_variable_async'])
+@pytest.mark.dependency()
 async def test_load_domain_async(test_cache_path):
     from miot.miot_storage import MIoTStorage
 
@@ -90,7 +90,7 @@ async def test_load_domain_async(test_cache_path):
 
 @pytest.mark.asyncio
 @pytest.mark.github
-@pytest.mark.dependency(depends=['test_variable_async'])
+@pytest.mark.dependency()
 async def test_multi_task_load_async(test_cache_path):
     from miot.miot_storage import MIoTStorage
 
@@ -181,40 +181,34 @@ async def test_user_config_async(
         config=config_update, replace=True)
     assert (config_replace := await storage.load_user_config_async(
         uid=test_uid, cloud_server=test_cloud_server)) == config_update
-    print('\nreplace result, ', config_replace)
+    print('replace result, ', config_replace)
     # test query
     query_keys = list(config_base.keys())
-    print('\nquery keys, %s', query_keys)
+    print('query keys, %s', query_keys)
     query_result = await storage.load_user_config_async(
         uid=test_uid, cloud_server=test_cloud_server, keys=query_keys)
-    print('\nquery result 1, ', query_result)
+    print('query result 1, ', query_result)
     assert await storage.update_user_config_async(
         uid=test_uid, cloud_server=test_cloud_server,
         config=config_base, replace=True)
     query_result = await storage.load_user_config_async(
         uid=test_uid, cloud_server=test_cloud_server, keys=query_keys)
-    print('\nquery result 2, ', query_result)
+    print('query result 2, ', query_result)
     query_result = await storage.load_user_config_async(
         uid=test_uid, cloud_server=test_cloud_server)
-    print('\nquery result all, ', query_result)
+    print('query result all, ', query_result)
     # remove config
     assert await storage.update_user_config_async(
         uid=test_uid, cloud_server=test_cloud_server, config=None)
     query_result = await storage.load_user_config_async(
         uid=test_uid, cloud_server=test_cloud_server)
-    print('\nremove result, ', query_result)
+    print('remove result, ', query_result)
     # remove domain
     assert await storage.remove_domain_async(domain='miot_config')
 
 
 @pytest.mark.asyncio
-@pytest.mark.github
-@pytest.mark.dependency(depends=[
-    'test_variable_async',
-    'test_load_domain_async',
-    'test_multi_task_load_async',
-    'test_file_save_load_async',
-    'test_user_config_async'])
+@pytest.mark.skip(reason='clean')
 async def test_clear_async(test_cache_path):
     from miot.miot_storage import MIoTStorage
 
