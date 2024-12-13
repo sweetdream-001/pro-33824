@@ -5,23 +5,9 @@ import pytest
 from os import path, makedirs
 
 TEST_ROOT_PATH: str = path.dirname(path.abspath(__file__))
-
-
-@pytest.fixture(scope='session')
-def test_lang() -> str:
-    return 'zh-Hans'
-
-
-@pytest.fixture(scope='session')
-def test_root_path() -> str:
-    return TEST_ROOT_PATH
-
-
-@pytest.fixture(scope='session')
-def test_cache_path() -> str:
-    cache_path: str = path.join(TEST_ROOT_PATH, 'test_cache')
-    makedirs(cache_path, exist_ok=True)
-    return cache_path
+TEST_LANG: str = 'zh-Hans'
+TEST_UID: str = '123456789'
+TEST_CLOUD_SERVER: str = 'cn'
 
 
 @pytest.fixture(scope='session', autouse=True)
@@ -68,3 +54,30 @@ def load_py_file():
     # print('\nremoved test folder, %s', 'miot/specs')
     # shutil.rmtree(path.join(TEST_ROOT_PATH, 'miot/i18n'))
     # print('\nremoved test folder, %s', 'miot/i18n')
+
+
+@pytest.fixture(scope='session')
+def test_root_path() -> str:
+    return TEST_ROOT_PATH
+
+
+@pytest.fixture(scope='session')
+def test_cache_path() -> str:
+    cache_path: str = path.join(TEST_ROOT_PATH, 'test_cache')
+    makedirs(cache_path, exist_ok=True)
+    return cache_path
+
+
+@pytest.fixture(scope='session')
+def test_lang() -> str:
+    return TEST_LANG
+
+
+@pytest.fixture(scope='session')
+def test_uid() -> str:
+    return TEST_UID
+
+
+@pytest.fixture(scope='session')
+def test_cloud_server() -> str:
+    return TEST_CLOUD_SERVER
