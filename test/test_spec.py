@@ -77,15 +77,12 @@ async def test_spec_random_parse_async(test_cache_path, test_lang):
 
     # get local cache
     storage = MIoTStorage(test_cache_path)
-    # local_urns = storage.get_names(domain='miot_specs', type_=dict)
-    # print('local urns, %s', local_urns)
     spec_parser = MIoTSpecParser(lang=test_lang, storage=storage)
     await spec_parser.init_async()
-    start: int = time.time()*1000
+    start_ts: int = time.time()*1000
     for index in test_urn_index:
         urn: str = test_urns[int(index)]
         result = await spec_parser.parse(urn=urn, skip_cache=True)
         assert result is not None
-        # print('parse, %s, %s\n', urn, json.dumps(result.dump()))
-    end: int = time.time()*1000
-    print(f'takes time, {test_count}, {end-start}')
+    end_ts: int = time.time()*1000
+    print(f'takes time, {test_count}, {end_ts-start_ts}')

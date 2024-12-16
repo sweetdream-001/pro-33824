@@ -69,9 +69,6 @@ async def test_variable_async(test_cache_path):
     assert len(storage.get_names(
         domain=test_domain, type_=dict)) == test_count/2
 
-    # Delete domain path
-    # assert await storage.remove_domain_async(test_domain)
-
 
 @pytest.mark.asyncio
 @pytest.mark.github
