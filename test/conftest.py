@@ -5,6 +5,7 @@ import pytest
 from os import path, makedirs
 
 TEST_ROOT_PATH: str = path.dirname(path.abspath(__file__))
+TEST_FILES_PATH: str = path.join(TEST_ROOT_PATH, 'miot')
 TEST_CACHE_PATH: str = path.join(TEST_ROOT_PATH, 'test_cache')
 TEST_LANG: str = 'zh-Hans'
 TEST_UID: str = '123456789'
@@ -26,36 +27,39 @@ def load_py_file():
         'miot_network.py',
         'miot_spec.py',
         'miot_storage.py']
-    makedirs(path.join(TEST_ROOT_PATH, 'miot'), exist_ok=True)
+    makedirs(TEST_CACHE_PATH, exist_ok=True)
+    makedirs(TEST_FILES_PATH, exist_ok=True)
     for file_name in file_list:
         shutil.copyfile(
             path.join(
                 TEST_ROOT_PATH, '../custom_components/xiaomi_home/miot',
                 file_name),
-            path.join(TEST_ROOT_PATH, 'miot', file_name))
-    print('loaded test py file, ', file_list)
+            path.join(TEST_FILES_PATH, file_name))
+    print('\nloaded test py files, ', file_list)
     # Copy spec files to test folder
     shutil.copytree(
         src=path.join(
             TEST_ROOT_PATH, '../custom_components/xiaomi_home/miot/specs'),
-        dst=path.join(TEST_ROOT_PATH, 'miot/specs'),
+        dst=path.join(TEST_FILES_PATH, 'specs'),
         dirs_exist_ok=True)
-    print('loaded spec test folder, miot/specs')
+    print('loaded spec test folder, specs')
     # Copy i18n files to test folder
     shutil.copytree(
         src=path.join(
             TEST_ROOT_PATH, '../custom_components/xiaomi_home/miot/i18n'),
-        dst=path.join(TEST_ROOT_PATH, 'miot/i18n'),
+        dst=path.join(TEST_FILES_PATH, 'i18n'),
         dirs_exist_ok=True)
-    print('loaded i18n test folder, miot/i18n')
+    print('loaded i18n test folder, i18n')
 
     yield
 
-    shutil.rmtree(path.join(TEST_ROOT_PATH, 'miot'))
-    print('removed test file, ', file_list)
+    if path.exists(TEST_FILES_PATH):
+        shutil.rmtree(TEST_FILES_PATH)
+        print('\nremoved test files, ', TEST_FILES_PATH)
 
-    shutil.rmtree(TEST_CACHE_PATH)
-    print('removed test file, ', TEST_CACHE_PATH)
+    if path.exists(TEST_CACHE_PATH):
+        shutil.rmtree(TEST_CACHE_PATH)
+        print('removed test cache, ', TEST_CACHE_PATH)
 
 
 @pytest.fixture(scope='session')

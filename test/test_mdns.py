@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """Unit test for miot_mdns.py."""
-import asyncio
 import pytest
-
 from zeroconf import IPVersion
 from zeroconf.asyncio import AsyncZeroconf
 
