@@ -158,10 +158,10 @@ async def test_user_config_async(
     config = config_base.copy()
     assert await storage.update_user_config_async(
         uid=test_uid, cloud_server=test_cloud_server, config=config)
-    # test load all
+    # Test load all
     assert (await storage.load_user_config_async(
         uid=test_uid, cloud_server=test_cloud_server)) == config
-    # test update
+    # Test update
     config_update = {
         'test_str': 'test str',
         'number_float': 456.123
@@ -171,7 +171,7 @@ async def test_user_config_async(
     config.update(config_update)
     assert (await storage.load_user_config_async(
         uid=test_uid, cloud_server=test_cloud_server)) == config
-    # test replace
+    # Test replace
     config_replace = None
     assert await storage.update_user_config_async(
         uid=test_uid, cloud_server=test_cloud_server,
@@ -179,9 +179,9 @@ async def test_user_config_async(
     assert (config_replace := await storage.load_user_config_async(
         uid=test_uid, cloud_server=test_cloud_server)) == config_update
     print('replace result, ', config_replace)
-    # test query
+    # Test query
     query_keys = list(config_base.keys())
-    print('query keys, %s', query_keys)
+    print('query keys, ', query_keys)
     query_result = await storage.load_user_config_async(
         uid=test_uid, cloud_server=test_cloud_server, keys=query_keys)
     print('query result 1, ', query_result)
@@ -194,18 +194,19 @@ async def test_user_config_async(
     query_result = await storage.load_user_config_async(
         uid=test_uid, cloud_server=test_cloud_server)
     print('query result all, ', query_result)
-    # remove config
+    # Remove config
     assert await storage.update_user_config_async(
         uid=test_uid, cloud_server=test_cloud_server, config=None)
     query_result = await storage.load_user_config_async(
         uid=test_uid, cloud_server=test_cloud_server)
     print('remove result, ', query_result)
-    # remove domain
+    # Remove domain
     assert await storage.remove_domain_async(domain='miot_config')
 
 
 @pytest.mark.asyncio
 @pytest.mark.skip(reason='clean')
+@pytest.mark.dependency()
 async def test_clear_async(test_cache_path):
     from miot.miot_storage import MIoTStorage
 
