@@ -1255,6 +1255,7 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
 
 
 async def handle_oauth_webhook(hass, webhook_id, request):
+    # pylint: disable=inconsistent-quotes
     try:
         data = dict(request.query)
         if data.get('code', None) is None or data.get('state', None) is None:
