@@ -984,6 +984,7 @@ class MipsClient(ABC):
 class MipsCloudClient(MipsClient):
     """MIoT Pub/Sub Cloud Client."""
     # pylint: disable=unused-argument
+    # pylint: disable=inconsistent-quotes
     _msg_matcher: MIoTMatcher
 
     def __init__(
@@ -1242,6 +1243,7 @@ class MipsCloudClient(MipsClient):
 class MipsLocalClient(MipsClient):
     """MIoT Pub/Sub Local Client."""
     # pylint: disable=unused-argument
+    # pylint: disable=inconsistent-quotes
     MIPS_RECONNECT_INTERVAL_MIN: int = 6000
     MIPS_RECONNECT_INTERVAL_MAX: int = 60000
     MIPS_SUB_PATCH: int = 1000

@@ -98,7 +98,7 @@ _LOGGER = logging.getLogger(__name__)
 
 class XiaomiMihomeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Xiaomi Home config flow."""
-    # pylint: disable=unused-argument
+    # pylint: disable=unused-argument, inconsistent-quotes
     VERSION = 1
     MINOR_VERSION = 1
     _main_loop: asyncio.AbstractEventLoop
@@ -575,6 +575,7 @@ class XiaomiMihomeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 class OptionsFlowHandler(config_entries.OptionsFlow):
     """Xiaomi MiHome options flow."""
     # pylint: disable=unused-argument
+    # pylint: disable=inconsistent-quotes
     _config_entry: config_entries.ConfigEntry
     _main_loop: asyncio.AbstractEventLoop
     _miot_client: Optional[MIoTClient]

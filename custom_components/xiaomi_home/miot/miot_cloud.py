@@ -218,6 +218,7 @@ class MIoTOauthClient:
 
 class MIoTHttpClient:
     """MIoT http client."""
+    # pylint: disable=inconsistent-quotes
     GET_PROP_AGGREGATE_INTERVAL: float = 0.2
     GET_PROP_MAX_REQ_COUNT = 150
     _main_loop: asyncio.AbstractEventLoop

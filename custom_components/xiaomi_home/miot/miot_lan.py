@@ -462,6 +462,7 @@ class MIoTLanDevice:
 class MIoTLan:
     """MIoT lan device control."""
     # pylint: disable=unused-argument
+    # pylint: disable=inconsistent-quotes
     OT_HEADER: bytes = b'\x21\x31'
     OT_PORT: int = 54321
     OT_PROBE_LEN: int = 32

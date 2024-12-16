@@ -688,6 +688,7 @@ class MIoTDevice:
 class MIoTServiceEntity(Entity):
     """MIoT Service Entity."""
     # pylint: disable=unused-argument
+    # pylint: disable=inconsistent-quotes
     miot_device: MIoTDevice
     entity_data: MIoTEntityData
 
@@ -968,6 +969,7 @@ class MIoTServiceEntity(Entity):
 class MIoTPropertyEntity(Entity):
     """MIoT Property Entity."""
     # pylint: disable=unused-argument
+    # pylint: disable=inconsistent-quotes
     miot_device: MIoTDevice
     spec: MIoTSpecProperty
     service: MIoTSpecService
@@ -1116,6 +1118,7 @@ class MIoTPropertyEntity(Entity):
 class MIoTEventEntity(Entity):
     """MIoT Event Entity."""
     # pylint: disable=unused-argument
+    # pylint: disable=inconsistent-quotes
     miot_device: MIoTDevice
     spec: MIoTSpecEvent
     service: MIoTSpecService
@@ -1222,6 +1225,7 @@ class MIoTEventEntity(Entity):
 class MIoTActionEntity(Entity):
     """MIoT Action Entity."""
     # pylint: disable=unused-argument
+    # pylint: disable=inconsistent-quotes
     miot_device: MIoTDevice
     spec: MIoTSpecAction
     service: MIoTSpecService

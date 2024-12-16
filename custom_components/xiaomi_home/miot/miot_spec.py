@@ -452,6 +452,7 @@ class SpecStdLib:
 
 class MIoTSpecParser:
     """MIoT SPEC parser."""
+    # pylint: disable=inconsistent-quotes
     VERSION: int = 1
     DOMAIN: str = 'miot_specs'
     _lang: str

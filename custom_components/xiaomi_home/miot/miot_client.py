@@ -62,6 +62,7 @@ class MIoTClient:
     """MIoT client instance."""
     # pylint: disable=unused-argument
     # pylint: disable=broad-exception-caught
+    # pylint: disable=inconsistent-quotes
     _main_loop: asyncio.AbstractEventLoop
 
     _uid: str
