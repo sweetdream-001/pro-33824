@@ -106,7 +106,7 @@ SPEC_DEVICE_TRANS_MAP: dict[str, dict | str] = {
             'environment': {
                 'required':  {
                     'properties': {
-                        'relative-humidity': {'read', 'write'}
+                        'relative-humidity': {'read'}
                     }
                 }
             }
@@ -130,7 +130,7 @@ SPEC_DEVICE_TRANS_MAP: dict[str, dict | str] = {
             'environment': {
                 'required':  {
                     'properties': {
-                        'relative-humidity': {'read', 'write'}
+                        'relative-humidity': {'read'}
                     }
                 }
             }
