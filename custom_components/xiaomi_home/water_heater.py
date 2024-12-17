@@ -53,6 +53,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.components.water_heater import (
+    STATE_ON,
     STATE_OFF,
     ATTR_TEMPERATURE,
     WaterHeaterEntity,
@@ -151,6 +152,8 @@ class WaterHeater(MIoTServiceEntity, WaterHeaterEntity):
                 self._attr_supported_features |= (
                     WaterHeaterEntityFeature.OPERATION_MODE)
                 self._prop_mode = prop
+        if not self._attr_operation_list:
+            self._attr_operation_list = [STATE_ON]
         self._attr_operation_list.append(STATE_OFF)
 
     async def async_turn_on(self) -> None:
@@ -172,6 +175,9 @@ class WaterHeater(MIoTServiceEntity, WaterHeaterEntity):
         """
         if operation_mode == STATE_OFF:
             await self.set_property_async(prop=self._prop_on, value=False)
+            return
+        if operation_mode == STATE_ON:
+            await self.set_property_async(prop=self._prop_on, value=True)
             return
         if self.get_prop_value(prop=self._prop_on) is False:
             await self.set_property_async(
@@ -199,6 +205,8 @@ class WaterHeater(MIoTServiceEntity, WaterHeaterEntity):
         """Return the current mode."""
         if self.get_prop_value(prop=self._prop_on) is False:
             return STATE_OFF
+        if not self._prop_mode and self.get_prop_value(prop=self._prop_on):
+            return STATE_ON
         return self.__get_mode_description(
             key=self.get_prop_value(prop=self._prop_mode))
 
