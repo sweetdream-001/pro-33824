@@ -474,6 +474,7 @@ class MIoTHttpClient:
                             'dids': room.get('dids', [])
                         }
                         for room in home.get('roomlist', [])
+                        if 'id' in room
                     },
                     'group_id': calc_group_id(
                         uid=home['uid'], home_id=home['id']),
@@ -493,7 +494,10 @@ class MIoTHttpClient:
                 home_infos['homelist'][home_id]['dids'].extend(info['dids'])
                 for room_id, info in info['room_info'].items():
                     home_infos['homelist'][home_id]['room_info'].setdefault(
-                        room_id, {'dids': []})
+                        room_id, {
+                            'room_id': room_id,
+                            'room_name': '',
+                            'dids': []})
                     home_infos['homelist'][home_id]['room_info'][
                         room_id]['dids'].extend(info['dids'])
 
@@ -605,30 +609,33 @@ class MIoTHttpClient:
                     device_type, None) or {}).items():
                 if isinstance(home_ids, list) and home_id not in home_ids:
                     continue
+                home_name: str = home_info['home_name']
+                group_id: str = home_info['group_id']
                 homes[device_type].setdefault(
                     home_id, {
-                        'home_name': home_info['home_name'],
+                        'home_name': home_name,
                         'uid': home_info['uid'],
-                        'group_id': home_info['group_id'],
+                        'group_id': group_id,
                         'room_info': {}
                     })
                 devices.update({did: {
                     'home_id': home_id,
-                    'home_name': home_info['home_name'],
+                    'home_name': home_name,
                     'room_id': home_id,
-                    'room_name': home_info['home_name'],
-                    'group_id': home_info['group_id']
+                    'room_name': home_name,
+                    'group_id': group_id
                 } for did in home_info.get('dids', [])})
                 for room_id, room_info in home_info.get('room_info').items():
+                    room_name: str = room_info.get('room_name', '')
                     homes[device_type][home_id]['room_info'][
-                        room_id] = room_info['room_name']
+                        room_id] = room_name
                     devices.update({
                         did: {
                             'home_id': home_id,
-                            'home_name': home_info['home_name'],
+                            'home_name': home_name,
                             'room_id': room_id,
-                            'room_name': room_info['room_name'],
-                            'group_id': home_info['group_id']
+                            'room_name': room_name,
+                            'group_id': group_id
                         } for did in room_info.get('dids', [])})
         dids = sorted(list(devices.keys()))
         results: dict[str, dict] = await self.get_devices_with_dids_async(
