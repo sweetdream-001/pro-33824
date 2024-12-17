@@ -54,11 +54,24 @@ from homeassistant.helpers.entity import Entity
 from homeassistant.const import (
     CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
     CONCENTRATION_MILLIGRAMS_PER_CUBIC_METER,
-    CONCENTRATION_PARTS_PER_MILLION,
     CONCENTRATION_PARTS_PER_BILLION,
+    CONCENTRATION_PARTS_PER_MILLION,
     LIGHT_LUX,
     PERCENTAGE,
     SIGNAL_STRENGTH_DECIBELS,
+    UnitOfEnergy,
+    UnitOfElectricCurrent,
+    UnitOfElectricPotential,
+    UnitOfInformation,
+    UnitOfLength,
+    UnitOfMass,
+    UnitOfSpeed,
+    UnitOfTime,
+    UnitOfTemperature,
+    UnitOfPressure,
+    UnitOfPower,
+    UnitOfVolume,
+    UnitOfVolumeFlowRate,
 )
 from homeassistant.helpers.entity import DeviceInfo
 from homeassistant.components.switch import SwitchDeviceClass
@@ -572,22 +585,6 @@ class MIoTDevice:
 
     def unit_convert(self, spec_unit: str) -> Optional[str]:
         """Convert MIoT unit to Home Assistant unit."""
-        from homeassistant.const import (
-            UnitOfEnergy,
-            UnitOfElectricCurrent,
-            UnitOfElectricPotential,
-            UnitOfInformation,
-            UnitOfLength,
-            UnitOfMass,
-            UnitOfSpeed,
-            UnitOfTime,
-            UnitOfTemperature,
-            UnitOfPressure,
-            UnitOfPower,
-            UnitOfVolume,
-            UnitOfVolumeFlowRate,
-        )
-
         unit_map = {
             'percentage': PERCENTAGE,
             'weeks': UnitOfTime.WEEKS,
@@ -625,6 +622,7 @@ class MIoTDevice:
             'kB': UnitOfInformation.KILOBYTES,
         }
 
+        # Handle UnitOfConductivity separately since it might not be available in all HA versions
         try:
             from homeassistant.const import UnitOfConductivity
             unit_map['μS/cm'] = UnitOfConductivity.MICROSIEMENS_PER_CM
