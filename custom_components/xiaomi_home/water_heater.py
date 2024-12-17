@@ -115,9 +115,6 @@ class WaterHeater(MIoTServiceEntity, WaterHeaterEntity):
             # temperature
             if prop.name == 'temperature':
                 if isinstance(prop.value_range, dict):
-                    self._attr_min_temp = prop.value_range['min']
-                    self._attr_max_temp = prop.value_range['max']
-                    self._attr_precision = prop.value_range['step']
                     if (
                         self._attr_temperature_unit is None
                         and prop.external_unit
@@ -130,6 +127,9 @@ class WaterHeater(MIoTServiceEntity, WaterHeaterEntity):
                         self.entity_id)
             # target-temperature
             if prop.name == 'target-temperature':
+                self._attr_min_temp = prop.value_range['min']
+                self._attr_max_temp = prop.value_range['max']
+                self._attr_precision = prop.value_range['step']
                 if self._attr_temperature_unit is None and prop.external_unit:
                     self._attr_temperature_unit = prop.external_unit
                 self._attr_supported_features |= (
