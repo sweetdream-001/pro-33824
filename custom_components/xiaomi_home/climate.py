@@ -265,7 +265,7 @@ class AirConditioner(MIoTServiceEntity, ClimateEntity):
         # set air-conditioner on
         if hvac_mode != HVACMode.OFF and not self.get_prop_value(
             prop=self._prop_on):
-            await self.async_turn_on()
+            await self.set_property_async(prop=self._prop_on, value=True)
         # set mode
         mode_value = self.get_map_value(
             map_=self._hvac_mode_map, description=hvac_mode)
