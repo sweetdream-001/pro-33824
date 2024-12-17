@@ -263,8 +263,7 @@ class AirConditioner(MIoTServiceEntity, ClimateEntity):
                     f'{self.entity_id}')
             return
         # set air-conditioner on
-        elif not self.get_prop_value(
-            prop=self._prop_on):
+        elif self.get_prop_value(prop=self._prop_on) is False:
             await self.set_property_async(prop=self._prop_on, value=True)
         # set mode
         mode_value = self.get_map_value(
@@ -372,7 +371,7 @@ class AirConditioner(MIoTServiceEntity, ClimateEntity):
     @ property
     def hvac_mode(self) -> Optional[HVACMode]:
         """Return the hvac mode. e.g., heat, cool mode."""
-        if not self.get_prop_value(prop=self._prop_on):
+        if self.get_prop_value(prop=self._prop_on) is False:
             return HVACMode.OFF
         return self.get_map_description(
             map_=self._hvac_mode_map,
