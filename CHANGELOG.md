@@ -12,14 +12,14 @@
 ### Added
 ### Changed
 ### Fixed
-- fix humidifier trans rule. https://github.com/XiaoMi/ha_xiaomi_home/issues/59
-- fix get homeinfo error.  https://github.com/XiaoMi/ha_xiaomi_home/issues/22 
-- fix air-conditioner switch on. https://github.com/XiaoMi/ha_xiaomi_home/issues/37 https://github.com/XiaoMi/ha_xiaomi_home/issues/16
-- fix invalid cover status. https://github.com/XiaoMi/ha_xiaomi_home/issues/11  https://github.com/XiaoMi/ha_xiaomi_home/issues/85 
-- water heater entity add STATE_OFF. https://github.com/XiaoMi/ha_xiaomi_home/issues/105 https://github.com/XiaoMi/ha_xiaomi_home/issues/17 
+- Fix humidifier trans rule. https://github.com/XiaoMi/ha_xiaomi_home/issues/59
+- Fix get homeinfo error.  https://github.com/XiaoMi/ha_xiaomi_home/issues/22 
+- Fix air-conditioner switch on. https://github.com/XiaoMi/ha_xiaomi_home/issues/37 https://github.com/XiaoMi/ha_xiaomi_home/issues/16
+- Fix invalid cover status. https://github.com/XiaoMi/ha_xiaomi_home/issues/11  https://github.com/XiaoMi/ha_xiaomi_home/issues/85 
+- Water heater entity add STATE_OFF. https://github.com/XiaoMi/ha_xiaomi_home/issues/105 https://github.com/XiaoMi/ha_xiaomi_home/issues/17 
 
 ## v0.1.0
 ### Added
-- first version
+- First version
 ### Changed
 ### Fixed
