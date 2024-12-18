@@ -1,0 +1,95 @@
+{
+    "config": {
+        "other": {
+            "devices": "dispositivos",
+            "found_central_gateway": ", encontrou a central de gateway local"
+        },
+        "control_mode": {
+            "auto": "Automático",
+            "cloud": "Nuvem"
+        },
+        "room_name_rule": {
+            "none": "Não sincronizar",
+            "home_room": "Nome da casa e Nome do quarto (Xiaomi Home Quarto)",
+            "room": "Nome do quarto (Quarto)",
+            "home": "Nome da casa (Xiaomi Home)"
+        },
+        "option_status": {
+            "enable": "Habilitar",
+            "disable": "Desabilitar"
+        },
+        "lan_ctrl_config": {
+            "notice_net_dup": "\r\n**[Aviso]** Detectado que várias interfaces podem estar conectadas à mesma rede, escolha com cuidado.",
+            "net_unavailable": "Interface indisponível"
+        }
+    },
+    "miot": {
+        "client": {
+            "invalid_oauth_info": "Informações de autenticação inválidas, a conexão na nuvem ficará indisponível. Por favor, acesse a página de integração do Xiaomi Home e clique em 'Opções' para autenticar novamente.",
+            "invalid_device_cache": "Erro no cache de informações do dispositivo. Por favor, acesse a página de integração do Xiaomi Home e clique em 'Opções -> Atualizar lista de dispositivos' para atualizar as informações locais.",
+            "invalid_cert_info": "Certificado de usuário inválido, a conexão com a central local ficará indisponível. Por favor, acesse a página de integração do Xiaomi Home e clique em 'Opções' para autenticar novamente.",
+            "device_cloud_error": "Erro ao obter informações do dispositivo na nuvem. Verifique a conexão de rede local.",
+            "xiaomi_home_error_title": "Erro de integração do Xiaomi Home",
+            "xiaomi_home_error": "Detectado erro em **{nick_name}({uid}, {cloud_server})**. Por favor, acesse a página de opções para reconfigurar.\n\n**Informação do erro**: \n{message}",
+            "device_list_changed_title": "Mudança na lista de dispositivos do Xiaomi Home",
+            "device_list_changed": "Detectada alteração nas informações do dispositivo de **{nick_name}({uid}, {cloud_server})**. Por favor, acesse a página de opções de integração e clique em 'Opções -> Atualizar lista de dispositivos' para atualizar as informações locais.\n\nStatus atual da rede: {network_status}\n{message}\n",
+            "device_list_add": "\n**{count} novos dispositivos**: \n{message}",
+            "device_list_del": "\n**{count} dispositivos indisponíveis**: \n{message}",
+            "device_list_offline": "\n**{count} dispositivos offline**: \n{message}",
+            "network_status_online": "Online",
+            "network_status_offline": "Offline",
+            "device_exec_error": "Erro de execução"
+        }
+    },
+    "error": {
+        "common": {
+            "-10000": "Erro desconhecido",
+            "-10001": "Serviço indisponível",
+            "-10002": "Parâmetro inválido",
+            "-10003": "Recursos insuficientes",
+            "-10004": "Erro interno",
+            "-10005": "Permissão negada",
+            "-10006": "Tempo limite de execução",
+            "-10007": "Dispositivo offline ou inexistente",
+            "-10020": "Não autorizado (OAuth2)",
+            "-10030": "Token inválido (HTTP)",
+            "-10040": "Formato de mensagem inválido",
+            "-10050": "Certificado inválido",
+            "-704000000": "Erro desconhecido",
+            "-704010000": "Não autorizado (o dispositivo pode ter sido removido)",
+            "-704014006": "Descrição do dispositivo não encontrada",
+            "-704030013": "Propriedade não legível",
+            "-704030023": "Propriedade não gravável",
+            "-704030033": "Propriedade não subscritível",
+            "-704040002": "Serviço inexistente",
+            "-704040003": "Propriedade inexistente",
+            "-704040004": "Evento inexistente",
+            "-704040005": "Ação inexistente",
+            "-704040999": "Funcionalidade não disponível",
+            "-704042001": "Dispositivo inexistente",
+            "-704042011": "Dispositivo offline",
+            "-704053036": "Tempo limite de operação do dispositivo",
+            "-704053100": "O dispositivo não pode executar esta operação no estado atual",
+            "-704083036": "Tempo limite de operação do dispositivo",
+            "-704090001": "Dispositivo inexistente",
+            "-704220008": "ID inválido",
+            "-704220025": "Número de parâmetros da ação não corresponde",
+            "-704220035": "Erro nos parâmetros da ação",
+            "-704220043": "Valor de propriedade inválido",
+            "-704222034": "Erro no valor de retorno da ação",
+            "-705004000": "Erro desconhecido",
+            "-705004501": "Erro desconhecido",
+            "-705201013": "Propriedade não legível",
+            "-705201015": "Erro na execução da ação",
+            "-705201023": "Propriedade não gravável",
+            "-705201033": "Propriedade não subscritível",
+            "-706012000": "Erro desconhecido",
+            "-706012013": "Propriedade não legível",
+            "-706012015": "Erro na execução da ação",
+            "-706012023": "Propriedade não gravável",
+            "-706012033": "Propriedade não subscritível",
+            "-706012043": "Valor de propriedade inválido",
+            "-706014006": "Descrição do dispositivo não encontrada"
+        }
+    }
+}
