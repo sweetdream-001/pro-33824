@@ -236,7 +236,7 @@ class Light(MIoTServiceEntity, LightEntity):
         """Return the color temperature."""
         return self.get_prop_value(prop=self._prop_color_temp)
 
-    @ property
+    @property
     def rgb_color(self) -> Optional[tuple[int, int, int]]:
         """Return the rgb color value."""
         rgb = self.get_prop_value(prop=self._prop_color)
@@ -247,7 +247,7 @@ class Light(MIoTServiceEntity, LightEntity):
         b = rgb & 0xFF
         return r, g, b
 
-    @ property
+    @property
     def effect(self) -> Optional[str]:
         """Return the current mode."""
         return self.__get_mode_description(

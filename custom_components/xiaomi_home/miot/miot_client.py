@@ -1760,7 +1760,7 @@ class MIoTClient:
             delay_sec, self.__show_devices_changed_notify)
 
 
-@ staticmethod
+@staticmethod
 async def get_miot_instance_async(
     hass: HomeAssistant, entry_id: str, entry_data: Optional[dict] = None,
     persistent_notify: Optional[Callable[[str, str, str], None]] = None

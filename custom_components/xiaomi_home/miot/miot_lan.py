@@ -564,11 +564,11 @@ class MIoTLan:
                 0, lambda: self._main_loop.create_task(
                     self.init_async()))
 
-    @ property
+    @property
     def virtual_did(self) -> str:
         return self._virtual_did
 
-    @ property
+    @property
     def mev(self) -> MIoTEventLoop:
         return self._mev
 

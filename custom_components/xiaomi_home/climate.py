@@ -344,31 +344,31 @@ class AirConditioner(MIoTServiceEntity, ClimateEntity):
                 f'set climate prop.fan_mode failed, {fan_mode}, '
                 f'{self.entity_id}')
 
-    @ property
+    @property
     def target_temperature(self) -> Optional[float]:
         """Return the target temperature."""
         return self.get_prop_value(
             prop=self._prop_target_temp) if self._prop_target_temp else None
 
-    @ property
+    @property
     def target_humidity(self) -> Optional[int]:
         """Return the target humidity."""
         return self.get_prop_value(
             prop=self._prop_target_humi) if self._prop_target_humi else None
 
-    @ property
+    @property
     def current_temperature(self) -> Optional[float]:
         """Return the current temperature."""
         return self.get_prop_value(
             prop=self._prop_env_temp) if self._prop_env_temp else None
 
-    @ property
+    @property
     def current_humidity(self) -> Optional[int]:
         """Return the current humidity."""
         return self.get_prop_value(
             prop=self._prop_env_humi) if self._prop_env_humi else None
 
-    @ property
+    @property
     def hvac_mode(self) -> Optional[HVACMode]:
         """Return the hvac mode. e.g., heat, cool mode."""
         if self.get_prop_value(prop=self._prop_on) is False:
@@ -377,7 +377,7 @@ class AirConditioner(MIoTServiceEntity, ClimateEntity):
             map_=self._hvac_mode_map,
             key=self.get_prop_value(prop=self._prop_mode))
 
-    @ property
+    @property
     def fan_mode(self) -> Optional[str]:
         """Return the fan mode.
 
@@ -387,7 +387,7 @@ class AirConditioner(MIoTServiceEntity, ClimateEntity):
             map_=self._fan_mode_map,
             key=self.get_prop_value(prop=self._prop_fan_level))
 
-    @ property
+    @property
     def swing_mode(self) -> Optional[str]:
         """Return the swing mode.
 
