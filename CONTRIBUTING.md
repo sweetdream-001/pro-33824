@@ -1,6 +1,6 @@
 # Contribution Guidelines
 
-[English](./CONTRIBUTING.md) | [简体中文](./CONTRIBUTING_zh.md)
+[English](./CONTRIBUTING.md) | [简体中文](./doc/CONTRIBUTING_zh.md)
 
 Thank you for considering contributing to our project! We appreciate your efforts to make our project better.
 
