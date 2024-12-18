@@ -484,9 +484,12 @@ class Heater(MIoTServiceEntity, ClimateEntity):
     _prop_on: Optional[MIoTSpecProperty]
     _prop_mode: Optional[MIoTSpecProperty]
     _prop_target_temp: Optional[MIoTSpecProperty]
+    _prop_heat_level: Optional[MIoTSpecProperty]
     # service: environment
     _prop_env_temp: Optional[MIoTSpecProperty]
     _prop_env_humi: Optional[MIoTSpecProperty]
+
+    _heat_level_map: Optional[dict[int, str]]
 
     def __init__(
         self, miot_device: MIoTDevice, entity_data: MIoTEntityData
@@ -495,12 +498,15 @@ class Heater(MIoTServiceEntity, ClimateEntity):
         super().__init__(miot_device=miot_device, entity_data=entity_data)
         self._attr_icon = 'mdi:air-conditioner'
         self._attr_supported_features = ClimateEntityFeature(0)
+        self._attr_preset_modes = []
 
         self._prop_on = None
         self._prop_mode = None
         self._prop_target_temp = None
+        self._prop_heat_level = None
         self._prop_env_temp = None
         self._prop_env_humi = None
+        self._heat_level_map = None
 
         # properties
         for prop in entity_data.props:
@@ -523,6 +529,21 @@ class Heater(MIoTServiceEntity, ClimateEntity):
                 self._attr_supported_features |= (
                     ClimateEntityFeature.TARGET_TEMPERATURE)
                 self._prop_target_temp = prop
+            elif prop.name == 'heat-level':
+                if (
+                    not isinstance(prop.value_list, list)
+                    or not prop.value_list
+                ):
+                    _LOGGER.error(
+                        'invalid heat-level value_list, %s', self.entity_id)
+                    continue
+                self._heat_level_map = {
+                    item['value']: item['description']
+                    for item in prop.value_list}
+                self._attr_preset_modes = list(self._heat_level_map.values())
+                self._attr_supported_features |= (
+                    ClimateEntityFeature.PRESET_MODE)
+                self._prop_heat_level = prop
             elif prop.name == 'temperature':
                 self._prop_env_temp = prop
             elif prop.name == 'relative-humidity':
@@ -557,6 +578,13 @@ class Heater(MIoTServiceEntity, ClimateEntity):
             await self.set_property_async(
                 prop=self._prop_target_temp, value=temp)
 
+    async def async_set_preset_mode(self, preset_mode: str) -> None:
+        """Set the preset mode."""
+        await self.set_property_async(
+            self._prop_heat_level,
+            value=self.get_map_value(
+                map_=self._heat_level_map, description=preset_mode))
+
     @property
     def target_temperature(self) -> Optional[float]:
         """Return the target temperature."""
@@ -581,3 +609,11 @@ class Heater(MIoTServiceEntity, ClimateEntity):
         return (
             HVACMode.HEAT if self.get_prop_value(prop=self._prop_on)
             else HVACMode.OFF)
+
+    @property
+    def preset_mode(self) -> Optional[str]:
+        return (
+            self.get_map_description(
+                map_=self._heat_level_map,
+                key=self.get_prop_value(prop=self._prop_heat_level))
+            if self._prop_heat_level else None)
