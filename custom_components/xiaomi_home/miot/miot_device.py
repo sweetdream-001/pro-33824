@@ -622,7 +622,8 @@ class MIoTDevice:
             'kB': UnitOfInformation.KILOBYTES,
         }
 
-        # Handle UnitOfConductivity separately since it might not be available in all HA versions
+        # Handle UnitOfConductivity separately since 
+        # it might not be available in all HA versions
         try:
             # pylint: disable=import-outside-toplevel
             from homeassistant.const import UnitOfConductivity
