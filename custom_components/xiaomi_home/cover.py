@@ -97,9 +97,9 @@ class Cover(MIoTServiceEntity, CoverEntity):
     _prop_motor_value_close: Optional[int]
     _prop_motor_value_pause: Optional[int]
     _prop_status: Optional[MIoTSpecProperty]
-    _prop_status_opening: Optional[bool]
-    _prop_status_closing: Optional[bool]
-    _prop_status_stop: Optional[bool]
+    _prop_status_opening: Optional[int]
+    _prop_status_closing: Optional[int]
+    _prop_status_stop: Optional[int]
     _prop_current_position: Optional[MIoTSpecProperty]
     _prop_target_position: Optional[MIoTSpecProperty]
     _prop_position_value_min: Optional[int]
@@ -120,6 +120,9 @@ class Cover(MIoTServiceEntity, CoverEntity):
         self._prop_motor_value_close = None
         self._prop_motor_value_pause = None
         self._prop_status = None
+        self._prop_status_opening = None
+        self._prop_status_closing = None
+        self._prop_status_stop = None
         self._prop_current_position = None
         self._prop_target_position = None
         self._prop_position_value_min = None
@@ -159,11 +162,11 @@ class Cover(MIoTServiceEntity, CoverEntity):
                         'status value_list is None, %s', self.entity_id)
                     continue
                 for item in prop.value_list:
-                    if item['name'].lower() in ['opening']:
+                    if item['name'].lower() in ['opening', 'open']:
                         self._prop_status_opening = item['value']
-                    elif item['name'].lower() in ['closing']:
+                    elif item['name'].lower() in ['closing', 'close']:
                         self._prop_status_closing = item['value']
-                    elif item['name'].lower() in ['stop']:
+                    elif item['name'].lower() in ['stop', 'pause']:
                         self._prop_status_stop = item['value']
                 self._prop_status = prop
             elif prop.name == 'current-position':

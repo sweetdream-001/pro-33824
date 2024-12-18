@@ -110,11 +110,13 @@ INTEGRATION_LANGUAGES = {
     'zh-Hans': '简体中文',
     'zh-Hant': '繁體中文',
     'en': 'English',
-    'es': 'Español',
-    'ru': 'Русский',
-    'fr': 'Français',
     'de': 'Deutsch',
-    'ja': '日本語'
+    'es': 'Español',
+    'fr': 'Français',
+    'ja': '日本語',
+    'pt': 'Português',
+    'pt-BR': 'Português (Brasil)',
+    'ru': 'Русский',
 }
 
 DEFAULT_CTRL_MODE: str = 'auto'

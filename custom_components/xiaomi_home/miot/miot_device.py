@@ -54,8 +54,8 @@ from homeassistant.helpers.entity import Entity
 from homeassistant.const import (
     CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
     CONCENTRATION_MILLIGRAMS_PER_CUBIC_METER,
-    CONCENTRATION_PARTS_PER_MILLION,
     CONCENTRATION_PARTS_PER_BILLION,
+    CONCENTRATION_PARTS_PER_MILLION,
     LIGHT_LUX,
     PERCENTAGE,
     SIGNAL_STRENGTH_DECIBELS,
@@ -72,7 +72,6 @@ from homeassistant.const import (
     UnitOfPower,
     UnitOfVolume,
     UnitOfVolumeFlowRate,
-    UnitOfConductivity
 )
 from homeassistant.helpers.entity import DeviceInfo
 from homeassistant.components.switch import SwitchDeviceClass
@@ -505,7 +504,8 @@ class MIoTDevice:
             prop_access.add('read')
         if prop.writable:
             prop_access.add('write')
-        if prop_access != (SPEC_PROP_TRANS_MAP['entities'][platform]['access']):
+        if prop_access != (SPEC_PROP_TRANS_MAP[
+                'entities'][platform]['access']):
             return None
         if prop.format_ not in SPEC_PROP_TRANS_MAP[
                 'entities'][platform]['format']:
@@ -584,7 +584,8 @@ class MIoTDevice:
                 self.append_action(action=action)
 
     def unit_convert(self, spec_unit: str) -> Optional[str]:
-        return {
+        """Convert MIoT unit to Home Assistant unit."""
+        unit_map = {
             'percentage': PERCENTAGE,
             'weeks': UnitOfTime.WEEKS,
             'days': UnitOfTime.DAYS,
@@ -616,11 +617,21 @@ class MIoTDevice:
             'm': UnitOfLength.METERS,
             'km': UnitOfLength.KILOMETERS,
             'm3/h': UnitOfVolumeFlowRate.CUBIC_METERS_PER_HOUR,
-            'μS/cm': UnitOfConductivity.MICROSIEMENS_PER_CM,
             'gram': UnitOfMass.GRAMS,
             'dB': SIGNAL_STRENGTH_DECIBELS,
             'kB': UnitOfInformation.KILOBYTES,
-        }.get(spec_unit, None)
+        }
+
+        # Handle UnitOfConductivity separately since
+        # it might not be available in all HA versions
+        try:
+            # pylint: disable=import-outside-toplevel
+            from homeassistant.const import UnitOfConductivity
+            unit_map['μS/cm'] = UnitOfConductivity.MICROSIEMENS_PER_CM
+        except ImportError:
+            unit_map['μS/cm'] = 'μS/cm'
+
+        return unit_map.get(spec_unit, None)
 
     def icon_convert(self, spec_unit: str) -> Optional[str]:
         if spec_unit in ['percentage']:
@@ -1170,8 +1181,8 @@ class MIoTEventEntity(Entity):
             handler=self.__on_device_state_changed)
         # Sub value changed
         self.miot_device.sub_event(
-            handler=self.__on_event_occurred, siid=self.service.iid,
-            eiid=self.spec.iid)
+            handler=self.__on_event_occurred,
+            siid=self.service.iid, eiid=self.spec.iid)
 
     async def async_will_remove_from_hass(self) -> None:
         self.miot_device.unsub_device_state(

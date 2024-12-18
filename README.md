@@ -376,8 +376,8 @@ Example:
 ## Documents
 
 - [License](./LICENSE.md)
-- Contribution Guidelines: [English](./doc/CONTRIBUTING.md) | [简体中文](./doc/CONTRIBUTING_zh.md)
-- [ChangeLog](./doc/CHANGELOG.md)
+- Contribution Guidelines: [English](./CONTRIBUTING.md) | [简体中文](./doc/CONTRIBUTING_zh.md)
+- [ChangeLog](./CHANGELOG.md)
 - Development Documents: https://developers.home-assistant.io/docs/creating_component_index
 
 ## Directory Structure
