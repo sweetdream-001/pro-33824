@@ -208,9 +208,32 @@ SPEC_DEVICE_TRANS_MAP: dict[str, dict | str] = {
                 }
             }
         },
-        'entity': 'climate'
+        'entity': 'air-conditioner'
     },
-    'air-condition-outlet': 'air-conditioner'
+    'air-condition-outlet': 'air-conditioner',
+    'heater': {
+        'required': {
+            'heater': {
+                'required': {
+                    'properties': {
+                        'on': {'read', 'write'}
+                    }
+                },
+                'optional': {
+                    'properties': {'target-temperature'}
+                },
+            }
+        },
+        'optional': {
+            'environment': {
+                'required': {},
+                'optional': {
+                    'properties': {'temperature', 'relative-humidity'}
+                }
+            },
+        },
+        'entity': 'heater'
+    }
 }
 
 """SPEC_SERVICE_TRANS_MAP
