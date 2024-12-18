@@ -622,7 +622,7 @@ class MIoTDevice:
             'kB': UnitOfInformation.KILOBYTES,
         }
 
-        # Handle UnitOfConductivity separately since 
+        # Handle UnitOfConductivity separately since
         # it might not be available in all HA versions
         try:
             # pylint: disable=import-outside-toplevel
