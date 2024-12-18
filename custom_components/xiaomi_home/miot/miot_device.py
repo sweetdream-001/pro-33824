@@ -624,6 +624,7 @@ class MIoTDevice:
 
         # Handle UnitOfConductivity separately since it might not be available in all HA versions
         try:
+            # pylint: disable=import-outside-toplevel
             from homeassistant.const import UnitOfConductivity
             unit_map['μS/cm'] = UnitOfConductivity.MICROSIEMENS_PER_CM
         except ImportError:
