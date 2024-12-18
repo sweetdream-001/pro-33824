@@ -20,8 +20,13 @@ rm -rf "$config_path/custom_components/xiaomi_home"
 script_path=$(dirname "$0")
 # Change to the script path.
 cd "$script_path"
+
 # Copy the new version.
-cp -r custom_components/xiaomi_home/  "$config_path/custom_components/"
+if [ -d "$config_path/custom_components" ]; then
+    cp -r custom_components/xiaomi_home/  "$config_path/custom_components/"
+else
+    cp -r custom_components/  "$config_path/custom_components/"
+fi
 
 # Done.
 echo "Xiaomi Home installation is completed. Please restart Home Assistant."

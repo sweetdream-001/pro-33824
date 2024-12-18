@@ -325,7 +325,7 @@ event instance name 下的值表示转换后实体所用的 `_attr_device_class`
 
 ## 多语言支持
 
-米家集成配置选项中可选择的集成使用的语言有简体中文、繁体中文、英文、西班牙语、俄语、法语、德语、日语这八种语言。目前，米家集成配置页面的简体中文和英文已经过人工校审，其他语言由机器翻译。如果您希望修改配置页面的词句，则需要修改 `custom_components/xiaomi_home/translations/` 目录下相应语言的 json 文件。
+米家集成配置选项中可选择的集成使用的语言有简体中文、繁体中文、英文、西班牙语、俄语、法语、德语、日语这八种语言。目前，米家集成配置页面的简体中文和英文已经过人工校审，其他语言由机器翻译。如果您希望修改配置页面的词句，则需要修改 `custom_components/xiaomi_home/translations/` 以及 `custom_components/xiaomi_home/miot/i18n/` 目录下相应语言的 json 文件。
 
 在显示 Home Assistant 实体名称时，米家集成会从小米云下载设备厂商为设备配置的多语言文件，该文件包含设备 MIoT-Spec-V2 实例的多语言翻译。 `multi_lang.json` 是本地维护的多语言配置字典，其优先级高于从云端获取的多语言文件，可用于补充或修改设备的多语言翻译。
 
