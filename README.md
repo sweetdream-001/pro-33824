@@ -323,7 +323,7 @@ Device information service (urn:miot-spec-v2:service:device-information:00007801
 
 ## Multiple Language Support
 
-There are 8 languages available for selection in the config flow language option of Xiaomi Home, including Simplified Chinese, Traditional Chinese, English, Spanish, Russian, French, German, and Japanese. The config flow page in Simplified Chinese and English has been manually reviewed by the developer. Other languages are translated by machine translation. If you want to modify the words and sentences in the config flow page, you need to modify the json file of the certain language in `custom_components/xiaomi_home/translations/` directory.
+There are 8 languages available for selection in the config flow language option of Xiaomi Home, including Simplified Chinese, Traditional Chinese, English, Spanish, Russian, French, German, and Japanese. The config flow page in Simplified Chinese and English has been manually reviewed by the developer. Other languages are translated by machine translation. If you want to modify the words and sentences in the config flow page, you need to modify the json file of the certain language in `custom_components/xiaomi_home/translations/` and `custom_components/xiaomi_home/miot/i18n/` directory.
 
 When displaying Home Assistant entity name, Xiaomi Home downloads the multiple language file configured by the device vendor from MIoT Cloud, which contains translations for MIoT-Spec-V2 instances of the device. `multi_lang.json` is a locally maintained multiple language dictionary, which has a higher priority than the multiple language file obtained from the cloud and can be used to supplement or modify the multiple language translation of devices.
 
