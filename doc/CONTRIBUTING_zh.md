@@ -1,6 +1,6 @@
 # 贡献指南
 
-[English](./CONTRIBUTING.md) | [简体中文](./CONTRIBUTING_zh.md)
+[English](../CONTRIBUTING.md) | [简体中文](./CONTRIBUTING_zh.md)
 
 感谢您考虑为我们的项目做出贡献！您的努力将使我们的项目变得更好。
 
