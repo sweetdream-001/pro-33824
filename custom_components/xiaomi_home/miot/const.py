@@ -117,6 +117,7 @@ INTEGRATION_LANGUAGES = {
     'pt': 'Português',
     'pt-BR': 'Português (Brasil)',
     'ru': 'Русский',
+    'nl': 'Nederlands'
 }
 
 DEFAULT_CTRL_MODE: str = 'auto'
