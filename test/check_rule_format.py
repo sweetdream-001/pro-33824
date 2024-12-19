@@ -6,7 +6,9 @@ from typing import Optional
 import pytest
 import yaml
 
-SOURCE_DIR: str = path.dirname(path.abspath(__file__))
+SOURCE_PATH: str = path.dirname(path.abspath(__file__))
+TRANS_RELATIVE_PATH: str = '../custom_components/xiaomi_home/translations'
+MIOT_I18N_RELATIVE_PATH: str = '../custom_components/xiaomi_home/miot/i18n'
 
 
 def load_json_file(file_path: str) -> Optional[dict]:
@@ -127,7 +129,7 @@ def compare_dict_structure(dict1: dict, dict2: dict) -> bool:
 def test_bool_trans():
     data: dict = load_json_file(
         path.join(
-            SOURCE_DIR,
+            SOURCE_PATH,
             '../custom_components/xiaomi_home/miot/specs/bool_trans.json'))
     assert data
     assert bool_trans(data)
@@ -137,7 +139,7 @@ def test_bool_trans():
 def test_spec_filter():
     data: dict = load_json_file(
         path.join(
-            SOURCE_DIR,
+            SOURCE_PATH,
             '../custom_components/xiaomi_home/miot/specs/spec_filter.json'))
     assert data
     assert spec_filter(data)
@@ -147,7 +149,7 @@ def test_spec_filter():
 def test_multi_lang():
     data: dict = load_json_file(
         path.join(
-            SOURCE_DIR,
+            SOURCE_PATH,
             '../custom_components/xiaomi_home/miot/specs/multi_lang.json'))
     assert data
     assert nested_3_dict_str_str(data)
@@ -155,8 +157,7 @@ def test_multi_lang():
 
 @pytest.mark.github
 def test_miot_i18n():
-    i18n_path: str = path.join(
-        SOURCE_DIR, '../custom_components/xiaomi_home/miot/i18n')
+    i18n_path: str = path.join(SOURCE_PATH, MIOT_I18N_RELATIVE_PATH)
     for file_name in listdir(i18n_path):
         file_path: str = path.join(i18n_path, file_name)
         data: dict = load_json_file(file_path)
@@ -166,8 +167,7 @@ def test_miot_i18n():
 
 @pytest.mark.github
 def test_translations():
-    i18n_path: str = path.join(
-        SOURCE_DIR, '../custom_components/xiaomi_home/translations')
+    i18n_path: str = path.join(SOURCE_PATH, TRANS_RELATIVE_PATH)
     for file_name in listdir(i18n_path):
         file_path: str = path.join(i18n_path, file_name)
         data: dict = load_json_file(file_path)
@@ -182,42 +182,29 @@ def test_miot_lang_integrity():
     integration_lang_list: list[str] = [
         f'{key}.json' for key in list(INTEGRATION_LANGUAGES.keys())]
     translations_names: set[str] = set(listdir(
-        path.join(
-            SOURCE_DIR, '../custom_components/xiaomi_home/translations')))
+        path.join(SOURCE_PATH, TRANS_RELATIVE_PATH)))
     assert len(translations_names) == len(integration_lang_list)
     assert translations_names == set(integration_lang_list)
     i18n_names: set[str] = set(listdir(
-        path.join(
-            SOURCE_DIR, '../custom_components/xiaomi_home/miot/i18n')))
+        path.join(SOURCE_PATH, MIOT_I18N_RELATIVE_PATH)))
     assert len(i18n_names) == len(translations_names)
     assert i18n_names == translations_names
     # Check translation files structure
     default_dict: dict = load_json_file(
-        path.join(
-            SOURCE_DIR,
-            '../custom_components/xiaomi_home/translations',
-            integration_lang_list[0]))
+        path.join(SOURCE_PATH, TRANS_RELATIVE_PATH, integration_lang_list[0]))
     for name in list(integration_lang_list)[1:]:
         compare_dict: dict = load_json_file(
-            path.join(
-                SOURCE_DIR,
-                '../custom_components/xiaomi_home/translations',
-                name))
+            path.join(SOURCE_PATH, TRANS_RELATIVE_PATH, name))
         if not compare_dict_structure(default_dict, compare_dict):
             print('compare_dict_structure failed /translations, ', name)
             assert False
     # Check i18n files structure
     default_dict = load_json_file(
         path.join(
-            SOURCE_DIR,
-            '../custom_components/xiaomi_home/miot/i18n',
-            integration_lang_list[0]))
+            SOURCE_PATH, MIOT_I18N_RELATIVE_PATH, integration_lang_list[0]))
     for name in list(integration_lang_list)[1:]:
         compare_dict: dict = load_json_file(
-            path.join(
-                SOURCE_DIR,
-                '../custom_components/xiaomi_home/miot/i18n',
-                name))
+            path.join(SOURCE_PATH, MIOT_I18N_RELATIVE_PATH, name))
         if not compare_dict_structure(default_dict, compare_dict):
             print('compare_dict_structure failed /miot/i18n, ', name)
             assert False
