@@ -1,0 +1,95 @@
+{
+    "config": {
+        "other": {
+            "devices": "Apparaten",
+            "found_central_gateway": ", Lokale centrale hub-gateway gevonden"
+        },
+        "control_mode": {
+            "auto": "Automatisch",
+            "cloud": "Cloud"
+        },
+        "room_name_rule": {
+            "none": "Niet synchroniseren",
+            "home_room": "Huisnaam en Kamernaam (Xiaomi Home Slaapkamer)",
+            "room": "Kamernaam (Slaapkamer)",
+            "home": "Huisnaam (Xiaomi Home)"
+        },
+        "option_status": {
+            "enable": "Inschakelen",
+            "disable": "Uitschakelen"
+        },
+        "lan_ctrl_config": {
+            "notice_net_dup": "\r\n**[Let op]** Meerdere netwerkkaarten gedetecteerd die mogelijk zijn verbonden met hetzelfde netwerk. Let op bij de selectie.",
+            "net_unavailable": "Interface niet beschikbaar"
+        }
+    },
+    "miot": {
+        "client": {
+            "invalid_oauth_info": "Authenticatie-informatie is ongeldig, cloudverbinding zal niet beschikbaar zijn. Ga naar de Xiaomi Home-integratiepagina en klik op 'Opties' om opnieuw te verifiëren.",
+            "invalid_device_cache": "Cache van apparaatgegevens is abnormaal. Ga naar de Xiaomi Home-integratiepagina, klik op 'Opties->Apparaatlijst bijwerken' en werk de lokale cache bij.",
+            "invalid_cert_info": "Ongeldig gebruikerscertificaat, lokale centrale verbinding zal niet beschikbaar zijn. Ga naar de Xiaomi Home-integratiepagina en klik op 'Opties' om opnieuw te verifiëren.",
+            "device_cloud_error": "Er is een uitzondering opgetreden bij het ophalen van apparaatgegevens uit de cloud. Controleer de lokale netwerkverbinding.",
+            "xiaomi_home_error_title": "Xiaomi Home-integratiefout",
+            "xiaomi_home_error": "Gedetecteerd **{nick_name}({uid}, {cloud_server})** fout, ga naar de optiespagina om opnieuw te configureren.\n\n**Foutmelding**: \n{message}",
+            "device_list_changed_title": "Wijzigingen in Xiaomi Home-apparaatlijst",
+            "device_list_changed": "Gedetecteerd **{nick_name}({uid}, {cloud_server})** apparaatgegevens zijn gewijzigd. Ga naar de integratie-optiespagina, klik op `Opties->Apparaatlijst bijwerken` en werk lokale apparaatgegevens bij.\n\nHuidige netwerkstatus: {network_status}\n{message}\n",
+            "device_list_add": "\n**{count} nieuwe apparaten:** \n{message}",
+            "device_list_del": "\n**{count} apparaten niet beschikbaar:** \n{message}",
+            "device_list_offline": "\n**{count} apparaten offline:** \n{message}",
+            "network_status_online": "Online",
+            "network_status_offline": "Offline",
+            "device_exec_error": "Uitvoeringsfout"
+        }
+    },
+    "error": {
+        "common": {
+            "-10000": "Onbekende fout",
+            "-10001": "Service niet beschikbaar",
+            "-10002": "Ongeldige parameter",
+            "-10003": "Onvoldoende middelen",
+            "-10004": "Interne fout",
+            "-10005": "Onvoldoende machtigingen",
+            "-10006": "Uitvoeringstijd verstreken",
+            "-10007": "Apparaat offline of bestaat niet",
+            "-10020": "Niet geautoriseerd (OAuth2)",
+            "-10030": "Ongeldig token (HTTP)",
+            "-10040": "Ongeldig berichtformaat",
+            "-10050": "Ongeldig certificaat",
+            "-704000000": "Onbekende fout",
+            "-704010000": "Niet geautoriseerd (apparaat kan zijn verwijderd)",
+            "-704014006": "Apparaatbeschrijving niet gevonden",
+            "-704030013": "Eigenschap niet leesbaar",
+            "-704030023": "Eigenschap niet schrijfbaar",
+            "-704030033": "Eigenschap niet abonneerbaar",
+            "-704040002": "Service bestaat niet",
+            "-704040003": "Eigenschap bestaat niet",
+            "-704040004": "Gebeurtenis bestaat niet",
+            "-704040005": "Actie bestaat niet",
+            "-704040999": "Functie niet online",
+            "-704042001": "Apparaat bestaat niet",
+            "-704042011": "Apparaat offline",
+            "-704053036": "Apparaatbedieningstijd verstreken",
+            "-704053100": "Apparaat kan deze handeling niet uitvoeren in de huidige staat",
+            "-704083036": "Apparaatbedieningstijd verstreken",
+            "-704090001": "Apparaat bestaat niet",
+            "-704220008": "Ongeldige ID",
+            "-704220025": "Aantal actieparameters komt niet overeen",
+            "-704220035": "Fout in actieparameter",
+            "-704220043": "Fout in eigenschapswaarde",
+            "-704222034": "Fout in retourwaarde actie",
+            "-705004000": "Onbekende fout",
+            "-705004501": "Onbekende fout",
+            "-705201013": "Eigenschap niet leesbaar",
+            "-705201015": "Fout bij uitvoeren van actie",
+            "-705201023": "Eigenschap niet schrijfbaar",
+            "-705201033": "Eigenschap niet abonneerbaar",
+            "-706012000": "Onbekende fout",
+            "-706012013": "Eigenschap niet leesbaar",
+            "-706012015": "Fout bij uitvoeren van actie",
+            "-706012023": "Eigenschap niet schrijfbaar",
+            "-706012033": "Eigenschap niet abonneerbaar",
+            "-706012043": "Fout in eigenschapswaarde",
+            "-706014006": "Apparaatbeschrijving niet gevonden"
+        }
+    }
+}
