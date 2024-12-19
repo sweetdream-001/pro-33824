@@ -14,19 +14,21 @@ if [ ! -d "$config_path" ]; then
     exit 1
 fi
 
-# Remove the old version.
-rm -rf "$config_path/custom_components/xiaomi_home"
 # Get the script path.
 script_path=$(dirname "$0")
-# Change to the script path.
-cd "$script_path"
+
+# Set source and target
+component_name=xiaomi_home
+source_path="$script_path/custom_components/$component_name"
+target_root="$config_path/custom_components"
+target_path="$target_root/$component_name"
+
+# Remove the old version.
+rm -rf "$target_path"
 
 # Copy the new version.
-if [ -d "$config_path/custom_components" ]; then
-    cp -r custom_components/xiaomi_home/  "$config_path/custom_components/"
-else
-    cp -r custom_components/  "$config_path/custom_components/"
-fi
+mkdir -p "$target_root"
+cp -r "$source_path" "$target_path"
 
 # Done.
 echo "Xiaomi Home installation is completed. Please restart Home Assistant."
