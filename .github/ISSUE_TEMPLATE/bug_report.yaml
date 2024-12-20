@@ -1,11 +1,9 @@
 name: Bug report / 报告问题
 description: Create a report to help us improve. / 报告问题以帮助我们改进
-title: "[Bug]: "
-labels: ["bug"]
 body:
   - type: input
     attributes:
-      label: Describe the bug / 描述问题
+      label: Describe the Bug / 描述问题
       description: |
         > A clear and concise description of what the bug is.
         > 清晰且简明地描述问题。
@@ -14,7 +12,7 @@ body:
 
   - type: textarea
     attributes:
-      label: To Reproduce / 复现步骤
+      label: How to Reproduce / 复现步骤
       description: |
         > If applicable, add screenshots to help explain your problem. You can attach images by clicking this area to highlight it and then dragging files in. Steps to reproduce the behavior:
         > 如有需要，可添加截图以帮助解释问题。点击此区域以高亮显示并拖动截图文件以上传。请详细描述复现步骤：
@@ -28,7 +26,7 @@ body:
 
   - type: input
     attributes:
-      label: Expected behavior / 预期结果
+      label: Expected Behavior / 预期结果
       description: |
         > A clear and concise description of what you expected to happen.
         > 描述预期结果。
@@ -44,7 +42,7 @@ body:
 
   - type: input
     attributes:
-      label: Home Assistant Core version / Home Assistant Core 版本
+      label: Home Assistant Core Version / Home Assistant Core 版本
       description: |
         > [Settings > About](https://my.home-assistant.io/redirect/info)
         > [设置 > 关于 Home Assistant](https://my.home-assistant.io/redirect/info)
@@ -54,7 +52,7 @@ body:
 
   - type: input
     attributes:
-      label: Home Assistant Operation System version / Home Assistant Operation System 版本
+      label: Home Assistant Operation System Version / Home Assistant Operation System 版本
       description: |
         > [Settings > About](https://my.home-assistant.io/redirect/info)
         > [设置 > 关于 Home Assistant](https://my.home-assistant.io/redirect/info)
@@ -64,7 +62,7 @@ body:
 
   - type: input
     attributes:
-      label: Xiaomi Home integration version / 米家集成版本
+      label: Xiaomi Home Integration Version / 米家集成版本
       description: |
         > [Settings > Devices & services > Configured > `Xiaomi Home`](https://my.home-assistant.io/redirect/integration/?domain=xiaomi_home)
         > [设置 > 设备与服务 > 已配置 > `Xiaomi Home`](https://my.home-assistant.io/redirect/integration/?domain=xiaomi_home)
@@ -74,4 +72,4 @@ body:
 
   - type: textarea
     attributes:
-      label: Additional context / 其他说明
+      label: Additional Context / 其他说明
