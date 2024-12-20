@@ -46,10 +46,19 @@ off Xiaomi or its affiliates' products.
 Common utilities.
 """
 import json
+from os import path
 import random
 from typing import Optional
 import hashlib
 from paho.mqtt.client import MQTTMatcher
+import yaml
+
+MIOT_ROOT_PATH: str = path.dirname(path.abspath(__file__))
+
+
+def gen_absolute_path(relative_path: str) -> str:
+    """Generate an absolute path."""
+    return path.join(MIOT_ROOT_PATH, relative_path)
 
 
 def calc_group_id(uid: str, home_id: str) -> str:
@@ -64,6 +73,12 @@ def load_json_file(json_file: str) -> dict:
         return json.load(f)
 
 
+def load_yaml_file(yaml_file: str) -> dict:
+    """Load a YAML file."""
+    with open(yaml_file, 'r', encoding='utf-8') as f:
+        return yaml.load(f, Loader=yaml.FullLoader)
+
+
 def randomize_int(value: int, ratio: float) -> int:
     """Randomize an integer value."""
     return int(value * (1 - ratio + random.random()*2*ratio))
@@ -74,12 +89,12 @@ class MIoTMatcher(MQTTMatcher):
 
     def iter_all_nodes(self) -> any:
         """Return an iterator on all nodes with their paths and contents."""
-        def rec(node, path):
+        def rec(node, path_):
             # pylint: disable=protected-access
             if node._content:
-                yield ('/'.join(path), node._content)
+                yield ('/'.join(path_), node._content)
             for part, child in node._children.items():
-                yield from rec(child, path + [part])
+                yield from rec(child, path_ + [part])
         return rec(self._root, [])
 
     def get(self, topic: str) -> Optional[any]:

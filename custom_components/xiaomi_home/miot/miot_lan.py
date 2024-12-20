@@ -71,7 +71,8 @@ from .miot_error import MIoTErrorCode
 from .miot_ev import MIoTEventLoop, TimeoutHandle
 from .miot_network import InterfaceStatus, MIoTNetwork, NetworkInfo
 from .miot_mdns import MipsService, MipsServiceState
-from .common import randomize_int, MIoTMatcher
+from .common import (
+    randomize_int, load_yaml_file, gen_absolute_path, MIoTMatcher)
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -175,7 +176,7 @@ class MIoTLanDevice:
     OT_HEADER_LEN: int = 32
     NETWORK_UNSTABLE_CNT_TH: int = 10
     NETWORK_UNSTABLE_TIME_TH: int = 120000
-    NETWORK_UNSTABLE_RESUME_TH: int = 300
+    NETWORK_UNSTABLE_RESUME_TH: int = 300000
     FAST_PING_INTERVAL: int = 5000
     CONSTRUCT_STATE_PENDING: int = 15000
     KA_INTERVAL_MIN = 10000
@@ -472,6 +473,8 @@ class MIoTLan:
     OT_PROBE_INTERVAL_MIN: int = 5000
     OT_PROBE_INTERVAL_MAX: int = 45000
 
+    PROFILE_MODELS_FILE: str = 'lan/profile_models.yaml'
+
     _main_loop: asyncio.AbstractEventLoop
     _net_ifs: set[str]
     _network: MIoTNetwork
@@ -501,6 +504,8 @@ class MIoTLan:
 
     _lan_state_sub_map: dict[str, Callable[[bool], asyncio.Future]]
     _lan_ctrl_vote_map: dict[str, bool]
+
+    _profile_models: dict[str, dict]
 
     _init_done: bool
 
@@ -597,6 +602,12 @@ class MIoTLan:
         if self._net_ifs.isdisjoint(self._available_net_ifs):
             _LOGGER.info('no valid net_ifs')
             return
+        try:
+            self._profile_models = load_yaml_file(
+                yaml_file=gen_absolute_path(self.PROFILE_MODELS_FILE))
+        except Exception as err:  # pylint: disable=broad-exception-caught
+            _LOGGER.error('load profile models error, %s', err)
+            self._profile_models = {}
         self._mev = MIoTEventLoop()
         self._queue = queue.Queue()
         self._cmd_event_fd = os.eventfd(0, os.O_NONBLOCK)
@@ -620,6 +631,7 @@ class MIoTLan:
         self.__lan_send_cmd(MIoTLanCmdType.DEINIT, None)
         self._thread.join()
 
+        self._profile_models = {}
         self._lan_devices = {}
         self._broadcast_socks = {}
         self._local_port = None
@@ -1032,6 +1044,19 @@ class MIoTLan:
             elif mips_cmd.type_ == MIoTLanCmdType.DEVICE_UPDATE:
                 devices: dict[str, dict] = mips_cmd.data
                 for did, info in devices.items():
+                    # did MUST be digit(UINT64)
+                    if not did.isdigit():
+                        _LOGGER.info('invalid did, %s', did)
+                        continue
+                    if (
+                            'model' not in info
+                            or info['model'] in self._profile_models):
+                        # Do not support the local control of
+                        # Profile device for the time being
+                        _LOGGER.info(
+                            'model not support local ctrl, %s, %s',
+                            did, info.get('model'))
+                        continue
                     if did not in self._lan_devices:
                         if 'token' not in info:
                             _LOGGER.error(

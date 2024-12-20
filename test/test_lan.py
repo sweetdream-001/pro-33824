@@ -8,8 +8,37 @@ from zeroconf.asyncio import AsyncZeroconf
 # pylint: disable=import-outside-toplevel, unused-argument
 
 
+@pytest.mark.parametrize('test_devices', [{
+    # specv2 model
+    '123456': {
+        'token': '11223344556677d9a03d43936fc384205',
+        'model': 'xiaomi.gateway.hub1'
+    },
+    # profile model
+    '123457': {
+        'token': '11223344556677d9a03d43936fc384205',
+        'model': 'yeelink.light.lamp9'
+    },
+    '123458': {
+        'token': '11223344556677d9a03d43936fc384205',
+        'model': 'zhimi.heater.ma1'
+    },
+    # Non -digital did
+    'group.123456': {
+        'token': '11223344556677d9a03d43936fc384205',
+        'model': 'mijia.light.group3'
+    },
+    'proxy.123456.1': {
+        'token': '11223344556677d9a03d43936fc384205',
+        'model': 'xiaomi.light.p1'
+    },
+    'miwifi_123456': {
+        'token': '11223344556677d9a03d43936fc384205',
+        'model': 'xiaomi.light.p1'
+    }
+}])
 @pytest.mark.asyncio
-async def test_lan_async():
+async def test_lan_async(test_devices: dict):
     """
     Use the central hub gateway as a test equipment, and through the local area 
     network control central hub gateway indicator light switch. Please replace 
@@ -21,10 +50,13 @@ async def test_lan_async():
     from miot.miot_lan import MIoTLan
     from miot.miot_mdns import MipsService
 
-    test_did = '<Your central hub gateway did>'
-    test_token = '<Your central hub gateway token>'
+    # Your central hub gateway did
+    test_did = '111111'
+    # Your central hub gateway did
+    test_token = '11223344556677d9a03d43936fc384205'
     test_model = 'xiaomi.gateway.hub1'
-    test_if_names = ['<Your computer interface list, such as enp3s0, wlp5s0>']
+    # Your computer interface list, such as enp3s0, wlp5s0
+    test_if_names = ['enp3s0', 'wlp5s0']
 
     # Check test params
     assert int(test_did) > 0
@@ -76,7 +108,8 @@ async def test_lan_async():
             test_did: {
                 'token': test_token,
                 'model': test_model
-            }
+            },
+            **test_devices
         })
 
         # Test sub device state

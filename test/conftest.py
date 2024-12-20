@@ -43,6 +43,13 @@ def load_py_file():
         dst=path.join(TEST_FILES_PATH, 'specs'),
         dirs_exist_ok=True)
     print('loaded spec test folder, specs')
+    # Copy lan files to test folder
+    shutil.copytree(
+        src=path.join(
+            TEST_ROOT_PATH, '../custom_components/xiaomi_home/miot/lan'),
+        dst=path.join(TEST_FILES_PATH, 'lan'),
+        dirs_exist_ok=True)
+    print('loaded lan test folder, lan')
     # Copy i18n files to test folder
     shutil.copytree(
         src=path.join(
