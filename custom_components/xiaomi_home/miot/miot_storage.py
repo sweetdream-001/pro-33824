@@ -129,7 +129,7 @@ class MIoTStorage:
         self, full_path: str, type_: type = bytes, with_hash_check: bool = True
     ) -> Union[bytes, str, dict, list, None]:
         if not os.path.exists(full_path):
-            _LOGGER.debug('load error, file not exists, %s', full_path)
+            _LOGGER.debug('load error, file does not exist, %s', full_path)
             return None
         if not os.access(full_path, os.R_OK):
             _LOGGER.error('load error, file not readable, %s', full_path)
@@ -160,7 +160,7 @@ class MIoTStorage:
                 if type_ in [dict, list]:
                     return json.loads(data_bytes)
                 _LOGGER.error(
-                    'load error, un-support data type, %s', type_.__name__)
+                    'load error, unsupported data type, %s', type_.__name__)
                 return None
         except (OSError, TypeError) as e:
             _LOGGER.error('load error, %s, %s', e, traceback.format_exc())
@@ -219,8 +219,8 @@ class MIoTStorage:
                 w_bytes = json.dumps(data).encode('utf-8')
             else:
                 _LOGGER.error(
-                    'save error, un-support data type, %s', type_.__name__)
-                return None
+                    'save error, unsupported data type, %s', type_.__name__)
+                return False
             with open(full_path, 'wb') as w_file:
                 w_file.write(w_bytes)
                 if with_hash:
