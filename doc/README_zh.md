@@ -8,7 +8,7 @@
 
 > Home Assistant 版本要求：
 >
-> - Core $\geq$ 2024.11.0
+> - Core $\geq$ 2024.4.4
 > - Operating System $\geq$ 13.0
 
 ### 方法 1：使用 git clone 命令从 GitHub 下载
