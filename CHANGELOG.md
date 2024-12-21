@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v0.1.4b0
+### Added
+### Changed
+### Fixed
+- Fix miot cloud token refresh logic. [#307](https://github.com/XiaoMi/ha_xiaomi_home/pull/307)
+- Fix lan ctrl filter logic. [#303](https://github.com/XiaoMi/ha_xiaomi_home/pull/303)
+
 ## v0.1.3
 ### Added
 ### Changed
