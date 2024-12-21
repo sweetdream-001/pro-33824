@@ -204,7 +204,7 @@ class MIoTOauthClient:
         if not isinstance(refresh_token, str):
             raise MIoTOauthError('invalid refresh_token')
 
-        return await self._get_token_async(data={
+        return await self.__get_token_async(data={
             'client_id': self._client_id,
             'redirect_uri': self._redirect_url,
             'refresh_token': refresh_token,
@@ -660,7 +660,6 @@ class MIoTHttpClient:
         if 'result' not in res_obj:
             raise MIoTHttpError('invalid response result')
         return res_obj['result']
-
 
     async def __get_prop_async(self, did: str, siid: int, piid: int) -> any:
         results = await self.get_props_async(
