@@ -603,8 +603,9 @@ class MIoTLan:
             _LOGGER.info('no valid net_ifs')
             return
         try:
-            self._profile_models = load_yaml_file(
-                yaml_file=gen_absolute_path(self.PROFILE_MODELS_FILE))
+            self._profile_models = await self._main_loop.run_in_executor(
+                None, load_yaml_file,
+                gen_absolute_path(self.PROFILE_MODELS_FILE))
         except Exception as err:  # pylint: disable=broad-exception-caught
             _LOGGER.error('load profile models error, %s', err)
             self._profile_models = {}

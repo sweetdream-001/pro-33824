@@ -22,7 +22,7 @@
                 "title": "Erreur de connexion",
                 "description": "Cliquez sur \"Suivant\" pour réessayer"
             },
-            "devices_filter": {
+            "homes_select": {
                 "title": "Sélectionner une maison et des appareils",
                 "description": "## Instructions d'utilisation\r\n### Mode de contrôle\r\n- Automatique: Lorsqu'il y a une passerelle centrale Xiaomi disponible dans le réseau local, Home Assistant priorisera l'envoi des commandes de contrôle des appareils via la passerelle centrale pour réaliser un contrôle localisé. S'il n'y a pas de passerelle centrale dans le réseau local, il tentera d'envoyer des commandes de contrôle via le protocole Xiaomi OT pour réaliser un contrôle localisé. Ce n'est que lorsque les conditions de contrôle localisé ci-dessus ne sont pas remplies que les commandes de contrôle des appareils seront envoyées via le cloud.\r\n- Cloud: Les commandes de contrôle ne sont envoyées que via le cloud.\r\n### Importer une maison pour les appareils\r\nL'intégration ajoutera les appareils de la maison sélectionnée.\r\n### Mode de synchronisation des noms de pièces\r\nLors de la synchronisation des appareils de Xiaomi Home à Home Assistant, le nom de la pièce où se trouve l'appareil sera nommé selon les règles suivantes. Notez que le processus de synchronisation des appareils n'affecte pas les paramètres de la maison et de la pièce dans Xiaomi Home APP.\r\n- Ne pas synchroniser: L'appareil ne sera ajouté à aucune zone.\r\n- Autre option: La zone dans laquelle l'appareil est ajouté est nommée en fonction du nom de la maison ou de la pièce de Xiaomi Home APP.\r\n### Mode de débogage d'action\r\nPour les méthodes définies par MIoT-Spec-V2, en plus de générer une entité de notification, une entité de zone de texte sera également générée pour que vous puissiez envoyer des commandes de contrôle à l'appareil lors du débogage.\r\n### Masquer les entités générées non standard\r\nMasquer les entités générées non standard de MIoT-Spec-V2 commençant par \"*\".\r\n\r\n&emsp;\r\n### {nick_name} Bonjour ! Veuillez sélectionner le mode de contrôle de l'intégration et la maison où se trouvent les appareils à ajouter.",
                 "data": {
@@ -87,7 +87,7 @@
                     "nick_name": "Pseudo utilisateur"
                 }
             },
-            "devices_filter": {
+            "homes_select": {
                 "title": "Re-sélectionner une maison et des appareils",
                 "description": "## Instructions d'utilisation\r\n### Mode de contrôle\r\n- Automatique: Lorsqu'il y a une passerelle centrale Xiaomi disponible dans le réseau local, Home Assistant priorisera l'envoi des commandes de contrôle des appareils via la passerelle centrale pour réaliser un contrôle localisé. S'il n'y a pas de passerelle centrale dans le réseau local, il tentera d'envoyer des commandes de contrôle via le protocole Xiaomi OT pour réaliser un contrôle localisé. Ce n'est que lorsque les conditions de contrôle localisé ci-dessus ne sont pas remplies que les commandes de contrôle des appareils seront envoyées via le cloud.\r\n- Cloud: Les commandes de contrôle ne sont envoyées que via le cloud.\r\n### Importer une maison pour les appareils\r\nL'intégration ajoutera les appareils de la maison sélectionnée.\r\n&emsp;\r\n### {nick_name} Bonjour ! Veuillez sélectionner le mode de contrôle de l'intégration et la maison où se trouvent les appareils à ajouter.",
                 "data": {

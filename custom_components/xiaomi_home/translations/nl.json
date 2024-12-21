@@ -22,7 +22,7 @@
                 "title": "Inlogfout",
                 "description": "Klik OP VOLGENDE om het opnieuw te proberen."
             },
-            "devices_filter": {
+            "homes_select": {
                 "title": "Selecteer Huis en Apparaten",
                 "description": "## Gebruiksinstructies\r\n### Controlemodus\r\n- Auto: Wanneer er een beschikbare Xiaomi centrale hubgateway in het lokale netwerk is, geeft Home Assistant de voorkeur aan het verzenden van apparaatbedieningscommando's via de centrale hubgateway om lokale controle te bereiken. Als er geen centrale hubgateway in het lokale netwerk is, zal het proberen bedieningscommando's te verzenden via de Xiaomi LAN-controlefunctie. Alleen wanneer de bovenstaande lokale controlevoorwaarden niet zijn vervuld, worden de apparaatbedieningscommando's via de cloud verzonden.\r\n- Cloud: Alle bedieningscommando's worden via de cloud verzonden.\r\n### Apparaten importeren vanuit huis\r\nDe integratie voegt apparaten toe van de geselecteerde huizen.\n### Ruimtenaamsynchronisatiemodus\nBij het importeren van apparaten vanuit de Xiaomi Home APP naar Home Assistant is de naamgevingsconventie van het gebied waarin het apparaat wordt toegevoegd als volgt. Opmerking: het synchronisatieproces van het apparaat verandert de huis- of ruimte-instellingen in de Xiaomi Home APP niet.\r\n- Niet synchroniseren: Het apparaat wordt aan geen enkel gebied toegevoegd.\r\n- Andere opties: Het apparaat wordt toegevoegd aan een gebied dat is genoemd naar de huis- en/of ruimtenamen die al bestaan in de Xiaomi Home APP.\r\n### Debugmodus voor actie\r\nVoor de actie gedefinieerd in MIoT-Spec-V2 van het apparaat, wordt er een Tekstentiteit samen met een Notificatie-entiteit aangemaakt, waarin u bedieningscommando's naar het apparaat kunt sturen voor debugging.\r\n### Verberg niet-standaard gemaakte entiteiten\r\nVerberg de entiteiten die zijn gegenereerd vanuit niet-standaard MIoT-Spec-V2-instanties, waarvan de namen beginnen met \"*\".\r\n\r\n&emsp;\r\n### Hallo {nick_name}, selecteer alstublieft de integratie controlemethodiek en het huis waar het apparaat dat u wilt importeren zich bevindt.",
                 "data": {
@@ -87,7 +87,7 @@
                     "nick_name": "Bijnaam"
                 }
             },
-            "devices_filter": {
+            "homes_select": {
                 "title": "Huis en Apparaten opnieuw selecteren",
                 "description": "## Gebruiksinstructies\r\n### Controlemodus\r\n- Auto: Wanneer er een beschikbare Xiaomi centrale hubgateway in het lokale netwerk is, geeft Home Assistant de voorkeur aan het verzenden van apparaatbedieningscommando's via de centrale hubgateway om lokale controle te bereiken. Als er geen centrale hubgateway in het lokale netwerk is, zal het proberen bedieningscommando's te verzenden via de Xiaomi LAN-controlefunctie. Alleen wanneer de bovenstaande lokale controlevoorwaarden niet zijn vervuld, worden de apparaatbedieningscommando's via de cloud verzonden.\r\n- Cloud: Alle bedieningscommando's worden via de cloud verzonden.\r\n### Apparaten importeren vanuit huis\r\nDe integratie voegt apparaten toe van de geselecteerde huizen.\r\n&emsp;\r\n### Hallo {nick_name}, selecteer alstublieft de integratie controlemethodiek en het huis waar het apparaat dat u wilt importeren zich bevindt.",
                 "data": {

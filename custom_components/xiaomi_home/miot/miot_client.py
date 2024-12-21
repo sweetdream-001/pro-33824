@@ -1028,6 +1028,7 @@ class MIoTClient:
             self._miot_lan.update_devices(devices={
                 did: {
                     'token': info['token'],
+                    'model': info['model'],
                     'connect_type': info['connect_type']}
                 for did, info in self._device_list_cache.items()
                 if 'token' in info and 'connect_type' in info
@@ -1291,6 +1292,7 @@ class MIoTClient:
             self._miot_lan.update_devices(devices={
                 did: {
                     'token': info['token'],
+                    'model': info['model'],
                     'connect_type': info['connect_type']}
                 for did, info in self._device_list_cache.items()
                 if 'token' in info and 'connect_type' in info

@@ -315,7 +315,7 @@ class XiaomiMihomeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 _LOGGER.error('task_oauth exception, %s', error)
                 self._config_error_reason = str(error)
                 return self.async_show_progress_done(next_step_id='oauth_error')
-            return self.async_show_progress_done(next_step_id='devices_filter')
+            return self.async_show_progress_done(next_step_id='homes_select')
         return self.async_show_progress(
             step_id='oauth',
             progress_action='oauth',
@@ -469,15 +469,15 @@ class XiaomiMihomeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             errors={'base': error_reason},
         )
 
-    async def async_step_devices_filter(self, user_input=None):
-        _LOGGER.debug('async_step_devices_filter')
+    async def async_step_homes_select(self, user_input=None):
+        _LOGGER.debug('async_step_homes_select')
         try:
             if user_input is None:
-                return await self.display_device_filter_form('')
+                return await self.display_homes_select_form('')
 
             home_selected: list = user_input.get('home_infos', [])
             if not home_selected:
-                return await self.display_device_filter_form(
+                return await self.display_homes_select_form(
                     'no_family_selected')
             self._ctrl_mode = user_input.get('ctrl_mode')
             for home_id, home_info in self._home_info_buffer[
@@ -495,7 +495,7 @@ class XiaomiMihomeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 for did, dev_info in self._home_info_buffer['devices'].items()
                 if dev_info['home_id'] in home_selected}
             if not devices_list:
-                return await self.display_device_filter_form('no_devices')
+                return await self.display_homes_select_form('no_devices')
             devices_list_sort = dict(sorted(
                 devices_list.items(), key=lambda item:
                     item[1].get('home_id', '')+item[1].get('room_id', '')))
@@ -506,7 +506,7 @@ class XiaomiMihomeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 _LOGGER.error(
                     'save devices async failed, %s, %s',
                     self._uid, self._cloud_server)
-                return await self.display_device_filter_form(
+                return await self.display_homes_select_form(
                     'devices_storage_failed')
             if not (await self._miot_storage.update_user_config_async(
                     uid=self._uid, cloud_server=self._cloud_server, config={
@@ -535,7 +535,7 @@ class XiaomiMihomeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 })
         except Exception as err:
             _LOGGER.error(
-                'async_step_devices_filter, %s, %s',
+                'async_step_homes_select, %s, %s',
                 err, traceback.format_exc())
             raise AbortFlow(
                 reason='config_flow_error',
@@ -543,9 +543,9 @@ class XiaomiMihomeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     'error': f'config_flow error, {err}'}
             ) from err
 
-    async def display_device_filter_form(self, reason: str):
+    async def display_homes_select_form(self, reason: str):
         return self.async_show_form(
-            step_id='devices_filter',
+            step_id='homes_select',
             data_schema=vol.Schema({
                 vol.Required('ctrl_mode', default=DEFAULT_CTRL_MODE): vol.In(
                     self._miot_i18n.translate(key='config.control_mode')),
@@ -941,7 +941,7 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
 
     async def async_step_update_user_info(self, user_input=None):
         if not self._update_user_info:
-            return await self.async_step_devices_filter()
+            return await self.async_step_homes_select()
         if not user_input:
             nick_name_new = (
                 await self._miot_http.get_user_info_async() or {}).get(
@@ -958,9 +958,9 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
             )
 
         self._nick_name_new = user_input.get('nick_name')
-        return await self.async_step_devices_filter()
+        return await self.async_step_homes_select()
 
-    async def async_step_devices_filter(self, user_input=None):
+    async def async_step_homes_select(self, user_input=None):
         if not self._update_devices:
             return await self.async_step_update_trans_rules()
         if not user_input:
@@ -1012,11 +1012,11 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
                 if home_id in home_list]
 
             self._home_list = dict(sorted(home_list.items()))
-            return await self.display_device_filter_form('')
+            return await self.display_homes_select_form('')
 
         self._home_selected_list = user_input.get('home_infos', [])
         if not self._home_selected_list:
-            return await self.display_device_filter_form('no_family_selected')
+            return await self.display_homes_select_form('no_family_selected')
         self._ctrl_mode = user_input.get('ctrl_mode')
         self._home_selected_dict = {}
         for home_id, home_info in self._home_info_buffer[
@@ -1029,7 +1029,7 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
             for did, dev_info in self._home_info_buffer['devices'].items()
             if dev_info['home_id'] in self._home_selected_list}
         if not self._device_list:
-            return await self.display_device_filter_form('no_devices')
+            return await self.display_homes_select_form('no_devices')
         # Statistics devices changed
         self._devices_add = []
         self._devices_remove = []
@@ -1047,9 +1047,9 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
             self._devices_add, self._devices_remove)
         return await self.async_step_update_trans_rules()
 
-    async def display_device_filter_form(self, reason: str):
+    async def display_homes_select_form(self, reason: str):
         return self.async_show_form(
-            step_id='devices_filter',
+            step_id='homes_select',
             data_schema=vol.Schema({
                 vol.Required(
                     'ctrl_mode', default=self._ctrl_mode
