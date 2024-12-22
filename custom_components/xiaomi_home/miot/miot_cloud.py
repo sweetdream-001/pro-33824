@@ -51,7 +51,7 @@ import json
 import logging
 import re
 import time
-from typing import Optional
+from typing import Any, Optional
 from urllib.parse import urlencode
 import aiohttp
 
@@ -94,10 +94,11 @@ class MIoTOauthClient:
             self._oauth_host = DEFAULT_OAUTH2_API_HOST
         else:
             self._oauth_host = f'{cloud_server}.{DEFAULT_OAUTH2_API_HOST}'
-        self._session = aiohttp.ClientSession()
+        self._session = aiohttp.ClientSession(loop=self._main_loop)
 
-    def __del__(self):
-        self._session.close()
+    async def deinit_async(self) -> None:
+        if self._session and not self._session.closed:
+            await self._session.close()
 
     def set_redirect_url(self, redirect_url: str) -> None:
         if not isinstance(redirect_url, str) or redirect_url.strip() == '':
@@ -250,10 +251,11 @@ class MIoTHttpClient:
             cloud_server=cloud_server, client_id=client_id,
             access_token=access_token)
 
-        self._session = aiohttp.ClientSession()
+        self._session = aiohttp.ClientSession(loop=self._main_loop)
 
-    def __del__(self):
-        self._session.close()
+    async def deinit_async(self) -> None:
+        if self._session and not self._session.closed:
+            await self._session.close()
 
     def update_http_header(
         self, cloud_server: Optional[str] = None,
@@ -581,7 +583,7 @@ class MIoTHttpClient:
         self, home_ids: list[str] = None
     ) -> dict[str, dict]:
         homeinfos = await self.get_homeinfos_async()
-        homes: dict[str, dict[str, any]] = {}
+        homes: dict[str, dict[str, Any]] = {}
         devices: dict[str, dict] = {}
         for device_type in ['home_list', 'share_home_list']:
             homes.setdefault(device_type, {})
@@ -661,7 +663,7 @@ class MIoTHttpClient:
             raise MIoTHttpError('invalid response result')
         return res_obj['result']
 
-    async def __get_prop_async(self, did: str, siid: int, piid: int) -> any:
+    async def __get_prop_async(self, did: str, siid: int, piid: int) -> Any:
         results = await self.get_props_async(
             params=[{'did': did, 'siid': siid, 'piid': piid}])
         if not results:
@@ -722,7 +724,7 @@ class MIoTHttpClient:
 
     async def get_prop_async(
         self, did: str, siid: int, piid: int, immediately: bool = False
-    ) -> any:
+    ) -> Any:
         if immediately:
             return await self.__get_prop_async(did, siid, piid)
         key: str = f'{did}.{siid}.{piid}'

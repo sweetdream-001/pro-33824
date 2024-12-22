@@ -315,6 +315,9 @@ class XiaomiMihomeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 _LOGGER.error('task_oauth exception, %s', error)
                 self._config_error_reason = str(error)
                 return self.async_show_progress_done(next_step_id='oauth_error')
+            if self._miot_oauth:
+                await self._miot_oauth.deinit_async()
+                self._miot_oauth = None
             return self.async_show_progress_done(next_step_id='homes_select')
         return self.async_show_progress(
             step_id='oauth',
@@ -336,10 +339,16 @@ class XiaomiMihomeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             try:
                 auth_info = await self._miot_oauth.get_access_token_async(
                     code=oauth_code)
-                self._miot_http = MIoTHttpClient(
-                    cloud_server=self._cloud_server,
-                    client_id=OAUTH2_CLIENT_ID,
-                    access_token=auth_info['access_token'])
+                if not self._miot_http:
+                    self._miot_http = MIoTHttpClient(
+                        cloud_server=self._cloud_server,
+                        client_id=OAUTH2_CLIENT_ID,
+                        access_token=auth_info['access_token'])
+                else:
+                    self._miot_http.update_http_header(
+                        cloud_server=self._cloud_server,
+                        client_id=OAUTH2_CLIENT_ID,
+                        access_token=auth_info['access_token'])
                 self._auth_info = auth_info
                 # Gen uuid
                 self._uuid = hashlib.sha256(
@@ -449,6 +458,9 @@ class XiaomiMihomeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         # Auth success, unregister oauth webhook
         webhook_async_unregister(self.hass, webhook_id=self._virtual_did)
+        if self._miot_http:
+            await self._miot_http.deinit_async()
+            self._miot_http = None
         _LOGGER.info(
             '__check_oauth_async, webhook.async_unregister: %s',
             self._virtual_did)

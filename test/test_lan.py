@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Unit test for miot_lan.py."""
+from typing import Any
 import pytest
 import asyncio
 from zeroconf import IPVersion
@@ -79,7 +80,7 @@ async def test_lan_async(test_devices: dict):
     evt_push_unavailable = asyncio.Event()
     await miot_lan.vote_for_lan_ctrl_async(key='test', vote=True)
 
-    async def device_state_change(did: str, state: dict, ctx: any):
+    async def device_state_change(did: str, state: dict, ctx: Any):
         print('device state change, ', did, state)
         if did != test_did:
             return
