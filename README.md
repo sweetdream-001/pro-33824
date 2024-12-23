@@ -32,7 +32,7 @@ git checkout v1.0.0
 
 ### Method 2: [HACS](https://hacs.xyz/)
 
-HACS > Overflow Menu > Custom repositories > Repository: https://github.com/XiaoMi/ha_xiaomi_home.git & Category: Integration > ADD
+HACS > Overflow Menu > Custom repositories > Repository: https://github.com/XiaoMi/ha_xiaomi_home.git & Category: Integration > ADD > Xiaomi Home in New or Available for download section of HACS > DOWNLOAD
 
 > Xiaomi Home has not been added to the HACS store as a default yet. It's coming soon.
 
@@ -75,6 +75,8 @@ Method: [Settings > Devices & services > Configured > Xiaomi Home](https://my.ho
 ## Security
 
 Xiaomi Home Integration and the affiliated cloud interface is provided by Xiaomi officially. You need to use your Xiaomi account to login to get your device list. Xiaomi Home Integration implements OAuth 2.0 login process, which does not keep your account password in the Home Assistant application. However, due to the limitation of the Home Assistant platform, the user information (including device information, certificates, tokens, etc.) of your Xiaomi account will be saved in the Home Assistant configuration file in clear text after successful login. You need to ensure that your Home Assistant configuration file is properly stored. The exposure of your configuration file may result in others logging in with your identity.
+
+> If you suspect that your OAuth 2.0 token has been leaked, you can revoke the login authorization of your Xiaomi account by the following steps: Xiaomi Home APP -> Profile -> Click your username and get into Xiaomi Account management page -> Basic info: Apps -> Xiaomi Home (Home Assistant Integration) -> Remove
 
 ## FAQ
 
