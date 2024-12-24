@@ -2,7 +2,9 @@
     "config": {
         "other": {
             "devices": "个设备",
-            "found_central_gateway": "，发现本地中枢网关"
+            "found_central_gateway": "，发现本地中枢网关",
+            "without_room": "未分配房间",
+            "no_display": "不显示"
         },
         "control_mode": {
             "auto": "自动",
@@ -14,9 +16,48 @@
             "room": "房间名 （卧室）",
             "home": "家庭名 （米家）"
         },
+        "statistics_logic": {
+            "or": "或逻辑",
+            "and": "与逻辑"
+        },
+        "filter_mode": {
+            "exclude": "排除",
+            "include": "包含"
+        },
+        "connect_type": {
+            "0": "WiFi",
+            "1": "yunyi设备",
+            "2": "云接入设备",
+            "3": "ZigBee",
+            "4": "webSocket",
+            "5": "虚拟设备",
+            "6": "BLE",
+            "7": "本地AP",
+            "8": "WiFi+BLE",
+            "9": "其他",
+            "10": "功能插件",
+            "11": "蜂窝网",
+            "12": "网线",
+            "13": "NB-IoT",
+            "14": "第三方云接入",
+            "15": "红外遥控器子设备",
+            "16": "BLE-Mesh",
+            "17": "虚拟设备组",
+            "18": "代理网关子设备",
+            "19": "安全级代理网关子设备",
+            "22": "PLC",
+            "23": "仅网线",
+            "24": "Matter",
+            "25": "WiFi+蜂窝网"
+        },
         "option_status": {
             "enable": "启用",
             "disable": "禁用"
+        },
+        "device_state": {
+            "add": "新增",
+            "del": "不可用",
+            "offline": "离线"
         },
         "lan_ctrl_config": {
             "notice_net_dup": "\r\n**[提示]** 检测到多个网卡可能连接同一个网络，请注意选择。",

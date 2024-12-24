@@ -164,9 +164,11 @@ class MIoTClient:
     _refresh_props_retry_count: int
 
     # Persistence notify handler, params: notify_id, title, message
-    _persistence_notify: Callable[[str, str, str], None]
+    _persistence_notify: Callable[[str, Optional[str], Optional[str]], None]
     # Device list changed notify
     _show_devices_changed_notify_timer: Optional[asyncio.TimerHandle]
+    # Display devices changed notify
+    _display_devs_notify: list[str]
 
     def __init__(
             self,
@@ -231,6 +233,9 @@ class MIoTClient:
         self._persistence_notify = None
         self._show_devices_changed_notify_timer = None
 
+        self._display_devs_notify = entry_data.get(
+            'display_devices_changed_notify', ['add', 'del', 'offline'])
+
     async def init_async(self) -> None:
         # Load user config and check
         self._user_config = await self._storage.load_user_config_async(
@@ -239,14 +244,14 @@ class MIoTClient:
             # Integration need to be add again
             raise MIoTClientError('load_user_config_async error')
         _LOGGER.debug('user config, %s', json.dumps(self._user_config))
-        # Load cache device list
-        await self.__load_cache_device_async()
         # MIoT i18n client
         self._i18n = MIoTI18n(
             lang=self._entry_data.get(
                 'integration_language', DEFAULT_INTEGRATION_LANGUAGE),
             loop=self._main_loop)
         await self._i18n.init_async()
+        # Load cache device list
+        await self.__load_cache_device_async()
         # MIoT oauth client instance
         self._oauth = MIoTOauthClient(
             client_id=OAUTH2_CLIENT_ID,
@@ -458,6 +463,21 @@ class MIoTClient:
     def hide_non_standard_entities(self) -> bool:
         return self._entry_data.get(
             'hide_non_standard_entities', False)
+
+    @property
+    def display_devices_changed_notify(self) -> list[str]:
+        return self._display_devs_notify
+
+    @display_devices_changed_notify.setter
+    def display_devices_changed_notify(self, value: list[str]) -> None:
+        if set(value) == set(self._display_devs_notify):
+            return
+        self._display_devs_notify = value
+        if value:
+            self.__request_show_devices_changed_notify()
+        else:
+            self._persistence_notify(
+                self.__gen_notify_key('dev_list_changed'), None, None)
 
     @property
     def device_list(self) -> dict:
@@ -1716,15 +1736,16 @@ class MIoTClient:
         count_offline: int = 0
 
         # New devices
-        for did, info in {
-                **self._device_list_gateway, **self._device_list_cloud
-        }.items():
-            if did in self._device_list_cache:
-                continue
-            count_add += 1
-            message_add += (
-                f'- {info.get("name", "unknown")} ({did}, '
-                f'{info.get("model", "unknown")})\n')
+        if 'add' in self._display_devs_notify:
+            for did, info in {
+                    **self._device_list_gateway, **self._device_list_cloud
+            }.items():
+                if did in self._device_list_cache:
+                    continue
+                count_add += 1
+                message_add += (
+                    f'- {info.get("name", "unknown")} ({did}, '
+                    f'{info.get("model", "unknown")})\n')
         # Get unavailable and offline devices
         home_name_del: Optional[str] = None
         home_name_offline: Optional[str] = None
@@ -1734,7 +1755,7 @@ class MIoTClient:
             if online:
                 # Skip online device
                 continue
-            if online is None:
+            if 'del' in self._display_devs_notify and online is None:
                 # Device not exist
                 if home_name_del != home_name_new:
                     message_del += f'\n[{home_name_new}]\n'
@@ -1743,7 +1764,8 @@ class MIoTClient:
                 message_del += (
                     f'- {info.get("name", "unknown")} ({did}, '
                     f'{info.get("room_name", "unknown")})\n')
-            else:
+                continue
+            if 'offline' in self._display_devs_notify:
                 # Device offline
                 if home_name_offline != home_name_new:
                     message_offline += f'\n[{home_name_new}]\n'
@@ -1754,19 +1776,19 @@ class MIoTClient:
                     f'{info.get("room_name", "unknown")})\n')
 
         message = ''
-        if count_add:
+        if 'add' in self._display_devs_notify and count_add:
             message += self._i18n.translate(
                 key='miot.client.device_list_add',
                 replace={
                     'count': count_add,
                     'message': message_add})
-        if count_del:
+        if 'del' in self._display_devs_notify and count_del:
             message += self._i18n.translate(
                 key='miot.client.device_list_del',
                 replace={
                     'count': count_del,
                     'message': message_del})
-        if count_offline:
+        if 'offline' in self._display_devs_notify and count_offline:
             message += self._i18n.translate(
                 key='miot.client.device_list_offline',
                 replace={
@@ -1801,6 +1823,8 @@ class MIoTClient:
     def __request_show_devices_changed_notify(
         self, delay_sec: float = 6
     ) -> None:
+        if not self._display_devs_notify:
+            return
         if not self._mips_cloud and not self._mips_local and not self._miot_lan:
             return
         if self._show_devices_changed_notify_timer:

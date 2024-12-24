@@ -24,13 +24,37 @@
             },
             "homes_select": {
                 "title": "選擇家庭與設備",
-                "description": "## 使用介紹\r\n### 控制模式\r\n- 自動：本地區域網內存在可用的小米中樞網關時， Home Assistant 會優先通過中樞網關發送設備控制指令，以實現本地化控制功能。本地區域網不存在中樞時，會嘗試通過小米OT協議發送控制指令，以實現本地化控制功能。只有當上述本地化控制條件不滿足時，設備控制指令才會通過雲端發送。\r\n- 雲端：控制指令僅通過雲端發送。\r\n### 導入設備的家庭\r\n集成將添加已選中家庭中的設備。\r\n### 房間名同步模式\r\n將設備從米家APP同步到 Home Assistant 時，設備在 Home Assistant 中所處區域的名稱的命名方式將遵循以下規則。注意，設備同步過程不會改變米家APP中家庭和房間的設置。\r\n- 不同步：設備不會被添加至任何區域。\r\n- 其它選項：設備所添加到的區域以米家APP中的家庭或房間名稱命名。\r\n### Action 調試模式\r\n對於設備 MIoT-Spec-V2 定義的方法，在生成通知實體之外，還會生成一個文本輸入框實體，您可以在調試時用它向設備發送控制指令。\r\n### 隱藏非標準生成實體\r\n隱藏名稱以“*”開頭的非標準 MIoT-Spec-V2 實例生成的實體。\r\n\r\n&emsp;\r\n### {nick_name} 您好！請選擇集成控制模式以及您想要添加的設備所處的家庭。",
+                "description": "## 使用介紹\r\n### 導入設備的家庭\r\n集成將添加已選中家庭中的設備。\r\n### 房間名同步模式\r\n將設備從米家APP同步到 Home Assistant 時，設備在 Home Assistant 中所處區域的名稱的命名方式將遵循以下規則。注意，設備同步過程不會改變米家APP中家庭和房間的設置。\r\n- 不同步：設備不會被添加至任何區域。\r\n- 其它選項：設備所添加到的區域以米家APP中的家庭或房間名稱命名。\r\n### 高級設置選項\r\n展示高級設置選項，對集成的專業配置選項進行修改。\r\n\r\n&emsp;\r\n### {nick_name} 您好！請選擇您想要添加的設備所處家庭。",
                 "data": {
-                    "ctrl_mode": "控制模式",
                     "home_infos": "導入設備的家庭",
                     "area_name_rule": "房間名同步模式",
+                    "advanced_options": "高級設置選項"
+                }
+            },
+            "advanced_options": {
+                "title": "高級設置選項",
+                "description": "## 使用介紹\r\n### 除非您非常清楚下列選項的含義，否則請保持默認。\r\n### 篩選設備\r\n支持按照房間名稱和設備類型篩選設備，同時也支持設備維度篩選。\r\n### 控制模式\r\n- 自動：本地局域網內存在可用的小米中樞網關時， Home Assistant 會優先通過中樞網關發送設備控制指令，以實現本地化控制功能。本地局域網不存在中樞時，會嘗試通過小米OT協議發送控制指令，以實現本地化控制功能。只有當上述本地化控制條件不滿足時，設備控制指令才會通過雲端發送。\r\n- 雲端：控制指令僅通過雲端發送。\r\n### Action 調試模式\r\n對於設備 MIoT-Spec-V2 定義的方法，在生成通知實體之外，還會生成一個文本輸入框實體，您可以在調試時用它向設備發送控制指令。\r\n### 隱藏非標準生成實體\r\n隱藏名稱以“*”開頭的非標準 MIoT-Spec-V2 實例生成的實體。\r\n### 顯示設備狀態變化通知\r\n細化顯示設備狀態變化通知，只顯示勾選的通知消息。",
+                "data": {
+                    "devices_filter": "篩選設備",
+                    "ctrl_mode": "控制模式",
                     "action_debug": "Action 調試模式",
-                    "hide_non_standard_entities": "隱藏非標準生成實體"
+                    "hide_non_standard_entities": "隱藏非標準生成實體",
+                    "display_devices_changed_notify": "顯示設備狀態變化通知"
+                }
+            },
+            "devices_filter": {
+                "title": "篩選設備",
+                "description": "## 使用介紹\r\n支持按照家庭房間名稱、設備接入類型、設備型號篩選設備，同時也支持設備維度篩選，篩選邏輯如下：\r\n- 會先根據統計邏輯獲取所有包含項的並集或者交集，然後再獲取排除項的交集或者並集，最後將【包含匯總結果】減去【排除匯總結果】得到【篩選結果】\r\n- 如未選擇包含項，表示包含全部。\r\n### 篩選模式\r\n- 排除：移除不需要的項。\r\n- 包含：包含需要的項。\r\n### 統計邏輯\r\n- 與邏輯：取所有同模式篩選項的交集。\r\n- 或邏輯：取所有同模式篩選項的並集。\r\n\r\n您也可以進入集成項的【配置>更新設備列表】頁面，勾選【篩選設備】重新篩選。",
+                "data": {
+                    "room_filter_mode": "篩選家庭房間",
+                    "room_list": "家庭房間",
+                    "type_filter_mode": "篩選設備接入類型",
+                    "type_list": "設備接入類型",
+                    "model_filter_mode": "篩選設備型號",
+                    "model_list": "設備型號",
+                    "devices_filter_mode": "篩選設備",
+                    "device_list": "設備列表",
+                    "statistics_logic": "統計邏輯"
                 }
             }
         },
@@ -76,6 +100,7 @@
                     "update_devices": "更新設備列表",
                     "action_debug": "Action 調試模式",
                     "hide_non_standard_entities": "隱藏非標準生成實體",
+                    "display_devices_changed_notify": "顯示設備狀態變化通知",
                     "update_trans_rules": "更新實體轉換規則",
                     "update_lan_ctrl_config": "更新局域網控制配置"
                 }
@@ -89,10 +114,26 @@
             },
             "homes_select": {
                 "title": "重新選擇家庭與設備",
-                "description": "\r\n## 使用介紹\r\n### 控制模式\r\n- 自動：本地局域網內存在可用的小米中樞網關時， Home Assistant 會優先通過中樞網關發送設備控制指令，以實現本地化控制功能。只有當本地化控制條件不滿足時，設備控制指令才會通過雲端發送。\r\n- 雲端：控制指令強制通過雲端發送。\r\n### 導入設備的家庭\r\n集成將添加已選中家庭中的設備。\r\n&emsp;\r\n### {nick_name} 您好！請選擇集成控制模式以及您想要添加的設備所處的家庭。",
+                "description": "## 使用介紹\r\n### 導入設備的家庭\r\n集成將添加已選中家庭中的設備。\r\n### 篩選設備\r\n支持按照家庭房間名稱、設備接入類型、設備型號篩選設備，同時也支持設備維度篩選，已篩選出 **{local_count}** 個設備。\r\n### 控制模式\r\n- 自動：本地局域網內存在可用的小米中樞網關時， Home Assistant 會優先通過中樞網關發送設備控制指令，以實現本地化控制功能。只有當本地化控制條件不滿足時，設備控制指令才會通過雲端發送。\r\n- 雲端：控制指令強制通過雲端發送。",
                 "data": {
-                    "ctrl_mode": "控制模式",
-                    "home_infos": "導入設備的家庭"
+                    "home_infos": "導入設備的家庭",
+                    "devices_filter": "篩選設備",
+                    "ctrl_mode": "控制模式"
+                }
+            },
+            "devices_filter": {
+                "title": "篩選設備",
+                "description": "## 使用介紹\r\n支持按照家庭房間名稱、設備接入類型、設備型號篩選設備，同時也支持設備維度篩選，篩選邏輯如下：\r\n- 會先根據統計邏輯獲取所有包含項的並集或者交集，然後再獲取排除項的交集或者並集，最後將【包含匯總結果】減去【排除匯總結果】得到【篩選結果】\r\n- 如未選擇包含項，表示包含全部。\r\n### 篩選模式\r\n- 排除：移除不需要的項。\r\n- 包含：包含需要的項。\r\n### 統計邏輯\r\n- 與邏輯：取所有同模式篩選項的交集。\r\n- 或邏輯：取所有同模式篩選項的並集。\r\n\r\n您也可以進入集成項的【配置>更新設備列表】頁面，勾選【篩選設備】重新篩選。",
+                "data": {
+                    "room_filter_mode": "篩選家庭房間",
+                    "room_list": "家庭房間",
+                    "type_filter_mode": "篩選設備接入類型",
+                    "type_list": "設備接入類型",
+                    "model_filter_mode": "篩選設備型號",
+                    "model_list": "設備型號",
+                    "devices_filter_mode": "篩選設備",
+                    "device_list": "設備列表",
+                    "statistics_logic": "統計邏輯"
                 }
             },
             "update_trans_rules": {
@@ -112,7 +153,7 @@
             },
             "config_confirm": {
                 "title": "確認配置",
-                "description": "**{nick_name}** 您好！請確認最新的配置信息，然後點擊“提交”。\r\n集成將會使用更新後的配置重新載入。\r\n\r\n集成語言：\t{lang_new}\r\n用戶暱稱：\t{nick_name_new}\r\nAction 調試模式：\t{action_debug}\r\n隱藏非標準生成實體：\t{hide_non_standard_entities}\r\n設備變化：\t新增 **{devices_add}** 個設備，移除 **{devices_remove}** 個設備\r\n轉換規則變化：\t共條 **{trans_rules_count}** 規則，更新 **{trans_rules_count_success}** 條規則",
+                "description": "**{nick_name}** 您好！請確認最新的配置信息，然後點擊“提交”。\r\n集成將會使用更新後的配置重新載入。\r\n\r\n集成語言：\t{lang_new}\r\n用戶暱稱：\t{nick_name_new}\r\nAction 調試模式：\t{action_debug}\r\n隱藏非標準生成實體：\t{hide_non_standard_entities}\r\n顯示設備狀態變化通知：\t{display_devices_changed_notify}\r\n設備變化：\t新增 **{devices_add}** 個設備，移除 **{devices_remove}** 個設備\r\n轉換規則變化：\t共條 **{trans_rules_count}** 規則，更新 **{trans_rules_count_success}** 條規則",
                 "data": {
                     "confirm": "確認修改"
                 }

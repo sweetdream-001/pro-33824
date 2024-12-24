@@ -23,14 +23,38 @@
                 "description": "Cliquez sur \"Suivant\" pour réessayer"
             },
             "homes_select": {
-                "title": "Sélectionner une maison et des appareils",
-                "description": "## Instructions d'utilisation\r\n### Mode de contrôle\r\n- Automatique: Lorsqu'il y a une passerelle centrale Xiaomi disponible dans le réseau local, Home Assistant priorisera l'envoi des commandes de contrôle des appareils via la passerelle centrale pour réaliser un contrôle localisé. S'il n'y a pas de passerelle centrale dans le réseau local, il tentera d'envoyer des commandes de contrôle via le protocole Xiaomi OT pour réaliser un contrôle localisé. Ce n'est que lorsque les conditions de contrôle localisé ci-dessus ne sont pas remplies que les commandes de contrôle des appareils seront envoyées via le cloud.\r\n- Cloud: Les commandes de contrôle ne sont envoyées que via le cloud.\r\n### Importer une maison pour les appareils\r\nL'intégration ajoutera les appareils de la maison sélectionnée.\r\n### Mode de synchronisation des noms de pièces\r\nLors de la synchronisation des appareils de Xiaomi Home à Home Assistant, le nom de la pièce où se trouve l'appareil sera nommé selon les règles suivantes. Notez que le processus de synchronisation des appareils n'affecte pas les paramètres de la maison et de la pièce dans Xiaomi Home APP.\r\n- Ne pas synchroniser: L'appareil ne sera ajouté à aucune zone.\r\n- Autre option: La zone dans laquelle l'appareil est ajouté est nommée en fonction du nom de la maison ou de la pièce de Xiaomi Home APP.\r\n### Mode de débogage d'action\r\nPour les méthodes définies par MIoT-Spec-V2, en plus de générer une entité de notification, une entité de zone de texte sera également générée pour que vous puissiez envoyer des commandes de contrôle à l'appareil lors du débogage.\r\n### Masquer les entités générées non standard\r\nMasquer les entités générées non standard de MIoT-Spec-V2 commençant par \"*\".\r\n\r\n&emsp;\r\n### {nick_name} Bonjour ! Veuillez sélectionner le mode de contrôle de l'intégration et la maison où se trouvent les appareils à ajouter.",
+                "title": "Sélectionner la famille et l'appareil",
+                "description": "## Introduction\r\n### Importer la famille de l'appareil\r\nL'intégration ajoutera des appareils de la famille sélectionnée.\r\n### Mode de synchronisation du nom de la pièce\r\nLors de la synchronisation des appareils de l'application Mi Home avec Home Assistant, le nom de la zone dans Home Assistant suivra les règles ci-dessous. Notez que le processus de synchronisation ne modifiera pas les paramètres de la famille et de la pièce dans l'application Mi Home.\r\n- Ne pas synchroniser : L'appareil ne sera ajouté à aucune zone.\r\n- Autres options : La zone à laquelle l'appareil est ajouté sera nommée d'après le nom de la famille ou de la pièce dans l'application Mi Home.\r\n### Paramètres avancés\r\nAfficher les paramètres avancés pour modifier les options de configuration professionnelle de l'intégration.\r\n\r\n&emsp;\r\n### {nick_name} Bonjour ! Veuillez sélectionner la famille à laquelle vous souhaitez ajouter l'appareil.",
                 "data": {
-                    "ctrl_mode": "Mode de contrôle",
-                    "home_infos": "Importer une maison pour les appareils",
-                    "area_name_rule": "Mode de synchronisation des noms de pièces",
-                    "action_debug": "Mode de débogage d'action",
-                    "hide_non_standard_entities": "Masquer les entités générées non standard"
+                    "home_infos": "Importer la famille de l'appareil",
+                    "area_name_rule": "Mode de synchronisation du nom de la pièce",
+                    "advanced_options": "Paramètres avancés"
+                }
+            },
+            "advanced_options": {
+                "title": "Paramètres Avancés",
+                "description": "## Introduction\r\n### Sauf si vous comprenez très bien la signification des options suivantes, veuillez les laisser par défaut.\r\n### Filtrer les appareils\r\nPrend en charge le filtrage des appareils en fonction du nom de la pièce et du type d'appareil, ainsi que le filtrage basé sur les appareils.\r\n### Mode de Contrôle\r\n- Automatique : Lorsqu'une passerelle Xiaomi est disponible dans le réseau local, Home Assistant enverra les commandes de contrôle des appareils via la passerelle pour permettre le contrôle local. Si aucune passerelle n'est disponible dans le réseau local, Home Assistant essaiera d'envoyer les commandes de contrôle des appareils via le protocole OT Xiaomi pour permettre le contrôle local. Seules si les conditions de contrôle local ci-dessus ne sont pas remplies, les commandes de contrôle des appareils seront envoyées via le cloud.\r\n- Cloud : Les commandes de contrôle des appareils sont envoyées uniquement via le cloud.\r\n### Mode de Débogage d’Actions\r\nPour les méthodes définies par les appareils MIoT-Spec-V2, en plus de générer une entité de notification, une entité de champ de texte sera également générée pour vous permettre d'envoyer des commandes de contrôle aux appareils lors du débogage.\r\n### Masquer les Entités Non Standard\r\nMasquer les entités générées par des instances MIoT-Spec-V2 non standard et commençant par \"*\".\r\n### Afficher les notifications de changement d'état de l'appareil\r\nAfficher les notifications détaillées de changement d'état de l'appareil, en affichant uniquement les notifications sélectionnées.",
+                "data": {
+                    "devices_filter": "Filtrer les Appareils",
+                    "ctrl_mode": "Mode de Contrôle",
+                    "action_debug": "Mode de Débogage d’Actions",
+                    "hide_non_standard_entities": "Masquer les Entités Non Standard",
+                    "display_devices_changed_notify": "Afficher les notifications de changement d'état de l'appareil"
+                }
+            },
+            "devices_filter": {
+                "title": "Filtrer les Appareils",
+                "description": "## Instructions d'utilisation\r\nPrend en charge le filtrage des appareils par nom de pièce de la maison, type d'accès de l'appareil et modèle d'appareil, et prend également en charge le filtrage par dimension de l'appareil. La logique de filtrage est la suivante :\r\n- Tout d'abord, selon la logique statistique, obtenez l'union ou l'intersection de tous les éléments inclus, puis obtenez l'intersection ou l'union des éléments exclus, et enfin soustrayez le [résultat du résumé inclus] du [résultat du résumé exclu] pour obtenir le [résultat du filtre].\r\n- Si aucun élément inclus n'est sélectionné, cela signifie que tous sont inclus.\r\n### Mode de Filtrage\r\n- Exclure : Supprimer les éléments indésirables.\r\n- Inclure : Inclure les éléments souhaités.\r\n### Logique Statistique\r\n- Logique ET : Prendre l'intersection de tous les éléments dans le même mode.\r\n- Logique OU : Prendre l'union de tous les éléments dans le même mode.\r\n\r\nVous pouvez également aller à la page [Configuration > Mettre à jour la liste des appareils] de l'élément d'intégration, cocher [Filtrer les appareils] pour re-filtrer.",
+                "data": {
+                    "room_filter_mode": "Filtrer les Pièces",
+                    "room_list": "Pièces",
+                    "type_filter_mode": "Filtrer les Types d'Appareils",
+                    "type_list": "Types d'Appareils",
+                    "model_filter_mode": "Filtrer les Modèles d'Appareils",
+                    "model_list": "Modèles d'Appareils",
+                    "devices_filter_mode": "Filtrer les Appareils",
+                    "device_list": "Liste des Appareils",
+                    "statistics_logic": "Logique de Statistiques"
                 }
             }
         },
@@ -76,8 +100,9 @@
                     "update_devices": "Mettre à jour la liste des appareils",
                     "action_debug": "Mode de débogage d'action",
                     "hide_non_standard_entities": "Masquer les entités générées non standard",
-                    "update_trans_rules": "Mettre à jour les règles de conversion d'entités (configuration globale)",
-                    "update_lan_ctrl_config": "Mettre à jour la configuration de contrôle LAN (configuration globale)"
+                    "display_devices_changed_notify": "Afficher les notifications de changement d'état de l'appareil",
+                    "update_trans_rules": "Mettre à jour les règles de conversion d'entités",
+                    "update_lan_ctrl_config": "Mettre à jour la configuration de contrôle LAN"
                 }
             },
             "update_user_info": {
@@ -89,10 +114,26 @@
             },
             "homes_select": {
                 "title": "Re-sélectionner une maison et des appareils",
-                "description": "## Instructions d'utilisation\r\n### Mode de contrôle\r\n- Automatique: Lorsqu'il y a une passerelle centrale Xiaomi disponible dans le réseau local, Home Assistant priorisera l'envoi des commandes de contrôle des appareils via la passerelle centrale pour réaliser un contrôle localisé. S'il n'y a pas de passerelle centrale dans le réseau local, il tentera d'envoyer des commandes de contrôle via le protocole Xiaomi OT pour réaliser un contrôle localisé. Ce n'est que lorsque les conditions de contrôle localisé ci-dessus ne sont pas remplies que les commandes de contrôle des appareils seront envoyées via le cloud.\r\n- Cloud: Les commandes de contrôle ne sont envoyées que via le cloud.\r\n### Importer une maison pour les appareils\r\nL'intégration ajoutera les appareils de la maison sélectionnée.\r\n&emsp;\r\n### {nick_name} Bonjour ! Veuillez sélectionner le mode de contrôle de l'intégration et la maison où se trouvent les appareils à ajouter.",
+                "description": "## Instructions d'utilisation\r\n### Importer une maison pour les appareils\r\nL'intégration ajoutera les appareils de la maison sélectionnée.\r\n### Filtrer les appareils\r\nPrend en charge le filtrage des appareils par nom de pièce de la maison, type d'accès de l'appareil et modèle d'appareil, et prend également en charge le filtrage par dimension de l'appareil. **{local_count}** appareils ont été filtrés.\r\n### Mode de contrôle\r\n- Automatique: Lorsqu'il y a une passerelle centrale Xiaomi disponible dans le réseau local, Home Assistant priorisera l'envoi des commandes de contrôle des appareils via la passerelle centrale pour réaliser un contrôle localisé. S'il n'y a pas de passerelle centrale dans le réseau local, il tentera d'envoyer des commandes de contrôle via le protocole Xiaomi OT pour réaliser un contrôle localisé. Ce n'est que lorsque les conditions de contrôle localisé ci-dessus ne sont pas remplies que les commandes de contrôle des appareils seront envoyées via le cloud.\r\n- Cloud: Les commandes de contrôle ne sont envoyées que via le cloud.",
                 "data": {
-                    "ctrl_mode": "Mode de contrôle",
-                    "home_infos": "Importer une maison pour les appareils"
+                    "home_infos": "Importer une maison pour les appareils",
+                    "devices_filter": "Filtrer les Appareils",
+                    "ctrl_mode": "Mode de contrôle"
+                }
+            },
+            "devices_filter": {
+                "title": "Filtrer les Appareils",
+                "description": "## Instructions d'utilisation\r\nPrend en charge le filtrage des appareils par nom de pièce de la maison, type d'accès de l'appareil et modèle d'appareil, et prend également en charge le filtrage par dimension de l'appareil. La logique de filtrage est la suivante :\r\n- Tout d'abord, selon la logique statistique, obtenez l'union ou l'intersection de tous les éléments inclus, puis obtenez l'intersection ou l'union des éléments exclus, et enfin soustrayez le [résultat du résumé inclus] du [résultat du résumé exclu] pour obtenir le [résultat du filtre].\r\n- Si aucun élément inclus n'est sélectionné, cela signifie que tous sont inclus.\r\n### Mode de Filtrage\r\n- Exclure : Supprimer les éléments indésirables.\r\n- Inclure : Inclure les éléments souhaités.\r\n### Logique Statistique\r\n- Logique ET : Prendre l'intersection de tous les éléments dans le même mode.\r\n- Logique OU : Prendre l'union de tous les éléments dans le même mode.\r\n\r\nVous pouvez également aller à la page [Configuration > Mettre à jour la liste des appareils] de l'élément d'intégration, cocher [Filtrer les appareils] pour re-filtrer.",
+                "data": {
+                    "room_filter_mode": "Filtrer les Pièces",
+                    "room_list": "Pièces",
+                    "type_filter_mode": "Filtrer les Types d'Appareils",
+                    "type_list": "Types d'Appareils",
+                    "model_filter_mode": "Filtrer les Modèles d'Appareils",
+                    "model_list": "Modèles d'Appareils",
+                    "devices_filter_mode": "Filtrer les Appareils",
+                    "device_list": "Liste des Appareils",
+                    "statistics_logic": "Logique de Statistiques"
                 }
             },
             "update_trans_rules": {
@@ -112,7 +153,7 @@
             },
             "config_confirm": {
                 "title": "Confirmer la configuration",
-                "description": "**{nick_name}** Bonjour ! Veuillez confirmer les dernières informations de configuration et cliquer sur \"Soumettre\".\r\nL'intégration rechargera avec la nouvelle configuration.\r\n\r\nLangue d'intégration : {lang_new}\r\nPseudo utilisateur : {nick_name_new}\r\nMode de débogage d'action : {action_debug}\r\nMasquer les entités générées non standard : {hide_non_standard_entities}\r\nModifications des appareils : Ajouter **{devices_add}** appareils, supprimer **{devices_remove}** appareils\r\nModifications des règles de conversion : **{trans_rules_count}** règles au total, mise à jour de **{trans_rules_count_success}** règles",
+                "description": "**{nick_name}** Bonjour ! Veuillez confirmer les dernières informations de configuration et cliquer sur \"Soumettre\".\r\nL'intégration rechargera avec la nouvelle configuration.\r\n\r\nLangue d'intégration : {lang_new}\r\nPseudo utilisateur : {nick_name_new}\r\nMode de débogage d'action : {action_debug}\r\nMasquer les entités générées non standard : {hide_non_standard_entities}\r\nAfficher les notifications de changement d'état de l'appareil:\t{display_devices_changed_notify}\r\nModifications des appareils : Ajouter **{devices_add}** appareils, supprimer **{devices_remove}** appareils\r\nModifications des règles de conversion : **{trans_rules_count}** règles au total, mise à jour de **{trans_rules_count_success}** règles",
                 "data": {
                     "confirm": "Confirmer la modification"
                 }

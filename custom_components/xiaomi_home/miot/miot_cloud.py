@@ -254,6 +254,13 @@ class MIoTHttpClient:
         self._session = aiohttp.ClientSession(loop=self._main_loop)
 
     async def deinit_async(self) -> None:
+        if self._get_prop_timer:
+            self._get_prop_timer.cancel()
+            self._get_prop_timer = None
+        for item in self._get_prop_list.values():
+            fut: asyncio.Future = item.get('fut')
+            fut.cancel()
+        self._get_prop_list.clear()
         if self._session and not self._session.closed:
             await self._session.close()
 

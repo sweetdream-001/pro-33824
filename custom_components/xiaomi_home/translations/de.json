@@ -24,13 +24,37 @@
             },
             "homes_select": {
                 "title": "Familie und Geräte auswählen",
-                "description": "## Gebrauchsanweisung\r\n### Steuerungsmodus\r\n- Automatisch: Wenn im lokalen Netzwerk ein verfügbarer Xiaomi-Zentralgateway vorhanden ist, wird Home Assistant bevorzugt Steuerbefehle über den Zentralgateway senden, um eine lokale Steuerung zu ermöglichen. Wenn im lokalen Netzwerk kein Zentralgateway vorhanden ist, wird versucht, Steuerbefehle über das Xiaomi-OT-Protokoll zu senden, um eine lokale Steuerung zu ermöglichen. Nur wenn die oben genannten Bedingungen für die lokale Steuerung nicht erfüllt sind, werden die Steuerbefehle über die Cloud gesendet.\r\n- Cloud: Steuerbefehle werden nur über die Cloud gesendet.\r\n### Familienimport für importierte Geräte\r\nDie Integration fügt Geräte aus den ausgewählten Familien hinzu.\r\n### Raumnamensynchronisationsmodus\r\nWenn Geräte von der Xiaomi Home App zu Home Assistant synchronisiert werden, wird die Bezeichnung des Bereichs, in dem sich die Geräte in Home Assistant befinden, nach folgenden Regeln benannt. Beachten Sie, dass das Synchronisieren von Geräten den von Xiaomi Home App festgelegten Familien- und Raum-Einstellungen nicht ändert.\r\n- Nicht synchronisieren: Das Gerät wird keinem Bereich hinzugefügt.\r\n- Andere Optionen: Der Bereich, in den das Gerät aufgenommen wird, wird nach dem Namen der Familie oder des Raums in der Xiaomi Home App benannt.\r\n### Action-Debug-Modus\r\nFür von MIoT-Spec-V2 definierte Gerätemethoden wird neben der Benachrichtigungs-Entität auch eine Texteingabe-Entität generiert. Damit können Sie bei der Fehlerbehebung Steuerbefehle an das Gerät senden.\r\n### Verstecke Nicht-Standard-Entitäten\r\nVerstecke Entitäten, die von nicht standardmäßigen MIoT-Spec-V2-Instanzen mit einem Namen beginnen, der mit einem \"*\" beginnt.\r\n\r\n&emsp;\r\n### Hallo {nick_name}! Bitte wählen Sie den Steuerungsmodus der Integration sowie die Familie aus, in der sich die hinzuzufügenden Geräte befinden.",
+                "description": "## Gebrauchsanweisung\r\n### Familienimport für importierte Geräte\r\nDie Integration fügt Geräte aus den ausgewählten Familien hinzu.\r\n### Raumnamensynchronisationsmodus\r\nWenn Geräte von der Xiaomi Home App zu Home Assistant synchronisiert werden, wird die Bezeichnung des Bereichs, in dem sich die Geräte in Home Assistant befinden, nach folgenden Regeln benannt. Beachten Sie, dass das Synchronisieren von Geräten den von Xiaomi Home App festgelegten Familien- und Raum-Einstellungen nicht ändert.\r\n- Nicht synchronisieren: Das Gerät wird keinem Bereich hinzugefügt.\r\n- Andere Optionen: Der Bereich, in den das Gerät aufgenommen wird, wird nach dem Namen der Familie oder des Raums in der Xiaomi Home App benannt.\r\n### Erweiterte Einstellungen\r\nZeigen Sie erweiterte Einstellungen an, um die professionellen Konfigurationsoptionen der Integration zu ändern.\r\n\r\n&emsp;\r\n### {nick_name} Hallo! Bitte wählen Sie die Familie aus, zu der Sie das Gerät hinzufügen möchten.",
                 "data": {
-                    "ctrl_mode": "Steuerungsmodus",
                     "home_infos": "Familienimport für importierte Geräte",
                     "area_name_rule": "Raumnamensynchronisationsmodus",
+                    "advanced_options": "Erweiterte Einstellungen"
+                }
+            },
+            "advanced_options": {
+                "title": "Erweiterte Einstellungen",
+                "description": "## Gebrauchsanweisung\r\n### Wenn Sie die Bedeutung der folgenden Optionen nicht genau kennen, belassen Sie sie bitte auf den Standardeinstellungen.\r\n### Geräte filtern\r\nUnterstützt das Filtern von Geräten nach Raumnamen und Gerätetypen sowie das Filtern nach Gerätedimensionen.\r\n\r\n### Steuerungsmodus\r\n- Automatisch: Wenn ein verfügbarer Xiaomi-Hub im lokalen Netzwerk vorhanden ist, priorisiert Home Assistant das Senden von Steuerbefehlen über den Hub, um eine lokale Steuerung zu ermöglichen. Wenn kein Hub vorhanden ist, wird versucht, Steuerbefehle über das Xiaomi-OT-Protokoll zu senden. Nur wenn diese Bedingungen für die lokale Steuerung nicht erfüllt sind, werden die Befehle über die Cloud gesendet.\r\n- Cloud: Steuerbefehle werden ausschließlich über die Cloud gesendet.\r\n### Action-Debug-Modus\r\nFür Methoden, die von MIoT-Spec-V2-Geräten definiert werden, wird neben der Benachrichtigungsentität auch eine Texteingabe-Entität erstellt, mit der Sie während des Debuggens Steuerbefehle an das Gerät senden können.\r\n### Nicht standardmäßige Entitäten ausblenden\r\nBlendet Entitäten aus, die von nicht-standardmäßigen MIoT-Spec-V2-Instanzen generiert werden und deren Name mit „*“ beginnt.\r\n### Gerätestatusänderungen anzeigen\r\nDetaillierte Anzeige von Gerätestatusänderungen, es werden nur die ausgewählten Benachrichtigungen angezeigt.",
+                "data": {
+                    "devices_filter": "Geräte filtern",
+                    "ctrl_mode": "Steuerungsmodus",
                     "action_debug": "Action-Debug-Modus",
-                    "hide_non_standard_entities": "Verstecke Nicht-Standard-Entitäten"
+                    "hide_non_standard_entities": "Nicht standardmäßige Entitäten ausblenden",
+                    "display_devices_changed_notify": "Gerätestatusänderungen anzeigen"
+                }
+            },
+            "devices_filter": {
+                "title": "Geräte filtern",
+                "description": "## Gebrauchsanweisung\r\nUnterstützt das Filtern von Geräten nach Raumnamen, Gerätezugriffstyp und Gerätemodell, und unterstützt auch das Filtern nach Gerätegröße. Die Filterlogik ist wie folgt:\r\n- Zuerst wird gemäß der statistischen Logik die Vereinigung oder der Schnittpunkt aller eingeschlossenen Elemente ermittelt, dann der Schnittpunkt oder die Vereinigung der ausgeschlossenen Elemente, und schließlich wird das [eingeschlossene Gesamtergebnis] vom [ausgeschlossenen Gesamtergebnis] subtrahiert, um das [Filterergebnis] zu erhalten.\r\n- Wenn keine eingeschlossenen Elemente ausgewählt sind, bedeutet dies, dass alle eingeschlossen sind.\r\n### Filtermodus\r\n- Ausschließen: Unerwünschte Elemente entfernen.\r\n- Einschließen: Gewünschte Elemente einschließen.\r\n### Statistische Logik\r\n- UND-Logik: Den Schnittpunkt aller Elemente im gleichen Modus nehmen.\r\n- ODER-Logik: Die Vereinigung aller Elemente im gleichen Modus nehmen.\r\n\r\nSie können auch zur Seite [Konfiguration > Geräteliste aktualisieren] des Integrationselements gehen, [Geräte filtern] auswählen, um erneut zu filtern.",
+                "data": {
+                    "room_filter_mode": "Familienraum filtern",
+                    "room_list": "Familienraum",
+                    "type_filter_mode": "Gerätetyp filtern",
+                    "type_list": "Gerätetyp",
+                    "model_filter_mode": "Gerätemodell filtern",
+                    "model_list": "Gerätemodell",
+                    "devices_filter_mode": "Geräte filtern",
+                    "device_list": "Geräteliste",
+                    "statistics_logic": "Statistiklogik"
                 }
             }
         },
@@ -76,8 +100,9 @@
                     "update_devices": "Geräteliste aktualisieren",
                     "action_debug": "Action-Debug-Modus",
                     "hide_non_standard_entities": "Verstecke Nicht-Standard-Entitäten",
-                    "update_trans_rules": "Entitätskonvertierungsregeln aktualisieren (globale konfiguration)",
-                    "update_lan_ctrl_config": "LAN-Steuerungskonfiguration aktualisieren (globale Konfiguration)"
+                    "display_devices_changed_notify": "Gerätestatusänderungen anzeigen",
+                    "update_trans_rules": "Entitätskonvertierungsregeln aktualisieren",
+                    "update_lan_ctrl_config": "LAN-Steuerungskonfiguration aktualisieren"
                 }
             },
             "update_user_info": {
@@ -89,10 +114,26 @@
             },
             "homes_select": {
                 "title": "Familie und Geräte neu auswählen",
-                "description": "## Gebrauchsanweisung\r\n### Steuerungsmodus\r\n- Automatisch: Wenn im lokalen Netzwerk ein verfügbarer Xiaomi-Zentralgateway vorhanden ist, wird Home Assistant bevorzugt Steuerbefehle über den Zentralgateway senden, um eine lokale Steuerung zu ermöglichen. Wenn im lokalen Netzwerk kein Zentralgateway vorhanden ist, wird versucht, Steuerbefehle über das Xiaomi-OT-Protokoll zu senden, um eine lokale Steuerung zu ermöglichen. Nur wenn die oben genannten Bedingungen für die lokale Steuerung nicht erfüllt sind, werden die Steuerbefehle über die Cloud gesendet.\r\n- Cloud: Steuerbefehle werden nur über die Cloud gesendet.\r\n### Familienimport für importierte Geräte\r\nDie Integration fügt Geräte aus den ausgewählten Familien hinzu.\r\n&emsp;\r\n### Hallo {nick_name}! Bitte wählen Sie den Steuerungsmodus der Integration sowie die Familie aus, in der sich die hinzuzufügenden Geräte befinden.",
+                "description": "## Gebrauchsanweisung\r\n### Familienimport für importierte Geräte\r\nDie Integration fügt Geräte aus den ausgewählten Familien hinzu.\r\n### Geräte filtern\r\nUnterstützt das Filtern von Geräten nach Raumnamen, Gerätezugriffstyp und Gerätemodell, und unterstützt auch das Filtern nach Gerätegröße. Es wurden **{local_count}** Geräte gefiltert.\r\n### Steuerungsmodus\r\n- Automatisch: Wenn im lokalen Netzwerk ein verfügbarer Xiaomi-Zentralgateway vorhanden ist, wird Home Assistant bevorzugt Steuerbefehle über den Zentralgateway senden, um eine lokale Steuerung zu ermöglichen. Wenn im lokalen Netzwerk kein Zentralgateway vorhanden ist, wird versucht, Steuerbefehle über das Xiaomi-OT-Protokoll zu senden, um eine lokale Steuerung zu ermöglichen. Nur wenn die oben genannten Bedingungen für die lokale Steuerung nicht erfüllt sind, werden die Steuerbefehle über die Cloud gesendet.\r\n- Cloud: Steuerbefehle werden nur über die Cloud gesendet.",
                 "data": {
-                    "ctrl_mode": "Steuerungsmodus",
-                    "home_infos": "Familienimport für importierte Geräte"
+                    "home_infos": "Familienimport für importierte Geräte",
+                    "devices_filter": "Geräte filtern",
+                    "ctrl_mode": "Steuerungsmodus"
+                }
+            },
+            "devices_filter": {
+                "title": "Geräte filtern",
+                "description": "## Gebrauchsanweisung\r\nUnterstützt das Filtern von Geräten nach Raumnamen, Gerätezugriffstyp und Gerätemodell, und unterstützt auch das Filtern nach Gerätegröße. Die Filterlogik ist wie folgt:\r\n- Zuerst wird gemäß der statistischen Logik die Vereinigung oder der Schnittpunkt aller eingeschlossenen Elemente ermittelt, dann der Schnittpunkt oder die Vereinigung der ausgeschlossenen Elemente, und schließlich wird das [eingeschlossene Gesamtergebnis] vom [ausgeschlossenen Gesamtergebnis] subtrahiert, um das [Filterergebnis] zu erhalten.\r\n- Wenn keine eingeschlossenen Elemente ausgewählt sind, bedeutet dies, dass alle eingeschlossen sind.\r\n### Filtermodus\r\n- Ausschließen: Unerwünschte Elemente entfernen.\r\n- Einschließen: Gewünschte Elemente einschließen.\r\n### Statistische Logik\r\n- UND-Logik: Den Schnittpunkt aller Elemente im gleichen Modus nehmen.\r\n- ODER-Logik: Die Vereinigung aller Elemente im gleichen Modus nehmen.\r\n\r\nSie können auch zur Seite [Konfiguration > Geräteliste aktualisieren] des Integrationselements gehen, [Geräte filtern] auswählen, um erneut zu filtern.",
+                "data": {
+                    "room_filter_mode": "Familienraum filtern",
+                    "room_list": "Familienraum",
+                    "type_filter_mode": "Gerätetyp filtern",
+                    "type_list": "Gerätetyp",
+                    "model_filter_mode": "Gerätemodell filtern",
+                    "model_list": "Gerätemodell",
+                    "devices_filter_mode": "Geräte filtern",
+                    "device_list": "Geräteliste",
+                    "statistics_logic": "Statistiklogik"
                 }
             },
             "update_trans_rules": {
@@ -112,7 +153,7 @@
             },
             "config_confirm": {
                 "title": "Bestätigen Sie die Konfiguration",
-                "description": "**{nick_name}**, bitte bestätigen Sie die neuesten Konfigurationsinformationen und klicken Sie dann auf \"Senden\". Die Integration wird mit den aktualisierten Konfigurationen erneut geladen.\r\n\r\nIntegrationsprache:\t{lang_new}\r\nBenutzername:\t{nick_name_new}\r\nAction-Debug-Modus:\t{action_debug}\r\nVerstecke Nicht-Standard-Entitäten:\t{hide_non_standard_entities}\r\nGeräteänderungen:\t{devices_add} neue Geräte hinzufügen, {devices_remove} Geräte entfernen\r\nKonvertierungsregeländerungen:\tInsgesamt {trans_rules_count} Regeln, aktualisiert {trans_rules_count_success} Regeln",
+                "description": "**{nick_name}**, bitte bestätigen Sie die neuesten Konfigurationsinformationen und klicken Sie dann auf \"Senden\". Die Integration wird mit den aktualisierten Konfigurationen erneut geladen.\r\n\r\nIntegrationsprache:\t{lang_new}\r\nBenutzername:\t{nick_name_new}\r\nAction-Debug-Modus:\t{action_debug}\r\nVerstecke Nicht-Standard-Entitäten:\t{hide_non_standard_entities}\r\nGerätestatusänderungen anzeigen:\t{display_devices_changed_notify}\r\nGeräteänderungen:\t{devices_add} neue Geräte hinzufügen, {devices_remove} Geräte entfernen\r\nKonvertierungsregeländerungen:\tInsgesamt {trans_rules_count} Regeln, aktualisiert {trans_rules_count_success} Regeln",
                 "data": {
                     "confirm": "Änderungen bestätigen"
                 }

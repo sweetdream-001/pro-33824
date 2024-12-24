@@ -2,11 +2,47 @@
     "config": {
         "other": {
             "devices": "Geräte",
-            "found_central_gateway": ", lokales zentrales Gateway gefunden"
+            "found_central_gateway": ", lokales zentrales Gateway gefunden",
+            "without_room": "Kein Raum zugewiesen",
+            "no_display": "nicht anzeigen"
         },
         "control_mode": {
             "auto": "automatisch",
             "cloud": "Cloud"
+        },
+        "statistics_logic": {
+            "or": "ODER-Logik",
+            "and": "UND-Logik"
+        },
+        "filter_mode": {
+            "exclude": "ausschließen",
+            "include": "einschließen"
+        },
+        "connect_type": {
+            "0": "WiFi",
+            "1": "yunyi-Gerät",
+            "2": "Cloud-Gerät",
+            "3": "ZigBee",
+            "4": "webSocket",
+            "5": "virtuelles Gerät",
+            "6": "BLE",
+            "7": "lokaler AP",
+            "8": "WiFi+BLE",
+            "9": "andere",
+            "10": "Funktions-Plug-in",
+            "11": "Zellnetz",
+            "12": "Kabel",
+            "13": "NB-IoT",
+            "14": "Drittanbieter-Cloud-Zugriff",
+            "15": "Infrarot-Fernbedienungsgerät",
+            "16": "BLE-Mesh",
+            "17": "virtuelle Gerätegruppe",
+            "18": "Gateway-Untergerät",
+            "19": "Sicherheitsstufe Gateway-Untergerät",
+            "22": "PLC",
+            "23": "nur Kabel",
+            "24": "Matter",
+            "25": "WiFi+Zellnetz"
         },
         "room_name_rule": {
             "none": "nicht synchronisieren",
@@ -17,6 +53,11 @@
         "option_status": {
             "enable": "aktivieren",
             "disable": "deaktivieren"
+        },
+        "device_state": {
+            "add": "hinzufügen",
+            "del": "nicht verfügbar",
+            "offline": "offline"
         },
         "lan_ctrl_config": {
             "notice_net_dup": "\r\n**[Hinweis]** Es wurden mehrere Netzwerkkarten erkannt, die möglicherweise mit demselben Netzwerk verbunden sind. Bitte achten Sie auf die Auswahl.",
