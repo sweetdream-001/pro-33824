@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v0.1.4b1
+### Added
+- Support devices filter, and device changed notify logical refinement. [#332](https://github.com/XiaoMi/ha_xiaomi_home/pull/332)
+### Changed
+- Readme amend HACS installation. [#404](https://github.com/XiaoMi/ha_xiaomi_home/pull/404)
+### Fixed
+- Fix unit_convert AttributeError, Change to catch all Exception. [#396](https://github.com/XiaoMi/ha_xiaomi_home/pull/396)
+- Ignore undefined piid and keep processing following arguments. [#377](https://github.com/XiaoMi/ha_xiaomi_home/pull/377)
+- Fix some type error, wrong use of any and Any. [#338](https://github.com/XiaoMi/ha_xiaomi_home/pull/338)
+- Fix lumi.switch.acn040 identify service translation of zh-Hans [#412](https://github.com/XiaoMi/ha_xiaomi_home/pull/412)
+
 ## v0.1.4b0
 ### Added
 ### Changed
