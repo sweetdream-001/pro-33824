@@ -32,7 +32,7 @@ git checkout v1.0.0
 
 ### Method 2: [HACS](https://hacs.xyz/)
 
-HACS > Overflow Menu > Custom repositories > Repository: https://github.com/XiaoMi/ha_xiaomi_home.git & Category: Integration > ADD > Xiaomi Home in New or Available for download section of HACS > DOWNLOAD
+HACS > Overflow Menu > Custom repositories > Repository: https://github.com/XiaoMi/ha_xiaomi_home.git & Category or Type: Integration > ADD > Xiaomi Home in New or Available for download section of HACS > DOWNLOAD
 
 > Xiaomi Home has not been added to the HACS store as a default yet. It's coming soon.
 
