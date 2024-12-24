@@ -1198,8 +1198,8 @@ class MIoTEventEntity(Entity):
     def __on_event_occurred(self, params: dict, ctx: Any) -> None:
         _LOGGER.debug('event occurred, %s',  params)
         trans_arg = {}
-        try:
-            for item in params['arguments']:
+        for item in params['arguments']:
+            try:
                 if 'value' not in item:
                     continue
                 if 'piid' in item:
@@ -1215,10 +1215,10 @@ class MIoTEventEntity(Entity):
                         for index, prop in enumerate(self.spec.argument)
                     }
                     break
-        except KeyError as error:
-            _LOGGER.error(
-                'on event msg, invalid args, %s, %s, %s',
-                self.entity_id, params, error)
+            except KeyError as error:
+                _LOGGER.debug(
+                    'on event msg, invalid args, %s, %s, %s',
+                    self.entity_id, params, error)
         self.on_event_occurred(
             name=self.spec.description_trans, arguments=trans_arg)
         self.async_write_ha_state()
