@@ -26,6 +26,7 @@ For example, update to version v1.0.0
 
 ```bash
 cd config/ha_xiaomi_home
+git fetch
 git checkout v1.0.0
 ./install.sh /config
 ```
