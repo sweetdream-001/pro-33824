@@ -16,7 +16,7 @@
                     "cloud_server": "Regione di Login",
                     "integration_language": "Lingua",
                     "oauth_redirect_url": "URL di reindirizzamento OAuth2",
-                     "network_detect_config": "Configurazione di rete integrata"
+                    "network_detect_config": "Configurazione di rete integrata"
                 }
             },
             "network_detect_config": {
@@ -42,12 +42,13 @@
             },
             "advanced_options": {
                 "title": "Impostazioni Avanzate",
-                "description": "## Introduzione\r\n### A meno che tu non abbia chiaro il significato delle seguenti opzioni, si prega di mantenere le impostazioni predefinite.\r\n### Filtra Dispositivi\r\nSupporta il filtraggio dei dispositivi per nome della stanza e tipo di dispositivo, e supporta anche il filtraggio delle dimensioni del dispositivo.\r\n### Modalità di Controllo\r\n- Automatico: Quando è disponibile un gateway hub centrale Xiaomi nella rete locale, Home Assistant darà priorità all'invio dei comandi di controllo dei dispositivi tramite il gateway hub centrale per ottenere il controllo locale. Se non è presente un gateway hub centrale nella rete locale, tenterà di inviare comandi di controllo tramite il protocollo OT di Xiaomi per ottenere il controllo locale. Solo quando le condizioni di controllo locale sopra indicate non sono soddisfatte, i comandi di controllo del dispositivo verranno inviati tramite il cloud.\r\n- Cloud: Tutti i comandi di controllo vengono inviati tramite il cloud.\r\n### Modalità di Debug delle Azioni\r\nPer i metodi definiti dal dispositivo MIoT-Spec-V2, oltre a generare entità di notifica, verrà generata anche un'entità di casella di input di testo. È possibile utilizzarla per inviare comandi di controllo al dispositivo durante il debug.\r\n### Nascondi Entità Generate Non Standard\r\nNasconde le entità generate da istanze non standard MIoT-Spec-V2 con nomi che iniziano con \"*\".\r\n### Mostra Notifiche di Cambio di Stato del Dispositivo\r\nMostra notifiche dettagliate sui cambiamenti di stato del dispositivo, mostrando solo le notifiche selezionate.",
+                "description": "## Introduzione\r\n### A meno che tu non abbia chiaro il significato delle seguenti opzioni, si prega di mantenere le impostazioni predefinite.\r\n### Filtra Dispositivi\r\nSupporta il filtraggio dei dispositivi per nome della stanza e tipo di dispositivo, e supporta anche il filtraggio delle dimensioni del dispositivo.\r\n### Modalità di Controllo\r\n- Automatico: Quando è disponibile un gateway hub centrale Xiaomi nella rete locale, Home Assistant darà priorità all'invio dei comandi di controllo dei dispositivi tramite il gateway hub centrale per ottenere il controllo locale. Se non è presente un gateway hub centrale nella rete locale, tenterà di inviare comandi di controllo tramite il protocollo OT di Xiaomi per ottenere il controllo locale. Solo quando le condizioni di controllo locale sopra indicate non sono soddisfatte, i comandi di controllo del dispositivo verranno inviati tramite il cloud.\r\n- Cloud: Tutti i comandi di controllo vengono inviati tramite il cloud.\r\n### Modalità di Debug delle Azioni\r\nPer i metodi definiti dal dispositivo MIoT-Spec-V2, oltre a generare entità di notifica, verrà generata anche un'entità di casella di input di testo. È possibile utilizzarla per inviare comandi di controllo al dispositivo durante il debug.\r\n### Nascondi Entità Generate Non Standard\r\nNasconde le entità generate da istanze non standard MIoT-Spec-V2 con nomi che iniziano con \"*\".\r\n### Modalità di visualizzazione del sensore binario\r\nVisualizza i sensori binari in Mi Home come entità del sensore di testo o entità del sensore binario。\r\n### Mostra Notifiche di Cambio di Stato del Dispositivo\r\nMostra notifiche dettagliate sui cambiamenti di stato del dispositivo, mostrando solo le notifiche selezionate.",
                 "data": {
                     "devices_filter": "Filtra Dispositivi",
                     "ctrl_mode": "Modalità di Controllo",
                     "action_debug": "Modalità di Debug delle Azioni",
                     "hide_non_standard_entities": "Nascondi Entità Generate Non Standard",
+                    "display_binary_mode": "Modalità di visualizzazione del sensore binario",
                     "display_devices_changed_notify": "Mostra Notifiche di Cambio di Stato del Dispositivo"
                 }
             },
@@ -119,6 +120,7 @@
                     "update_devices": "Aggiorna l'elenco dei dispositivi",
                     "action_debug": "Modalità debug per azione",
                     "hide_non_standard_entities": "Nascondi entità create non standard",
+                    "display_binary_mode": "Modalità di visualizzazione del sensore binario",
                     "display_devices_changed_notify": "Mostra notifiche di cambio stato del dispositivo",
                     "update_trans_rules": "Aggiorna le regole di conversione delle entità",
                     "update_lan_ctrl_config": "Aggiorna configurazione del controllo LAN",

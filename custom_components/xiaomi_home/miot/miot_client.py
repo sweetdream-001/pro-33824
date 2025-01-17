@@ -59,7 +59,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.components import zeroconf
 
 # pylint: disable=relative-beyond-top-level
-from .common import MIoTMatcher
+from .common import MIoTMatcher, slugify_did
 from .const import (
     DEFAULT_CTRL_MODE, DEFAULT_INTEGRATION_LANGUAGE, DEFAULT_NICK_NAME, DOMAIN,
     MIHOME_CERT_EXPIRE_MARGIN, NETWORK_REFRESH_INTERVAL,
@@ -150,7 +150,7 @@ class MIoTClient:
     # Device list update timestamp
     _device_list_update_ts: int
 
-    _sub_source_list: dict[str]
+    _sub_source_list: dict[str, str]
     _sub_tree: MIoTMatcher
     _sub_device_state: dict[str, MipsDeviceState]
 
@@ -169,6 +169,10 @@ class MIoTClient:
     _show_devices_changed_notify_timer: Optional[asyncio.TimerHandle]
     # Display devices changed notify
     _display_devs_notify: list[str]
+    _display_notify_content_hash: Optional[int]
+    # Display binary mode
+    _display_binary_text: bool
+    _display_binary_bool: bool
 
     def __init__(
             self,
@@ -235,6 +239,11 @@ class MIoTClient:
 
         self._display_devs_notify = entry_data.get(
             'display_devices_changed_notify', ['add', 'del', 'offline'])
+        self._display_notify_content_hash = None
+        self._display_binary_text = 'text' in entry_data.get(
+            'display_binary_mode', ['text'])
+        self._display_binary_bool = 'bool' in entry_data.get(
+            'display_binary_mode', ['text'])
 
     async def init_async(self) -> None:
         # Load user config and check
@@ -469,6 +478,14 @@ class MIoTClient:
     def display_devices_changed_notify(self) -> list[str]:
         return self._display_devs_notify
 
+    @property
+    def display_binary_text(self) -> bool:
+        return self._display_binary_text
+
+    @property
+    def display_binary_bool(self) -> bool:
+        return self._display_binary_bool
+
     @display_devices_changed_notify.setter
     def display_devices_changed_notify(self, value: list[str]) -> None:
         if set(value) == set(self._display_devs_notify):
@@ -543,7 +560,8 @@ class MIoTClient:
             return True
         except Exception as err:
             self.__show_client_error_notify(
-                message=self._i18n.translate('miot.client.invalid_oauth_info'),
+                message=self._i18n.translate(
+                    'miot.client.invalid_oauth_info'),  # type: ignore
                 notify_key='oauth_info')
             _LOGGER.error(
                 'refresh oauth info error (%s, %s), %s, %s',
@@ -586,7 +604,8 @@ class MIoTClient:
             return True
         except MIoTClientError as error:
             self.__show_client_error_notify(
-                message=self._i18n.translate('miot.client.invalid_cert_info'),
+                message=self._i18n.translate(
+                    'miot.client.invalid_cert_info'),  # type: ignore
                 notify_key='user_cert')
             _LOGGER.error(
                 'refresh user cert error, %s, %s',
@@ -872,8 +891,16 @@ class MIoTClient:
         # Update notify
         self.__request_show_devices_changed_notify()
 
+    async def remove_device2_async(self, did_tag: str) -> None:
+        for did in self._device_list_cache:
+            d_tag = slugify_did(cloud_server=self._cloud_server, did=did)
+            if did_tag == d_tag:
+                await self.remove_device_async(did)
+                break
+
     def __get_exec_error_with_rc(self, rc: int) -> str:
-        err_msg: str = self._i18n.translate(key=f'error.common.{rc}')
+        err_msg: str = self._i18n.translate(
+            key=f'error.common.{rc}')  # type: ignore
         if not err_msg:
             err_msg = f'{self._i18n.translate(key="error.common.-10000")}, '
             err_msg += f'code={rc}'
@@ -1280,7 +1307,7 @@ class MIoTClient:
         if not cache_list:
             self.__show_client_error_notify(
                 message=self._i18n.translate(
-                    'miot.client.invalid_device_cache'),
+                    'miot.client.invalid_device_cache'),  # type: ignore
                 notify_key='device_cache')
             raise MIoTClientError('load device list from cache error')
         else:
@@ -1368,7 +1395,8 @@ class MIoTClient:
             home_ids=list(self._entry_data.get('home_selected', {}).keys()))
         if not result and 'devices' not in result:
             self.__show_client_error_notify(
-                message=self._i18n.translate('miot.client.device_cloud_error'),
+                message=self._i18n.translate(
+                    'miot.client.device_cloud_error'),  # type: ignore
                 notify_key='device_cloud')
             return
         else:
@@ -1725,13 +1753,14 @@ class MIoTClient:
 
     @final
     def __show_client_error_notify(
-        self, message: str, notify_key: str = ''
+        self, message: Optional[str], notify_key: str = ''
     ) -> None:
         if message:
+
             self._persistence_notify(
                 f'{DOMAIN}{self._uid}{self._cloud_server}{notify_key}error',
                 self._i18n.translate(
-                    key='miot.client.xiaomi_home_error_title'),
+                    key='miot.client.xiaomi_home_error_title'),  # type: ignore
                 self._i18n.translate(
                     key='miot.client.xiaomi_home_error',
                     replace={
@@ -1739,8 +1768,7 @@ class MIoTClient:
                             'nick_name', DEFAULT_NICK_NAME),
                         'uid': self._uid,
                         'cloud_server': self._cloud_server,
-                        'message': message
-                    }))
+                        'message': message}))  # type: ignore
         else:
             self._persistence_notify(
                 f'{DOMAIN}{self._uid}{self._cloud_server}{notify_key}error',
@@ -1806,27 +1834,34 @@ class MIoTClient:
                 key='miot.client.device_list_add',
                 replace={
                     'count': count_add,
-                    'message': message_add})
+                    'message': message_add})  # type: ignore
         if 'del' in self._display_devs_notify and count_del:
             message += self._i18n.translate(
                 key='miot.client.device_list_del',
                 replace={
                     'count': count_del,
-                    'message': message_del})
+                    'message': message_del})  # type: ignore
         if 'offline' in self._display_devs_notify and count_offline:
             message += self._i18n.translate(
                 key='miot.client.device_list_offline',
                 replace={
                     'count': count_offline,
-                    'message': message_offline})
+                    'message': message_offline})  # type: ignore
         if message != '':
+            msg_hash = hash(message)
+            if msg_hash == self._display_notify_content_hash:
+                # Notify content no change, return
+                _LOGGER.debug(
+                    'device list changed notify content no change, return')
+                return
             network_status = self._i18n.translate(
                 key='miot.client.network_status_online'
                 if self._network.network_status
                 else 'miot.client.network_status_offline')
             self._persistence_notify(
                 self.__gen_notify_key('dev_list_changed'),
-                self._i18n.translate('miot.client.device_list_changed_title'),
+                self._i18n.translate(
+                    'miot.client.device_list_changed_title'),  # type: ignore
                 self._i18n.translate(
                     key='miot.client.device_list_changed',
                     replace={
@@ -1835,8 +1870,8 @@ class MIoTClient:
                         'uid': self._uid,
                         'cloud_server': self._cloud_server,
                         'network_status': network_status,
-                        'message': message
-                    }))
+                        'message': message}))  # type: ignore
+            self._display_notify_content_hash = msg_hash
             _LOGGER.debug(
                 'show device list changed notify, add %s, del %s, offline %s',
                 count_add, count_del, count_offline)

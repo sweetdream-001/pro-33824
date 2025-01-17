@@ -54,6 +54,10 @@
             "enable": "Abilita",
             "disable": "Disabilita"
         },
+        "binary_mode": {
+            "text": "Entità Sensore Testo",
+            "bool": "Entità Sensore Binario"
+        },
         "device_state": {
             "add": "Aggiungere",
             "del": "Non disponibile",
