@@ -12,7 +12,6 @@ import logging
 
 _LOGGER = logging.getLogger(__name__)
 
-
 # pylint: disable = import-outside-toplevel, unused-argument
 
 @pytest.mark.parametrize('central_info', [
